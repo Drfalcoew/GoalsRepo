@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseFirestore
 
 
 struct GoalAttributes {
@@ -31,7 +29,7 @@ struct GoalAttributes {
         self.ref = ref
         self.icon = icon
     }
-   
+   /*
     init(snapshot: QueryDocumentSnapshot) {
         let snapshotValue = snapshot.data() as [String: AnyObject]
         name = snapshotValue["goalName"] as? String
@@ -41,7 +39,7 @@ struct GoalAttributes {
         daysTaken = snapshotValue["daysTaken"] as? Int
         icon = snapshotValue["icon"] as? Int
         //ref = snapshot.ref
-    }
+    }*/
     
     func toAnyObject() -> Any {
         return [

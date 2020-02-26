@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseFirestore
-import FirebaseCore
-import GoogleMobileAds
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-8752347849222491~4577752455" )
-        
-        FirebaseApp.configure()
         
        
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -8,7 +8,6 @@
 
 
 import Foundation
-import Firebase
 
 
 struct User {
@@ -26,14 +25,14 @@ struct User {
         rep = authData.rep!
     }
     
-    
+    /*
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         userName = snapshotValue["userName"] as? String
         rep = snapshotValue["rep"] as? Double
         uid = snapshotValue["uid"] as? String
         email = snapshotValue["email"] as? String
-    }
+    }*/
     
     
     

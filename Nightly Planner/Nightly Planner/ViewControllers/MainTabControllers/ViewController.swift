@@ -7,20 +7,16 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseFirestore
-//import GoogleMobileAds
 import AVFoundation
 import UserNotifications
 
-class ViewController: UIViewController, GADInterstitialDelegate {
+class ViewController: UIViewController {
     
     var userName : String = String()
     var audioPlayer : AVAudioPlayer?
     var shortTermGoals = [GoalAttributes?]()
     var longTermGoals = [LongTermGoalAttributes?]()
     var viewXAnchor : NSLayoutConstraint?
-    var db : Firestore?
     var longTermCount : Int?
     var goalCategories = [Any]()
     var longTermZero = "longTerm_Zero"
@@ -28,7 +24,6 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     var x : CGFloat?
     var sort : Int?
     var loaded : Bool? = false
-    var adView: GADInterstitial!
     //var indexPathRow : Int!
     var y : Int?
     var collectionCellCount : Int?
@@ -277,87 +272,29 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     }
     
     func updateSkippedDaysInDatabase(first: Int, last: Int) {
-        if let uid = Auth.auth().currentUser?.uid { // check if user is authenticated
 
-            let completionDB = db?.collection("users").document(uid).collection("weeklyChart").document("weeklyChart")
-            
-            var range : Int
-            if last < first {
-                range = 7 + last - first
-            } else if first < last {
-                range = last - first
-            } else { // if first == last, skipped days >= 7, reset week
-                range = 7
-            }
-            range = range - 1
-            
-            print("UPDATE Range:", range)
-
-            // first = 3, last = 5, range = last - first (2)
-            // first 5, last = 3. range = 7 + last - first (5)
-            
-            var weeklyDayCase : String = "day_\(first)"
-            var x = first
-            
-            
-            completionDB?.getDocument(completion: { (doc, err) in
-                
-                if let doc = doc {
-                    print("UPDATE : ", doc)
-                    for _ in 0...range {
-                        weeklyDayCase = "day_\(x)"
-                        print("UPDATE : ", weeklyDayCase)
-                        completionDB?.updateData([weeklyDayCase : 0])
-                        if first < 6 {
-                            x += 1
-                        } else {
-                            x = 0
-                        }
-                    }
-                }
-            })
+        
+        var range : Int
+        if last < first {
+            range = 7 + last - first
+        } else if first < last {
+            range = last - first
+        } else { // if first == last, skipped days >= 7, reset week
+            range = 7
         }
+        range = range - 1
+        
+        print("UPDATE Range:", range)
+
+        // first = 3, last = 5, range = last - first (2)
+        // first 5, last = 3. range = 7 + last - first (5)
+        
+        var weeklyDayCase : String = "day_\(first)"
+        var x = first
         
     }
     
     func setupGreeting() {
-        if let uid = Auth.auth().currentUser?.uid {
-            print("TESTING!", uid)
-            
-
-            db?.collection("users").document(uid).getDocument(completion: { (document, error) in
-                print("TESTING!!")
-                
-                if let document = document, document.exists {
-                    for (key, value) in document.data()! {
-                        switch key {
-                        case "userName":
-                            self.greetingView.subLabel_0.text = "Hi, \(value as! String)"
-                            self.userName = (value as? String) ?? "Unable to get name"
-                            print("TESTING!!!")
-
-                            break
-                        case "email":
-                            UserDefaults.standard.set(value as? String, forKey: "Email")
-                            UserDefaults.standard.synchronize()
-                            print("TESTING!!!!")
-
-                            break
-                        case "premium":
-                            self.premium = value as? Bool //assign gets called after check
-                            if self.premium == true {
-                                UserDefaults.standard.set(true, forKey: "premium")
-                            } else {
-                                UserDefaults.standard.set(false, forKey: "premium")
-                            }
-                            UserDefaults.standard.synchronize()
-                            break
-                        default: break
-                        }
-                    }
-                }
-            })
-        }
         
         UserDefaults.standard.set(self.userName, forKey: "Name")
         UserDefaults.standard.synchronize()
@@ -530,21 +467,6 @@ class ViewController: UIViewController, GADInterstitialDelegate {
         present(myAlert, animated: true, completion: nil)
     }
     
-    func showAd() {
-        adView = GADInterstitial(adUnitID: "ca-app-pub-8752347849222491/1365265751")
-        adView.load(GADRequest())
-        adView.delegate = self
-    }
-    
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        if adView.isReady {
-            adView.present(fromRootViewController: self)
-            
-        } else {
-            print("Ad wasn't ready")
-        }
-    }
-    
     func setupViews() {
         
         self.view.addSubview(greetingView)
@@ -561,14 +483,6 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     
     func CheckIfUserIsLoggedIn() {
         
-        if Auth.auth().currentUser?.uid == nil { //if user is not logged in
-            navigationController?.customPush(viewController: LoginController())
-        }
-        else {
-            if (Auth.auth().currentUser?.uid) != nil { //if user is logged in
-                UserDefaults.standard.set(Auth.auth().currentUser?.uid, forKey: "uid") //assign user id to key "uid"
-            }
-        }
     }
     
     
@@ -579,74 +493,12 @@ class ViewController: UIViewController, GADInterstitialDelegate {
         var dailyLog = 1
         let today = Date().formatted
         
-        if let uid = Auth.auth().currentUser?.uid {
-            let dailyLogRef = db?.collection("users").document(uid).collection("dailyLogin").document("loginData")
-            dailyLogRef?.getDocument(completion: { (document, err) in
-                if let document = document, document.exists {
-                    
-                    for (key, value) in document.data()! {
-                        switch key {
-                        case "dailyLog":
-                            dailyLog = value as! Int
-                            //self.dailyLogin.text = "Daily Login: \(dailyLog)"
-                            //self.dailyLogin.isHidden = false
-                            break
-                        case "logDate":  // check if user has already logged in today
-                            if today != value as! String {  // new login date
-                                dailyLog = dailyLog + 1
-                                dailyLogRef?
-                                    .setData([
-                                        "logDate" : today,
-                                        "dailyLog" : dailyLog
-                                        ])
-                                self.alert(message: "Daily Login")
-                                
-                                // reset routine completion to false
-                                UserDefaults.standard.set(false, forKey: "routineComplete")
-                                self.firstGoalOfDay = true
-                                UserDefaults.standard.set(true, forKey: "firstGoalOfDay")
-                                self.routineComplete = false
-                                UserDefaults.standard.synchronize()
-                                
-                                /*self.dailyLogin.text = "Daily Login: \(dailyLog)"
-                                self.dailyLogin.isHidden = false*/
-                                
-                            } else {
-                                //user already logged in today
-                                print("User already logged in \(today).")
-                            }
-                            break
-                        default: break
-                        }
-                    }
-                    
-                    if err != nil {
-                        print(err?.localizedDescription ?? "ERROR")
-                    }
-                    
-                    
-                } else {  // First Log in
-                    dailyLogRef?
-                        .setData([
-                            "dailyLog" : dailyLog,
-                            "logDate" : today
-                            ])
-                    print("Login data added successfully. Daily Login: \(dailyLog)")
-                    
-                    self.subscribeAlert()
-                }
-            })
-        }
     }
     
     
     
     
     func SetupDatabase() {
-        db = Firestore.firestore()
-        let settings = db?.settings
-        //settings?.areTimestampsInSnapshotsEnabled = true
-        db?.settings = settings!
         
         setupGreeting()
         checkDailyLogin()
@@ -664,55 +516,21 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     
     func getRoutineGoal() {
         
-        if let uid = Auth.auth().currentUser?.uid {
             routineComplete = UserDefaults.standard.bool(forKey: "routineComplete")
-            
-            let docRef = db?.collection("users").document(uid).collection("routine").document("routine") // Get ShortTerm
-            docRef?.getDocument(completion: { (document, err) in
-                if let document = document, document.exists {
-                    //add tap gesture on routineView
-                    self.routineView.addGestureRecognizer(self.tap!)
-                    for (key, value) in document.data()! { // ROUTINE GOAL == TRUE
-                        switch key {
-                        case "goalName":
-                            self.routineView.titleLabel.text = value as! String
-                            break
-                        case "icon":
-                            if value != nil {
-                                //self.routineView.categoryImageView
-                                //self.routineView.categoryImageView
-                            }
-                            break
-                        case "time":
-                            self.routineView.timeRemainingLabel.text = value as! String
+    
+            // initial label colorize of either red or green, incomplete or complete, respectively.
+            if self.routineComplete == true {
+                self.routineView.completionLabel.text = "Complete"
+                self.routineView.completionLabel.textColor = UIColor(r: 89, g: 89, b: 255)
+            } else {
+                self.routineView.completionLabel.text = "Incomplete"
+                self.routineView.completionLabel.textColor = UIColor(r: 255, g: 89, b: 89)
+            }
 
-                        default: break
-                        }
-                    }
-                    
-
-                    // initial label colorize of either red or green, incomplete or complete, respectively.
-                    if self.routineComplete == true {
-                        self.routineView.completionLabel.text = "Complete"
-                        self.routineView.completionLabel.textColor = UIColor(r: 89, g: 89, b: 255)
-                    } else {
-                        self.routineView.completionLabel.text = "Incomplete"
-                        self.routineView.completionLabel.textColor = UIColor(r: 255, g: 89, b: 89)
-                    }
-
-                } else {
-                    //remove tap gesture on routineView
-                    if self.premium == false {
-                        self.routineView.titleLabel.text = "Requires Premium"
-                        self.routineView.nonPremiumCover.isHidden = false
-                    } else if self.premium == true {
-                        self.routineView.titleLabel.text = "No Routine"
-                        self.routineView.nonPremiumCover.isHidden = true
-
-                    }
-                }
-            })
-            
+           // self.routineView.titleLabel.text = "No Routine"
+            //self.routineView.nonPremiumCover.isHidden = true
+        
+    
             if let window = UIApplication.shared.keyWindow {
                 if window.frame.height > 700 {
                     print("in 550 A")
@@ -726,60 +544,40 @@ class ViewController: UIViewController, GADInterstitialDelegate {
             if routineView.titleLabel.text?.count ?? 35 < 30 {
                 routineView.titleLabel.numberOfLines = 1
             }
-        }
+        
     }
 
  
     func getShortTerm() {
-        if let uid = Auth.auth().currentUser?.uid {
-            shortTermGoals.removeAll()
+        shortTermGoals.removeAll()
             
-            let docRef = db?.collection("users").document(uid).collection("shortTerm") // Get ShortTerm
-            docRef?.getDocuments { (document, error) in
-                if let document = document, document.isEmpty == false {
-                    //var goal: GoalAttributes = []
-                    
-                    for item in document.documents {
-                        var goal = GoalAttributes(snapshot: item)
-                        goal.ref = item.documentID
-                        self.shortTermGoals.append(goal)
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        if self.addGoal != true {
-                            self.collectionCellCount = self.shortTermGoals.count
-                        } else {
-                            self.collectionCellCount = self.shortTermGoals.count + 1
-                        }
-                        self.layoutSpacerView(goalCount: self.shortTermGoals.count)
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                        UIView.animate(withDuration: 1.00, delay: 0.0, options: .curveEaseOut, animations: {
-                            self.routineView.alpha = 1.0
-                            self.collectionView.alpha = 1
-                            if self.loaded != true {
-                               // self.spacerView.center.x -= self.view.frame.width
-                                self.loaded = true
-                            }
-                        }, completion: nil)
-                        
-                    }
-                    
-                } else {
-                    print("SHORT TERM DOCUMENT does not exist")
-                    UIView.animate(withDuration: 1.0, animations: {
-                        self.collectionView.alpha = 1
-                        self.addGoalButton.alpha = 1
-                        self.routineView.alpha = 0.9
-                        if self.loaded != true {
-                           // self.spacerView.center.x -= self.view.frame.width
-                            self.loaded = true
-                        }
-                    })
+
+        // self.layoutSpacerView(goalCount: self.shortTermGoals.count)
+        
+            
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            UIView.animate(withDuration: 1.00, delay: 0.0, options: .curveEaseOut, animations: {
+                self.routineView.alpha = 1.0
+                self.collectionView.alpha = 1
+                if self.loaded != true {
+                   // self.spacerView.center.x -= self.view.frame.width
+                    self.loaded = true
                 }
-            }
+            }, completion: nil)
+            
         }
+                    
+        print("SHORT TERM DOCUMENT does not exist")
+        UIView.animate(withDuration: 1.0, animations: {
+            self.collectionView.alpha = 1
+            self.addGoalButton.alpha = 1
+            self.routineView.alpha = 0.9
+            if self.loaded != true {
+               // self.spacerView.center.x -= self.view.frame.width
+                self.loaded = true
+            }
+        })
     }
     
     func layoutSpacerView(goalCount: Int) {
@@ -892,12 +690,7 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     }
     
     func subscribeUser(alert: UIAlertAction) {
-        if let email = Auth.auth().currentUser?.email {
-            db?.collection("subscribedUsers").addDocument(data: ["Email" : email])
-            self.welcomeAlert()
-        } else {
-            self.alert(message: "Could not register email into our newsletter list.  Please try again later in settings.")
-        }
+
     }
     
     func SetupNavigation() {
@@ -980,12 +773,6 @@ class ViewController: UIViewController, GADInterstitialDelegate {
   
     
     func handleLogout(sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            navigationController?.customPush(viewController: LoginController())
-        } catch let logoutError {
-            print("Error signing out, error: \(logoutError.localizedDescription)")
-        }
     }
     
     func displayLoginAlert(){
@@ -1042,24 +829,7 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     }
     
     func setupNewWeeklyDay() {
-        if let uid = Auth.auth().currentUser?.uid { // check if user is authenticated
-            var weeklyDayCase : String = "day_\(weeklyDay!)"
-
-            let completionDB = db?.collection("users").document(uid)
-            let weeklyChartDB = completionDB?.collection("weeklyChart").document("weeklyChart")
-            weeklyChartDB?.getDocument(completion: { (document, error) in
-                if let document = document, document.exists {
-                    for (key, value) in document.data()! {
-                        switch key {
-                        case weeklyDayCase:
-                            weeklyChartDB?.updateData([weeklyDayCase : 0])
-                            break
-                        default: break
-                        }
-                    }
-                }
-            })
-        }
+        //reset 0
     }
     
     func saveCompletedGoal(indexPath: IndexPath) {
@@ -1068,94 +838,6 @@ class ViewController: UIViewController, GADInterstitialDelegate {
         var completedImbededCount : Int = 0
         var weeklyDayCase : String = "day_\(weeklyDay!)"
         // weeklyDay
-        if let x = shortTermGoals[indexPath.row] {  // check if shortTermGoal exists
-            if let uid = Auth.auth().currentUser?.uid { // check if user is authenticated
-                let completionDB = db?.collection("users").document(uid)
-                if let x = x.icon { // shortTerm goal is imbeded into longTerm
-                    
-                    let imbededDB = completionDB?.collection("longTerm").document("\(x)")
-                    imbededDB?.getDocument(completion: { (document, error) in
-                        if let document = document, document.exists {
-                            print("line 840", x)
-                            for (key, value) in document.data()! {
-                                print("line 842", key)
-                                switch key {
-                                case "completed":
-                                    completedCount = value as! Int
-                                    print("CompletedCount: ", value)
-                                    imbededDB?.updateData(["completed" : completedCount + 1])
-                                    
-                                    break
-                                default: break
-                                }
-                            }
-                        }
-                    })
-                } else {
-                    print("x.icon == nil", x.icon)
-                }
-                let weeklyChartDB = completionDB?.collection("weeklyChart").document("weeklyChart")
-                
-                weeklyChartDB?.getDocument(completion: { (document, error) in
-                    if let document = document, document.exists {
-                        print("line 840", x)
-                        for (key, value) in document.data()! {
-                            print("line 842", key)
-                            switch key {
-                            case weeklyDayCase:
-                                print("CompletedCount: ", value)
-                                print("Line 996", self.firstGoalOfDay)
-
-                                if self.firstGoalOfDay == true {
-                                    print("Line 996", self.firstGoalOfDay)
-                                    weeklyChartDB?.updateData([weeklyDayCase : 0])
-                                    weeklyChartDB?.updateData([weeklyDayCase : 1])
-                                } else {
-                                    dailyCompletedCount = value as! Int
-                                    weeklyChartDB?.updateData([weeklyDayCase : dailyCompletedCount + 1])
-                                }
-                                break
-                            default: break
-                            }
-                        }
-                    }
-                })
-                completionDB?.getDocument(completion: { (document, error) in //add +1 to count for any type of goal
-                    if let document = document, document.exists {
-                        for (key, value) in document.data()! {
-                            switch key {
-                            case "completed":
-                                completedCount = value as! Int
-                                completionDB?.updateData(["completed" : completedCount + 1])
-                                print("CompletedCount : \(value)")
-                                break
-                            default: break
-                            }
-                        }
-                    }
-                })
-                
-                
-                if x.icon != nil { // CHECK IF GOAL IS IMBEDED IN LONGTERM GOAL
-                    completionDB?.collection("completed").document("imbededShort")
-                        .collection("\(x.icon!)")
-                        .addDocument(data: [
-                        "goalName" : x.name ?? "Could not load data",
-                        "daysTaken" : x.daysTaken ?? 0,
-                        "completedDate" : (postDate ?? nil) as Any
-                        ])
-                } else {
-                    db?
-                        .collection("users") // users
-                        .document(uid) // id
-                        .collection("completed") // longTerm
-                        .addDocument(data: [
-                            "goalName" : x.name ?? "Could not load data",
-                            "daysTaken" : x.daysTaken ?? 0
-                            ])
-                }
-            }
-        }
     }
     
     
@@ -1232,47 +914,22 @@ class ViewController: UIViewController, GADInterstitialDelegate {
     }
     
     func deleteRoutine() {
-        if let uid = Auth.auth().currentUser?.uid {
-            let completedGoalRef = db?.collection("users")
-                .document(uid)
-                .collection("routine") // Get LongTerm
-                .document("routine")
-            completedGoalRef?.delete(completion: { (err) in
-                if err != nil {
-                    self.alert(message: "An error occurred while attempting to delete.")
-                } else {
-                    self.routineView.clear()
-                    self.routineView.gestureRecognizers?.removeAll()
-                }
-            })
-        }
+        
+        self.routineView.clear()
+        self.routineView.gestureRecognizers?.removeAll()
+
     }
     
     func deleteFunc(indexPath: IndexPath) {
-        var ref : String
-        
         if let x = shortTermGoals[indexPath.row] {
-            ref = x.ref!
-            if let uid = Auth.auth().currentUser?.uid {
-                let completedGoalRef = db?.collection("users")
-                    .document(uid)
-                    .collection("shortTerm") // Get LongTerm
-                    .document("\(ref)")
-                completedGoalRef?.delete(completion: { (err) in
-                    if err != nil {
-                        self.alert(message: "An error occurred while attempting to delete row.")
-                    } else {
-                        self.shortTermGoals.remove(at: indexPath.row)
-                        if self.shortTermGoals.count + 1 != 4 {
-                            self.collectionView.deleteItems(at: [indexPath])
-                        }
-                        self.collectionView.reloadData()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            self.updateNotifications()
-                            self.layoutSpacerView(goalCount: self.shortTermGoals.count)
-                        }
-                    }
-                })
+            self.shortTermGoals.remove(at: indexPath.row)
+            if self.shortTermGoals.count + 1 != 4 {
+                self.collectionView.deleteItems(at: [indexPath])
+            }
+            self.collectionView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.updateNotifications()
+                self.layoutSpacerView(goalCount: self.shortTermGoals.count)
             }
         }
     }

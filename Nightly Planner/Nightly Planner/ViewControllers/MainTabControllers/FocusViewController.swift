@@ -8,13 +8,11 @@
 
 import UIKit
 import Foundation
-import Firebase
 import UserNotifications
 
 
 class FocusViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var db : Firestore?
     var collectionView : UICollectionView!
     let cellId = "cellId"
     let cellIdShort = "cellIdShort"
@@ -297,11 +295,7 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
      
     func setupDatabase() {
-        db = Firestore.firestore()
-        let settings = db?.settings
-        //settings?.areTimestampsInSnapshotsEnabled = true
-        db?.settings = settings!
-        
+
         setupLongTerm()
     }
 
@@ -339,46 +333,13 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
         longTermIconIndex.removeAll()
         longTermFocus?.removeAll()
         longTermIcons.removeAll()  // CLEANSEEEEEEE
-        
-        var i = 0
-        if let uid = Auth.auth().currentUser?.uid {
-            let longTermDocRef = db?.collection("users")
-                .document(uid)
-                .collection("longTerm") // Get LongTerm
-            //.document("\(x)")
-            longTermDocRef?.getDocuments(completion: { (document, error) in
-                if let document = document, document.isEmpty == false {
-                    var goals: [LongTermGoalAttributes] = []
-                    
-                    for item in document.documents {
-                        let goal = LongTermGoalAttributes(snapshot: item)
-                        goals.append(goal)
-                        //self.longTermDictionary[goal.icon!] = goal.name
-                        self.longTermIcons.append(goal.icon!)
-                        i += 1
-                    }
-                    
-                    self.longTermGoals = goals
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                } else {
-                    print("Long term doc doesn't exist")
-                }
-            })
-        }
+
     }
 
     
     
     func handleLogout(sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            navigationController?.customPush(viewController: LoginController())
-        } catch let logoutError {
-            print("Error signing out, error: \(logoutError.localizedDescription)")
-        }
+        
     }
     
     func displayLoginAlert(){
@@ -437,23 +398,6 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @objc func handleComplete(indexPath : Int) {
         if let x = longTermGoals[indexPath] {
-            if let uid = Auth.auth().currentUser?.uid {
-                db?
-                    .collection("users") // users
-                    .document(uid) // id
-                    .collection("completedTriumphs") // completed
-                    .addDocument(data: [
-                        "goalName" : x.name ?? "Could not load data",
-                                        "icon" : x.icon ?? nil]
-                        , completion: { (err) in
-                            if err == nil {
-                                self.completingGoal = true
-                                self.deleteFunc(indexPath: indexPath)
-                            } else {
-                                self.alert(message: err?.localizedDescription ?? "Error completing goal, please try again!")
-                            }
-                    })
-            }
         }
         // SAVE & DELETE GOAL
     }
@@ -663,50 +607,6 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func deleteFunc(indexPath : Int) {
         
-        print(longTermIconIndex)
-        
-        
-        if let uid = Auth.auth().currentUser?.uid {
-            if let x = self.selectedLongTermGoal.icon {
-                let completedGoalRef = self.db?.collection("users")
-                    .document(uid)
-                    .collection("longTerm") // Get LongTerm
-                    .document("\(x)")
-                
-                completedGoalRef?.delete(completion: { (err) in
-                    if err != nil {
-                        self.alert(message: "An error occurred while attempting to delete.")
-                        return
-                    } else {
-                        
-                        self.reloadData(indexPath: indexPath)
-                        self.collectionView.reloadData()
-                        
-                        if self.completingGoal != true {
-                            self.alert(message: "Successfully deleted goal.")
-                        } else {
-                            self.alert(message: "Successfully completed goal. It has been moved to your profile tab.")
-                            self.completingGoal = false
-                        }
-                    }
-                    
-                    UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
-                        self.spacerView.center.x += self.view.frame.width
-                    }, completion: nil)
-                    self.loaded = false
-
-                    if x == self.focusIcon { // focused goal was deleted
-                        let focusGoalRef = self.db?.collection("users").document(uid).collection("focus")
-                        focusGoalRef?.document("foo").delete()
-                        let x = UserDefaults.standard.integer(forKey: "Notifications")
-                        self.removeNotification(x: x)
-                        self.focusIcon = nil
-                    }
-                })
-            } else {
-                alert(message: "Could not delete goal, please try again.")
-            }
-        }
     }
     
     func removeNotification(x: Int) {
@@ -833,7 +733,7 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     @objc func createGoal() {
-        navigationController?.customPush(viewController: CreateLongTerm())
+
     }
     
     func getDate(date: String) -> Date? {
@@ -929,10 +829,8 @@ extension FocusViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if longTermGoals.isEmpty == false { // not empty
             if indexPath.row == 0 { // selected add goal cell
-                let vc = CreateLongTerm()
-                vc.longTermIcons = self.longTermIcons  // to remove the other icons from showing
                 if longTermGoals.count < 4 || self.premium == true {
-                    self.navigationController?.customPush(viewController: vc)
+
                 } else {
                     alert(message: "Maximum Projects reached! Upgrade to premium to unlock more.")
                 }
@@ -944,10 +842,11 @@ extension FocusViewController {
                 
             }
         } else { // 0 longTerm goals
+            /*
             let vc = CreateLongTerm()
             vc.longTermIcons = self.longTermIcons
             
-            self.navigationController?.customPush(viewController: vc)
+            self.navigationController?.customPush(viewController: vc)*/
             
         }
    

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseFirestore
 
 
 struct LongTermGoalAttributes {
@@ -35,7 +33,7 @@ struct LongTermGoalAttributes {
     
     
     
-    init(snapshot: QueryDocumentSnapshot) {
+   /* init(snapshot: QueryDocumentSnapshot) {
         let snapshotValue = snapshot.data() as [String: AnyObject]
         name = snapshotValue["goalName"] as? String
         reason = snapshotValue["reason"] as? String
@@ -44,7 +42,7 @@ struct LongTermGoalAttributes {
         completed = snapshotValue["completed"] as? CGFloat
         shortTerm = snapshotValue["shortTerm"] as? CGFloat
         //ref = snapshot.ref
-    }
+    }*/
     
     func toAnyObject() -> Any {
         return [
