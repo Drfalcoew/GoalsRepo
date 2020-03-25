@@ -10,7 +10,7 @@
 import Foundation
 
 
-struct User {
+struct UserAttributes {
     
     let uid: String?
     let email: String?
@@ -18,7 +18,7 @@ struct User {
     let rep: Double?
     
     
-    init(authData: User) {
+    init(authData: UserAttributes) {
         uid = authData.uid
         email = authData.email!
         userName = authData.userName!

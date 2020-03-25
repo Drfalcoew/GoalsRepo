@@ -11,24 +11,24 @@ import UIKit
 
 struct LongTermGoalAttributes {
     
-    let date: String?
+    let targetDate: Date?
     let name: String?
-    let completed: CGFloat?
-    let shortTerm: CGFloat?
-    let icon: Int?
-    let reason : String?
+    let completedTasks: CGFloat? // eg: 16
+    let totalTasks: CGFloat? // eg: 20  // 16/20 = 4/5 = 80% completion
+    let icon: Int? // image = "tree_(\icon)"
+    let createdDate : Date?
     
     
     //let ref: FIRDatabaseReference?
     
     
-    init(name: String, reason: String, date: String, completed: CGFloat, icon: Int, shortTerm: CGFloat) {
+    init(name: String, targetDate: Date?, completedTasks: CGFloat, icon: Int, totalTasks: CGFloat, createdDate : Date?) {
         self.name = name
-        self.shortTerm = shortTerm
-        self.reason = reason
-        self.date = date
+        self.totalTasks = totalTasks
+        self.targetDate = targetDate
         self.icon = icon
-        self.completed = completed
+        self.completedTasks = completedTasks
+        self.createdDate = createdDate
     }
     
     
@@ -46,12 +46,12 @@ struct LongTermGoalAttributes {
     
     func toAnyObject() -> Any {
         return [
-            "goalName": name as Any,
-            "reason": reason as Any,
+            "name": name as Any,
             "icon": icon as Any,
-            "date": date as Any,
-            "completed": completed as Any,
-            "shortTerm": shortTerm as Any
+            "targetDate": targetDate as Any,
+            "completedTasks": completedTasks as Any,
+            "createdDate": createdDate as Any,
+            "totalTasks" : totalTasks as Any
         ]
     }
 }

@@ -15,12 +15,12 @@ struct GoalAttributes {
     let name: String
     var completed: Bool
     var daysTaken: Int?
-    var category : Int?
+    var category : String?
     
     //let ref: FIRDatabaseReference?
     
     
-    init(name: String, date: String, completed: Bool, daysTaken: Int, category: Int) {
+    init(name: String, date: String, completed: Bool, daysTaken: Int, category: String?) {
         self.name = name
         self.daysTaken = daysTaken
         self.date = date

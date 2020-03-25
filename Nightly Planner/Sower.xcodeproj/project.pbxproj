@@ -55,6 +55,10 @@
 		4C4BC1BC2407427F00025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1BB2407427F00025289 /* Info.plist */; };
 		4C4BC1BE2407428300025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1BD2407428300025289 /* Info.plist */; };
 		4C4BC1C424074A4A00025289 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BC1C324074A4A00025289 /* ProfileViewController.swift */; };
+		4CF0EB7A2416F5C200EF7445 /* LongTermCellSubclassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */; };
+		4CF0EB7C2418696E00EF7445 /* ShowSelectedGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */; };
+		4CF0EB7E2418777C00EF7445 /* CreateGoal_Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */; };
+		4CF0EB8024187A9100EF7445 /* CreateGoal_TargetDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7F24187A9100EF7445 /* CreateGoal_TargetDate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +146,10 @@
 		4C4BC1BD2407428300025289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sower/Info.plist; sourceTree = SOURCE_ROOT; };
 		4C4BC1BF2407429000025289 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C4BC1C324074A4A00025289 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "../../../../../../Documents/GoalsRepo FEB25/Nightly Planner/Nightly Planner/Helpers/ProfileViewController.swift"; sourceTree = "<group>"; };
+		4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTermCellSubclassView.swift; sourceTree = "<group>"; };
+		4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSelectedGoal.swift; sourceTree = "<group>"; };
+		4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoal_Name.swift; sourceTree = "<group>"; };
+		4CF0EB7F24187A9100EF7445 /* CreateGoal_TargetDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoal_TargetDate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				34FCB42421C9897D009366CD /* LongTermCell.swift */,
+				4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */,
 			);
 			path = "LONG TERM";
 			sourceTree = "<group>";
@@ -272,6 +281,8 @@
 				4C1D257224065CF8007F4C9C /* CreateShortTerm_0.swift */,
 				4C1D257624065D19007F4C9C /* CreateShortTerm_1.swift */,
 				4C1D257424065CFB007F4C9C /* CreateShortTermRoutine_0.swift */,
+				4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */,
+				4CF0EB7F24187A9100EF7445 /* CreateGoal_TargetDate.swift */,
 			);
 			path = "Create Goals";
 			sourceTree = "<group>";
@@ -297,6 +308,7 @@
 				345648B9232063D600BE11B5 /* GreetingViewSubclass.swift */,
 				349779EC2327025300CA4490 /* ProfileWeeklyTrackerChart.swift */,
 				4B5344B423FE04B8005A86CC /* ShowMenu.swift */,
+				4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -509,6 +521,7 @@
 				345648B8231C957800BE11B5 /* LongTermStatsSubclass.swift in Sources */,
 				4C22C630240DECA20015AB76 /* Sower.xcdatamodeld in Sources */,
 				347CA96E22889929008CA50A /* FocusViewSubclass.swift in Sources */,
+				4CF0EB8024187A9100EF7445 /* CreateGoal_TargetDate.swift in Sources */,
 				4C4BC1B624073EB000025289 /* ProfileStatsCollectionViewCells.swift in Sources */,
 				4B5344B523FE04B8005A86CC /* ShowMenu.swift in Sources */,
 				34ABB819222FBABD001967B2 /* moreInfoViewController.swift in Sources */,
@@ -520,15 +533,18 @@
 				345648BA232063D600BE11B5 /* GreetingViewSubclass.swift in Sources */,
 				3450BCD821C04D2900F58A08 /* ShortTermCell.swift in Sources */,
 				4C1D257124065CB2007F4C9C /* CreateGoal.swift in Sources */,
+				4CF0EB7E2418777C00EF7445 /* CreateGoal_Name.swift in Sources */,
 				4C1D256D24065C3A007F4C9C /* FeedbackViewController.swift in Sources */,
 				4B5344B723FE4BE9005A86CC /* MenuCell.swift in Sources */,
 				4C4BC1C424074A4A00025289 /* ProfileViewController.swift in Sources */,
 				346281A722E0E99B00464E29 /* PrivacyPolicy.swift in Sources */,
 				345648B423190A1D00BE11B5 /* RoutineViewSubclass.swift in Sources */,
+				4CF0EB7A2416F5C200EF7445 /* LongTermCellSubclassView.swift in Sources */,
 				4C1D257924065D5C007F4C9C /* LoginController.swift in Sources */,
 				34C79CEF221B6E090052BA8C /* CompletionAnimation.swift in Sources */,
 				340499D8229796E200FECF86 /* InspirationCollectionViewCell.swift in Sources */,
 				340A7EE02278AF8B00B8DE51 /* InfoView.swift in Sources */,
+				4CF0EB7C2418696E00EF7445 /* ShowSelectedGoal.swift in Sources */,
 				3406C8EB21C241C900EB23D8 /* User.swift in Sources */,
 				4C1D257524065CFB007F4C9C /* CreateShortTermRoutine_0.swift in Sources */,
 				4C22C62D240DC78E0015AB76 /* SelectedTaskCellView.swift in Sources */,

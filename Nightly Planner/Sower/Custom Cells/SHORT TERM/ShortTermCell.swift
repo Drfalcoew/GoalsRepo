@@ -70,7 +70,7 @@ class ShortTermCell: UICollectionViewCell {
         view.layer.cornerRadius = 5
         return view
     }()
-
+    
     let titleLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "San Francisco", size: 40)
@@ -79,6 +79,7 @@ class ShortTermCell: UICollectionViewCell {
         label.textColor = UIColor(r: 75, g: 80, b: 120)
         label.textAlignment = .left
         //label.sizeToFit()
+        //label.backgroundColor = .blue
         label.lineBreakMode = .byTruncatingTail
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1

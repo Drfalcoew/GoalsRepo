@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     var audioPlayer : AVAudioPlayer?
     var tasks : [NSManagedObject] = [NSManagedObject]()
     var localTasks = [GoalAttributes]()
-    var longTermGoals = [LongTermGoalAttributes?]()
+    var localGoals = [LongTermGoalAttributes?]()
     var viewXAnchor : NSLayoutConstraint?
     var longTermCount : Int?
     var goalCategories = [Any]()
@@ -65,9 +65,15 @@ class ViewController: UIViewController {
     let routineView : RoutineViewSubclass = {
         let view = RoutineViewSubclass()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.masksToBounds = true
+        //view.layer.masksToBounds = true
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 20.0)
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowRadius = 5.0
         view.alpha = 0
-        view.layer.cornerRadius = 15
+        view.titleLabel.alpha = 0
+        view.layer.zPosition = 0
+        //view.layer.cornerRadius = 15
         return view
     }()
     
@@ -407,13 +413,9 @@ class ViewController: UIViewController {
     }
     
     func checkGoalCreation() {
-        if UserDefaults.standard.bool(forKey: "goalCreated") == true {
-            UserDefaults.standard.set(false, forKey: "goalCreated")
+        if UserDefaults.standard.bool(forKey: "taskCreated") == true {
+            UserDefaults.standard.set(false, forKey: "taskCreated")
             self.SetupDatabase()
-            if UserDefaults.standard.bool(forKey: "firstGoal") == true {
-                //setupNotificationsAlert()
-                UserDefaults.standard.set(false, forKey: "firstGoal")
-            }
         }
     }
     
@@ -459,52 +461,50 @@ class ViewController: UIViewController {
     
     
     func SetupDatabase() {
-        
-        
-        
+
         setupGreeting()
         checkDailyLogin()
-        getShortTerm()
-        checkStatus()
+        getTasks()
+        getRoutine()
     }
     
-    func checkStatus() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-            self.getRoutineGoal()
-            self.checkPremium()
+
+    
+    
+    func getRoutine() {
+        
+        routineComplete = UserDefaults.standard.bool(forKey: "routineComplete")
+
+        // initial label colorize of either red or green, incomplete or complete, respectively.
+        if self.routineComplete == true {
+        } else {
         }
-    }
+
+       // self.routineView.titleLabel.text = "No Routine"
+        //self.routineView.nonPremiumCover.isHidden = true
     
-    
-    func getRoutineGoal() {
         
-            routineComplete = UserDefaults.standard.bool(forKey: "routineComplete")
-    
-            // initial label colorize of either red or green, incomplete or complete, respectively.
-            if self.routineComplete == true {
+
+        if let window = UIApplication.shared.keyWindow {
+            if window.frame.height > 700 {
+                routineView.titleLabel.font = UIFont.boldSystemFont(ofSize: 40.0)
             } else {
+                routineView.titleLabel.font = UIFont.boldSystemFont(ofSize: 26.0)
             }
-
-           // self.routineView.titleLabel.text = "No Routine"
-            //self.routineView.nonPremiumCover.isHidden = true
+        }
         
+        if routineView.titleLabel.text?.count ?? 35 < 30 {
+            routineView.titleLabel.numberOfLines = 1
+        }
     
-            if let window = UIApplication.shared.keyWindow {
-                if window.frame.height > 700 {
-                    routineView.titleLabel.font = UIFont.boldSystemFont(ofSize: 40.0)
-                } else {
-                    routineView.titleLabel.font = UIFont.boldSystemFont(ofSize: 26.0)
-                }
-            }
-            
-            if routineView.titleLabel.text?.count ?? 35 < 30 {
-                routineView.titleLabel.numberOfLines = 1
-            }
+        UIView.animate(withDuration: 0.5) {
+            self.routineView.titleLabel.alpha = 1.0
+        }
+        
         
     }
 
- 
-    func getShortTerm() {
+    func getTasks() {
         tasks.removeAll()
             
 
@@ -565,26 +565,6 @@ class ViewController: UIViewController {
         
         //myAlert.addAction(optIn)
         myAlert.addAction(ok)
-        present(myAlert, animated: true, completion: nil)
-    }
-    
-    func selectGoalAlert(goalTitle: String, indexPath: IndexPath) {
-        let myAlert = UIAlertController(title: goalTitle, message: nil, preferredStyle: UIAlertController.Style.alert)
-        
-        
-        let complete = UIAlertAction(title: "Complete Goal", style: UIAlertAction.Style.default) { (_) in
-            self.promptComplete(indexPath: indexPath)
-        }
-        
-        let delete = UIAlertAction(title: "Delete Goal", style: .destructive) { (_) in
-            self.promptDelete(indexPath: indexPath)
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        myAlert.addAction(complete)
-        myAlert.addAction(delete)
-        myAlert.addAction(cancel)
         present(myAlert, animated: true, completion: nil)
     }
     
@@ -729,6 +709,7 @@ class ViewController: UIViewController {
         collectionView.layer.masksToBounds = true
         collectionView.backgroundColor = UIColor.clear //(r: 221, g: 221, b: 221)
         collectionView.dataSource = self
+        collectionView.layer.zPosition = 1
         collectionView.delegate = self
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = false
@@ -931,13 +912,13 @@ class ViewController: UIViewController {
         greetingView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: (navigationController?.navigationBar.frame.height ?? 60) + self.view.frame.height * 0.035).isActive = true
         
         routineView.topAnchor.constraint(equalTo: self.greetingView.bottomAnchor, constant: 10).isActive = true
-        routineView.bottomAnchor.constraint(equalTo: self.collectionView.topAnchor, constant: -20).isActive = true
-        routineView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.75).isActive = true
+        routineView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/4.4).isActive = true
+        routineView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.80).isActive = true
         routineView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         
     }
     
-    @objc func selectDailyTask(sender: UIButton?, index: Int) {
+    @objc func selectDailyTask(sender: UIButton?, index: Int, task_Routine: Bool) {
         var Index : Int
         
         if sender != nil {
@@ -948,15 +929,16 @@ class ViewController: UIViewController {
 
         let vc = SelectedTaskCellView()
         
+        
+        vc.selectedTask = Index
         vc.date = self.localTasks[Index].date
         vc.completed = false
         vc.category = self.localTasks[Index].category
         vc.name = self.localTasks[Index].name
-        vc.task_routine = true
+        vc.task_routine = task_Routine
         
         self.navigationController?.customPush(viewController: vc)
     }
-    
 }
 
 @available(iOS 10.0, *)
@@ -992,7 +974,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         let cell = collectionView.cellForItem(at: indexPath) as! ShortTermCell
         
         
-        selectDailyTask(sender: cell.moreInfo, index: indexPath.row)
+        selectDailyTask(sender: cell.moreInfo, index: indexPath.row, task_Routine: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -1011,7 +993,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             let task = tasks[indexPath.row]
             
             cell.moreInfo.tag = indexPath.row
-            cell.moreInfo.addTarget(self, action: #selector(selectDailyTask(sender:index:)), for: .touchUpInside)
+            cell.moreInfo.addTarget(self, action: #selector(selectDailyTask(sender:index:task_Routine:)), for: .touchUpInside)
             
             let name = task.value(forKeyPath: "name") as? String
             let date = task.value(forKeyPath: "date") as? Date
@@ -1019,7 +1001,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             let daysTaken = task.value(forKeyPath: "days")
             
             DispatchQueue.main.asyncAfter(deadline: .now()) {
-                self.localTasks.append(GoalAttributes(name: name!, date: date!.formatted, completed: false, daysTaken: 0, category: 0))
+                self.localTasks.append(GoalAttributes(name: name!, date: date!.formatted, completed: false, daysTaken: 0, category: nil))
                 print("LOCALTASK: ", self.localTasks)
             }
             
