@@ -12,7 +12,7 @@ import UIKit
 class CreateGoal_Name: UIViewController {
     
     var goalType : Int?
-
+    
     let greetingView : GreetingViewSubclass = {
         let view = GreetingViewSubclass()
         view.titleLabel.text = "Enter Goal Name"
