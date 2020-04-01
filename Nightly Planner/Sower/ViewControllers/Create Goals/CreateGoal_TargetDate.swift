@@ -39,7 +39,7 @@ class CreateGoal_TargetDate : UIViewController {
         lbl.text = "(Optional)"
         lbl.alpha = 0.5
         lbl.font = UIFont(name: "Helvetica Neue", size: 22)
-        lbl.textColor = UIColor(r: 221, g: 221, b: 221)
+        lbl.textColor = UIColor.darkGray//(r: 221, g: 221, b: 221)
         return lbl
     }()
     
@@ -132,6 +132,11 @@ class CreateGoal_TargetDate : UIViewController {
         greetingView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.93).isActive = true
         greetingView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: (navigationController?.navigationBar.frame.height ?? 60) + self.view.frame.height * 0.035).isActive = true
         
+        optionalLbl.topAnchor.constraint(equalTo: self.greetingView.bottomAnchor, constant: -10).isActive = true
+        optionalLbl.leftAnchor.constraint(equalTo: self.greetingView.leftAnchor, constant: 10).isActive = true
+        optionalLbl.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
+        optionalLbl.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15).isActive = true
+        
         dateContainerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         dateContainerView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 2.5/3).isActive = true
         dateContainerView.heightAnchor.constraint(equalTo: self.dateContainerView.widthAnchor, multiplier: 3/5).isActive = true
@@ -175,6 +180,7 @@ class CreateGoal_TargetDate : UIViewController {
         self.view.addSubview(greetingView)
         self.view.addSubview(okButton)
         self.view.addSubview(dateContainerView)
+        self.view.addSubview(optionalLbl)
         self.dateContainerView.addSubview(dateTextField)
     }
     
@@ -187,7 +193,7 @@ class CreateGoal_TargetDate : UIViewController {
     
     func SaveGoal(date: Date?, goalText : String) {
         let date = Date() // getting raw date
-        let newGoal : [String : Any] = ["name" : goalText, "target" : date, "creation" : Date(), "complete" : false, "tasks" : 0, "completedTasks" : 0]
+        let newGoal : [String : Any] = ["name" : goalText, "target" : date, "creation" : Date(), "complete" : false, "tasks" : 0, "completedTasks" : 0, "level" : 0, "id" : UUID()]
         
         
         

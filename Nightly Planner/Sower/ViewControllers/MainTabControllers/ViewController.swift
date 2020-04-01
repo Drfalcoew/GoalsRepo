@@ -929,7 +929,6 @@ class ViewController: UIViewController {
 
         let vc = SelectedTaskCellView()
         
-        
         vc.selectedTask = Index
         vc.date = self.localTasks[Index].date
         vc.completed = false
@@ -999,9 +998,10 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             let date = task.value(forKeyPath: "date") as? Date
             let category = task.value(forKeyPath: "goal") as? Int
             let daysTaken = task.value(forKeyPath: "days")
+            let id = task.value(forKeyPath: "goal") as? UUID
             
             DispatchQueue.main.asyncAfter(deadline: .now()) {
-                self.localTasks.append(GoalAttributes(name: name!, date: date!.formatted, completed: false, daysTaken: 0, category: nil))
+                self.localTasks.append(GoalAttributes(name: name!, date: date!.formatted, completed: false, daysTaken: 0, category: id))
                 print("LOCALTASK: ", self.localTasks)
             }
             

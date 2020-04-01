@@ -59,6 +59,10 @@
 		4CF0EB7C2418696E00EF7445 /* ShowSelectedGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */; };
 		4CF0EB7E2418777C00EF7445 /* CreateGoal_Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */; };
 		4CF0EB8024187A9100EF7445 /* CreateGoal_TargetDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7F24187A9100EF7445 /* CreateGoal_TargetDate.swift */; };
+		4CF8E660242FF8CC0083D96F /* Routine+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF8E658242FF8CC0083D96F /* Routine+CoreDataClass.swift */; };
+		4CF8E662242FF8CC0083D96F /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF8E65A242FF8CC0083D96F /* Goal+CoreDataClass.swift */; };
+		4CF8E664242FF8CC0083D96F /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF8E65C242FF8CC0083D96F /* Task+CoreDataClass.swift */; };
+		4CF8E666242FF8CC0083D96F /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF8E65E242FF8CC0083D96F /* User+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +154,10 @@
 		4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSelectedGoal.swift; sourceTree = "<group>"; };
 		4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoal_Name.swift; sourceTree = "<group>"; };
 		4CF0EB7F24187A9100EF7445 /* CreateGoal_TargetDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoal_TargetDate.swift; sourceTree = "<group>"; };
+		4CF8E658242FF8CC0083D96F /* Routine+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Routine+CoreDataClass.swift"; path = "Sower/Helpers/Core Data/Routine+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		4CF8E65A242FF8CC0083D96F /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Goal+CoreDataClass.swift"; path = "Sower/Helpers/Core Data/Goal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		4CF8E65C242FF8CC0083D96F /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataClass.swift"; path = "Sower/Helpers/Core Data/Task+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		4CF8E65E242FF8CC0083D96F /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "Sower/Helpers/Core Data/User+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,10 +298,10 @@
 		3450BCD621BF493800F58A08 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4CF8E668242FF9250083D96F /* Core Data */,
 				4C1D256824065BB5007F4C9C /* WeeklyChartDateLabels.swift */,
 				34C79CEE221B6E080052BA8C /* CompletionAnimation.swift */,
 				3450BCCD21BF107D00F58A08 /* GoalAttributes.swift */,
-				4C22C62E240DECA20015AB76 /* Sower.xcdatamodeld */,
 				34C25AC221E3CDAE00A5BD67 /* LongTermGoalAttributes.swift */,
 				34013F6E21BA4AE700CB8DA2 /* AppDelegate.swift */,
 				3406C8EA21C241C900EB23D8 /* User.swift */,
@@ -359,6 +367,18 @@
 				4B5344B623FE4BE9005A86CC /* MenuCell.swift */,
 			);
 			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		4CF8E668242FF9250083D96F /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				4C22C62E240DECA20015AB76 /* Sower.xcdatamodeld */,
+				4CF8E658242FF8CC0083D96F /* Routine+CoreDataClass.swift */,
+				4CF8E65A242FF8CC0083D96F /* Goal+CoreDataClass.swift */,
+				4CF8E65C242FF8CC0083D96F /* Task+CoreDataClass.swift */,
+				4CF8E65E242FF8CC0083D96F /* User+CoreDataClass.swift */,
+			);
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,10 +526,12 @@
 			files = (
 				4C1D256924065BB5007F4C9C /* WeeklyChartDateLabels.swift in Sources */,
 				34BEBBFE225C874B00014BC9 /* imbedShortTermCell.swift in Sources */,
+				4CF8E664242FF8CC0083D96F /* Task+CoreDataClass.swift in Sources */,
 				349C8CD52253277200C6577D /* FocusViewController.swift in Sources */,
 				349779ED2327025300CA4490 /* ProfileWeeklyTrackerChart.swift in Sources */,
 				3472EE5121D5368D00484BDD /* imageCollectionViewCell.swift in Sources */,
 				4C1D257324065CF8007F4C9C /* CreateShortTerm_0.swift in Sources */,
+				4CF8E666242FF8CC0083D96F /* User+CoreDataClass.swift in Sources */,
 				34FCB42521C9897D009366CD /* LongTermCell.swift in Sources */,
 				4C1D257B24065D72007F4C9C /* SettingsViewController.swift in Sources */,
 				34F16DF821DD358C00A7E4C9 /* LongTermCV.swift in Sources */,
@@ -528,6 +550,8 @@
 				34013F7121BA4AE700CB8DA2 /* ViewController.swift in Sources */,
 				4C1D257724065D19007F4C9C /* CreateShortTerm_1.swift in Sources */,
 				34EABE5D21CE0A5500787C5D /* SettingCells.swift in Sources */,
+				4CF8E662242FF8CC0083D96F /* Goal+CoreDataClass.swift in Sources */,
+				4CF8E660242FF8CC0083D96F /* Routine+CoreDataClass.swift in Sources */,
 				4C1D256B24065C22007F4C9C /* LearnMoreViewController.swift in Sources */,
 				34013F6F21BA4AE700CB8DA2 /* AppDelegate.swift in Sources */,
 				345648BA232063D600BE11B5 /* GreetingViewSubclass.swift in Sources */,
@@ -727,7 +751,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E7D45YF275;
 				INFOPLIST_FILE = "$(SRCROOT)/Sower/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -749,7 +773,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E7D45YF275;
 				INFOPLIST_FILE = "$(SRCROOT)/Sower/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

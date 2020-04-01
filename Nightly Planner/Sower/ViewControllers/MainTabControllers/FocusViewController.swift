@@ -257,8 +257,14 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func changeGoalTitle(index: Int) {
         let x = localGoals[index]?.name
-        
-        self.greetingView.titleLabel.text = x
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
+            self.greetingView.alpha = 0.0
+        }) { (true) in
+            self.greetingView.titleLabel.text = x
+            UIView.animate(withDuration: 0.25) {
+                self.greetingView.alpha = 1.0
+            }
+        }
         print(x)
     }
     
@@ -267,9 +273,8 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func setupViews() {
-        greetingView.titleLabel.text = "Goals"
-        self.view.addSubview(greetingView)
         
+        self.view.addSubview(greetingView)
     }
     
     func setupConstraints() {
@@ -315,6 +320,11 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     func setupDatabase() {
 
         setupGoals()
+        if localGoals.count > 0 {
+            greetingView.titleLabel.text = localGoals[0]?.name
+        } else {
+            greetingView.titleLabel.text = "Create a Goal"
+        }
     }
 
     
@@ -339,7 +349,7 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
         collectionView.allowsMultipleSelection = false
         collectionView.layer.zPosition = 2
         
-        collectionView.register(LongTermCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(LongTermCellSubclassView.self, forCellWithReuseIdentifier: cellId)
         
         self.view.addSubview(collectionView)
     }
@@ -509,7 +519,7 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     }()
     
     @objc func handleSelectedGoal() {
-        showSelectedGoal.animateSelectedGoal()
+        //showSelectedGoal.animateSelectedGoal()
     }
     
     override func didReceiveMemoryWarning() {
@@ -533,11 +543,10 @@ extension FocusViewController {
     
         let goal = goals[indexPath.row]
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LongTermCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LongTermCellSubclassView
         //cell.backgroundColor = indexPath.row % 2 == 0 ? .red : .green
         
-        cell.view.goalIcon.image = UIImage(named: "tree_3")
-        
+        //move all of this to another function \/
         let name = goal.value(forKeyPath: "name") as? String
         let dateCreated = goal.value(forKeyPath: "creation") as? Date
         let targetDate = goal.value(forKeyPath: "target") as? Date
@@ -546,15 +555,19 @@ extension FocusViewController {
         let tasks : CGFloat = goal.value(forKeyPath: "tasks") as! CGFloat
         let complete = goal.value(forKeyPath: "complete")
         let icon = goal.value(forKeyPath: "icon") as! Int
+        let level = goal.value(forKey: "level") as! Int
+        let id = goal.value(forKeyPath: "id") as! UUID
+        
+        cell.goalIcon.image = UIImage(named: "tree_\(level)")
         
         if let x = targetDate {
-            cell.view.goalName.text = "\(x.days(from: Date())) days until deadline."
+            cell.deadline.text = "\(x.days(from: Date())) days until deadline."
         }
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: 1.5, animations: {
                 cell.alpha = 1
-                self.localGoals.append(LongTermGoalAttributes(name: name!, targetDate: targetDate, completedTasks: completedTasks, icon: icon, totalTasks: tasks, createdDate: dateCreated!))
+                self.localGoals.append(LongTermGoalAttributes(name: name!, targetDate: targetDate, completedTasks: completedTasks, icon: icon, totalTasks: tasks, createdDate: dateCreated!, level: level, id: id))
                 print("LOCALTASK: ", self.localTasks)
 
             })
@@ -565,8 +578,8 @@ extension FocusViewController {
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-            if let cell = self.collectionView.cellForItem(at: indexPath) as? LongTermCell {
-                cell.view.goalIcon.tintImageColor(color: .white)
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? LongTermCellSubclassView {
+                cell.goalIcon.tintImageColor(color: .white)
             }
         }
     }
@@ -574,8 +587,8 @@ extension FocusViewController {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        handleSelectedGoal()
-        showSelectedGoal.view.goalIcon.image = UIImage(named: "tree_3")
+        //handleSelectedGoal()
+        //showSelectedGoal.view.goalIcon.image = UIImage(named: "tree_0")
         //self.selectedLongTermGoal = localGoals[indexPath.row]
     }
     

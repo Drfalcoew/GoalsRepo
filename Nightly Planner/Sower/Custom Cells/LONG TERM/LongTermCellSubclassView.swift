@@ -9,9 +9,10 @@
 import UIKit
 import Foundation
 
-class LongTermCellSubclassView: UIView {
+class LongTermCellSubclassView: UICollectionViewCell {
     
-    let goalName : UILabel = {
+    
+    let deadline : UILabel = {
         let lbl = UILabel()
         lbl.text = ""
         lbl.layer.masksToBounds = true
@@ -22,11 +23,80 @@ class LongTermCellSubclassView: UIView {
         //lbl.font = UIFont.boldSystemFont(ofSize: 35)
         lbl.textAlignment = .left
         lbl.minimumScaleFactor = 0.5
-        lbl.alpha = 0.5
+        lbl.alpha = 0.85
         lbl.adjustsFontSizeToFitWidth = true
         lbl.textColor = UIColor(r: 75, g: 80, b: 120)
         return lbl
     }()
+    
+    let level : UILabel = {
+        let lbl = UILabel()
+        lbl.text = "Goal Level:"
+        lbl.layer.masksToBounds = true
+        //lbl.numberOfLines = 1
+        //lbl.lineBreakMode = .byTruncatingMiddle
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.font = UIFont(name: "Helvetica Neue", size: 30)
+        //lbl.font = UIFont.boldSystemFont(ofSize: 35)
+        lbl.textAlignment = .left
+        lbl.minimumScaleFactor = 0.5
+        lbl.alpha = 0.85
+        lbl.adjustsFontSizeToFitWidth = true
+        lbl.textColor = UIColor(r: 75, g: 80, b: 120)
+        return lbl
+    }()
+    
+    let activeTasks : UILabel = {
+        let lbl = UILabel()
+        lbl.text = ""
+        lbl.layer.masksToBounds = true
+        //lbl.numberOfLines = 1
+        //lbl.lineBreakMode = .byTruncatingMiddle
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.font = UIFont(name: "Helvetica Neue", size: 30)
+        //lbl.font = UIFont.boldSystemFont(ofSize: 35)
+        lbl.textAlignment = .left
+        lbl.minimumScaleFactor = 0.5
+        lbl.alpha = 0.85
+        lbl.adjustsFontSizeToFitWidth = true
+        lbl.textColor = UIColor(r: 75, g: 80, b: 120)
+        return lbl
+    }()
+    
+    let completedTasks : UILabel = {
+        let lbl = UILabel()
+        lbl.text = ""
+        lbl.layer.masksToBounds = true
+        //lbl.numberOfLines = 1
+        //lbl.lineBreakMode = .byTruncatingMiddle
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.font = UIFont(name: "Helvetica Neue", size: 30)
+        //lbl.font = UIFont.boldSystemFont(ofSize: 35)
+        lbl.textAlignment = .left
+        lbl.minimumScaleFactor = 0.5
+        lbl.alpha = 0.85
+        lbl.adjustsFontSizeToFitWidth = true
+        lbl.textColor = UIColor(r: 75, g: 80, b: 120)
+        return lbl
+    }()
+    
+    let dateCreated : UILabel = {
+        let lbl = UILabel()
+        lbl.text = ""
+        lbl.layer.masksToBounds = true
+        //lbl.numberOfLines = 1
+        //lbl.lineBreakMode = .byTruncatingMiddle
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.font = UIFont(name: "Helvetica Neue", size: 30)
+        //lbl.font = UIFont.boldSystemFont(ofSize: 35)
+        lbl.textAlignment = .left
+        lbl.minimumScaleFactor = 0.5
+        lbl.alpha = 0.85
+        lbl.adjustsFontSizeToFitWidth = true
+        lbl.textColor = UIColor(r: 75, g: 80, b: 120)
+        return lbl
+    }()
+    
     
     let goalIcon : UIImageView = {
         let view = UIImageView()
@@ -52,6 +122,7 @@ class LongTermCellSubclassView: UIView {
     }()*/
 
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -71,9 +142,13 @@ class LongTermCellSubclassView: UIView {
         self.layer.shadowOpacity = 0.2
         self.layer.shadowRadius = 5.0
         
-        self.addSubview(goalName)
+        self.addSubview(deadline)
         self.addSubview(goalIcon)
     }
+    
+    
+    
+   
     
     func setupConstraints() {
         goalIcon.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 40).isActive = true
@@ -83,10 +158,10 @@ class LongTermCellSubclassView: UIView {
         
         //self.backgroundColor = .lightGray
         //longTermLabel.backgroundColor = .darkGray
-        goalName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        goalName.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
-        goalName.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-        goalName.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        deadline.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        deadline.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: -10).isActive = true
+        deadline.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+        deadline.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
 
     }
     
