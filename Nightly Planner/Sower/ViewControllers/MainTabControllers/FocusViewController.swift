@@ -52,14 +52,6 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
         view.layer.masksToBounds = true
         return view
     }()
-    
-    let greetingView : GreetingViewSubclass = {
-        let view = GreetingViewSubclass()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.masksToBounds = true
-        view.titleLabel.font = UIFont.boldSystemFont(ofSize: 55)
-        return view
-    }()
 
     
     let spacerView : UIView = {
@@ -258,12 +250,12 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     func changeGoalTitle(index: Int) {
         let x = localGoals[index]?.name
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
-            self.greetingView.alpha = 0.0
+            //self.greetingView.alpha = 0.0
         }) { (true) in
-            self.greetingView.titleLabel.text = x
+            /*self.greetingView.titleLabel.text = x
             UIView.animate(withDuration: 0.25) {
                 self.greetingView.alpha = 1.0
-            }
+            }*/
         }
         print(x)
     }
@@ -274,23 +266,17 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func setupViews() {
         
-        self.view.addSubview(greetingView)
+        //self.view.addSubview(greetingView)
     }
     
     func setupConstraints() {
         
         var height = self.view.frame.height / 11 + (navigationController?.navigationBar.frame.height ?? 60)
-        
-
-        
-        greetingView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
-        greetingView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/6.0).isActive = true
-        greetingView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
-        greetingView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: (navigationController?.navigationBar.frame.height ?? 60) + self.view.frame.height * 0.035).isActive = true
+  
         
         collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
-        collectionView.topAnchor.constraint(equalTo: self.greetingView.bottomAnchor, constant: 10).isActive = true
+        collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: (navigationController?.navigationBar.frame.height ?? 60) + self.view.frame.height * 0.035).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
         
     }
@@ -321,9 +307,9 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
 
         setupGoals()
         if localGoals.count > 0 {
-            greetingView.titleLabel.text = localGoals[0]?.name
+            //greetingView.titleLabel.text = localGoals[0]?.name
         } else {
-            greetingView.titleLabel.text = "Create a Goal"
+            //greetingView.titleLabel.text = "Create a Goal"
         }
     }
 

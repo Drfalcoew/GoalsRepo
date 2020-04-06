@@ -100,26 +100,16 @@ class LongTermCellSubclassView: UICollectionViewCell {
     
     let goalIcon : UIImageView = {
         let view = UIImageView()
-        //view.tintImageColor(color: .white)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 20.0)
+        view.layer.shadowOffset = CGSize(width: 0, height: 35.0)
         view.layer.shadowOpacity = 0.2
         view.layer.shadowRadius = 5.0
-        view.layer.masksToBounds = true
+        view.layer.masksToBounds = false
         return view
     }()
-    
-    /*let categoryViewBackground : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.masksToBounds = true
-        view.layer.borderWidth = CGFloat(5)
-        view.layer.borderColor = UIColor(r: 242, g: 182, b: 255).cgColor
-        view.backgroundColor = UIColor.clear//(r: 163, g: 171, b: 199)
-        return view
-    }()*/
+
 
     
     
@@ -135,14 +125,8 @@ class LongTermCellSubclassView: UICollectionViewCell {
     }
     
     func setupViews(){
-        self.layer.cornerRadius = 2
-        self.backgroundColor = UIColor(r: 240, g: 240, b: 240)
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 20.0)
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowRadius = 5.0
         
-        self.addSubview(deadline)
+        //self.addSubview(deadline)
         self.addSubview(goalIcon)
     }
     
@@ -151,18 +135,18 @@ class LongTermCellSubclassView: UICollectionViewCell {
    
     
     func setupConstraints() {
-        goalIcon.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 40).isActive = true
-        goalIcon.topAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
-        goalIcon.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5, constant: 40).isActive = true
+        goalIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
+        goalIcon.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: self.frame.height * 0.10).isActive = true
+        goalIcon.widthAnchor.constraint(equalTo: self.goalIcon.heightAnchor, multiplier: 1.0).isActive = true
         goalIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
         
         //self.backgroundColor = .lightGray
         //longTermLabel.backgroundColor = .darkGray
-        deadline.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        /*deadline.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         deadline.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: -10).isActive = true
         deadline.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         deadline.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-
+*/
     }
     
     

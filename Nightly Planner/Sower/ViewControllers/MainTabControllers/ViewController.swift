@@ -920,11 +920,14 @@ class ViewController: UIViewController {
     
     @objc func selectDailyTask(sender: UIButton?, index: Int, task_Routine: Bool) {
         var Index : Int
+        var Task_Routine : Bool
         
         if sender != nil {
             Index = sender!.tag
+            Task_Routine = true
         } else {
             Index = index
+            Task_Routine = task_Routine
         }
 
         let vc = SelectedTaskCellView()
@@ -934,7 +937,7 @@ class ViewController: UIViewController {
         vc.completed = false
         vc.category = self.localTasks[Index].category
         vc.name = self.localTasks[Index].name
-        vc.task_routine = task_Routine
+        vc.task_routine = Task_Routine
         
         self.navigationController?.customPush(viewController: vc)
     }
@@ -996,13 +999,12 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             
             let name = task.value(forKeyPath: "name") as? String
             let date = task.value(forKeyPath: "date") as? Date
-            let category = task.value(forKeyPath: "goal") as? Int
             let daysTaken = task.value(forKeyPath: "days")
             let id = task.value(forKeyPath: "goal") as? UUID
             
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 self.localTasks.append(GoalAttributes(name: name!, date: date!.formatted, completed: false, daysTaken: 0, category: id))
-                print("LOCALTASK: ", self.localTasks)
+                //print("LOCALTASK: ", self.localTasks)
             }
             
             cell.titleLabel.text = name
@@ -1010,11 +1012,14 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
                     cell.titleLabel.numberOfLines = 1
             }
             
-            if let x = category {
-                cell.changeCategoryColor()
-                cell.categoryView.isHidden = false
+            if id != nil {
+                print(id)
+                cell.linkedGoal = true
+                cell.linkedGoalImg.isHidden = false
             } else {
-                cell.categoryView.isHidden = true
+                print(id)
+                cell.linkedGoalImg.isHidden = true
+                cell.linkedGoal = false
             }
             
             if let date = date {

@@ -11,7 +11,7 @@ import UIKit
 class ShortTermCell: UICollectionViewCell {
     
     //var tap : UITapGestureRecognizer!
-    var icon : Int?
+    var linkedGoal : Bool!
     var toggleInfo : Bool?
     
     
@@ -62,13 +62,15 @@ class ShortTermCell: UICollectionViewCell {
         return view
     }()
     
-    let categoryView : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.masksToBounds = true
-        view.backgroundColor = UIColor(r: 255, g: 89, b: 89)
-        view.layer.cornerRadius = 5
-        return view
+    let linkedGoalImg : UIImageView = {
+        let img = UIImageView()
+        img.translatesAutoresizingMaskIntoConstraints = false
+        img.layer.masksToBounds = true
+        img.image = UIImage(named: "linked")
+        img.isHidden = true
+        img.layer.zPosition = 4
+        img.tintImageColor(color: UIColor(r: 200, g: 200, b: 200))
+        return img
     }()
     
     let titleLabel : UILabel = {
@@ -114,16 +116,6 @@ class ShortTermCell: UICollectionViewCell {
         lbl.minimumScaleFactor = 0.2
         return lbl
     }()
-   
-    /*let categoryView : UIImageView = {
-        let view = UIImageView()
-        view.isHidden = true
-        //view.backgroundColor = UIColor(r: 40, g: 43, b: 53)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        //view.image = UIImage(named: "icon_7")
-        view.tintImageColor(color: UIColor(r: 40, g: 43, b: 53))
-        return view
-    }()*/
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -146,12 +138,12 @@ class ShortTermCell: UICollectionViewCell {
             }
         }
         
-        if icon != nil {
-            print(icon!)
-           // categoryView.image = UIImage(named: "\(icon!)")
-            //categoryView.isHidden = false
+        if linkedGoal == true {
+            linkedGoalImg.isHidden = false
+            print("LINKED GOAL IMG UNHIDE")
         } else {
-           // categoryView.isHidden = true
+            //linkedGoalImg.isHidden = true
+            print("LINKED GOAL IMG HIDE")
         }
         
         setupViews()
@@ -179,7 +171,7 @@ class ShortTermCell: UICollectionViewCell {
         
         self.contentView.addSubview(titleView)
         self.titleView.addSubview(titleLabel)
-        self.titleView.addSubview(categoryView)
+        self.titleView.addSubview(linkedGoalImg)
         self.titleView.addSubview(dateLabelView)
         self.dateLabelView.addSubview(dateLabel)
     }
@@ -201,10 +193,10 @@ class ShortTermCell: UICollectionViewCell {
         moreInfo.widthAnchor.constraint(equalTo: self.moreInfoSpacerView.widthAnchor, multiplier: 0.8).isActive = true
         moreInfo.heightAnchor.constraint(equalTo: self.moreInfoSpacerView.widthAnchor, multiplier: 0.8).isActive = true
         
-        categoryView.centerYAnchor.constraint(equalTo: self.titleView.centerYAnchor, constant: 0).isActive = true
-        categoryView.heightAnchor.constraint(equalTo: self.titleView.heightAnchor, multiplier: 0.8).isActive = true
-        categoryView.rightAnchor.constraint(equalTo: self.titleView.rightAnchor, constant: -10).isActive = true
-        categoryView.widthAnchor.constraint(equalToConstant: 12).isActive = true
+        linkedGoalImg.topAnchor.constraint(equalTo: self.titleView.topAnchor, constant: 10).isActive = true
+        linkedGoalImg.heightAnchor.constraint(equalTo: self.titleView.heightAnchor, multiplier: 0.2).isActive = true
+        linkedGoalImg.rightAnchor.constraint(equalTo: self.titleView.rightAnchor, constant: -20).isActive = true
+        linkedGoalImg.widthAnchor.constraint(equalTo: self.linkedGoalImg.heightAnchor, multiplier: 2).isActive = true
     
         dateLabelView.leftAnchor.constraint(equalTo: self.titleView.leftAnchor, constant: 10).isActive = true
         dateLabelView.centerYAnchor.constraint(equalTo: self.titleView.centerYAnchor, constant: 0).isActive = true
@@ -218,14 +210,11 @@ class ShortTermCell: UICollectionViewCell {
         
         titleLabel.leftAnchor.constraint(equalTo: self.dateLabelView.rightAnchor, constant: 15).isActive = true
         titleLabel.topAnchor.constraint(equalTo: self.titleView.topAnchor, constant: 9).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: self.categoryView.leftAnchor, constant: -10).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: self.linkedGoalImg.leftAnchor, constant: -10).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: self.titleView.bottomAnchor, constant: -2).isActive = true
         
     }
     
-    func changeCategoryColor() {
-        
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

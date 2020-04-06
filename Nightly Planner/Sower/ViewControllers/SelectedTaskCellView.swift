@@ -34,23 +34,76 @@ class SelectedTaskCellView : UIViewController {
     var goalImage : UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.layer.masksToBounds = true
+        //img.layer.masksToBounds = false
         img.isHidden = true
         img.alpha = 0
-        img.layer.zPosition = 0
+        img.layer.zPosition = 1
+        img.layer.shadowColor = UIColor.black.cgColor
+        img.layer.shadowOffset = CGSize(width: 5, height: 25.0)
+        img.layer.shadowOpacity = 0.25
+        img.layer.shadowRadius = 5.0
         return img
+    }()
+    
+    var goalImageView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
+        view.layer.borderColor = UIColor(r: 75, g: 80, b: 120).cgColor
+        view.layer.borderWidth = 10
+        view.isHidden = true
+        view.alpha = 0.5
+        return view
+    }()
+    
+    var goalName : UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.layer.masksToBounds = true
+        lbl.font = UIFont(name: "Helvetica Neue", size: 25)
+        lbl.font = UIFont.boldSystemFont(ofSize: 25)
+        lbl.textColor = UIColor(r: 75, g: 80, b: 120)
+        lbl.adjustsFontSizeToFitWidth = true
+        lbl.minimumScaleFactor = 0.2
+        lbl.text = ""
+        lbl.alpha = 0.3
+        lbl.numberOfLines = 1
+        lbl.textAlignment = .center
+        return lbl
+    }()
+    
+    var goalLevel : UILabel = {
+        let lbl = UILabel()
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.layer.masksToBounds = true
+        lbl.font = UIFont(name: "Helvetica Neue", size: 25)
+        lbl.textColor = UIColor(r: 75, g: 80, b: 120)
+        lbl.adjustsFontSizeToFitWidth = true
+        lbl.minimumScaleFactor = 0.2
+        lbl.text = ""
+        lbl.numberOfLines = 1
+        return lbl
     }()
     
     var daysPassedLabel : UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.layer.masksToBounds = true
-        lbl.font = UIFont(name: "Helvetica Neue", size: 20)
+        lbl.font = UIFont(name: "Helvetica Neue", size: 25)
         lbl.textColor = UIColor(r: 75, g: 80, b: 120)
         lbl.adjustsFontSizeToFitWidth = true
         lbl.minimumScaleFactor = 0.2
-        lbl.text = "Days since creation: "
+        lbl.textAlignment = .center
+        lbl.text = ""
         return lbl
+    }()
+    
+    var spacerView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
+        view.backgroundColor = .clear
+        return view
     }()
     
     var completedIcon : UIImageView = {
@@ -64,19 +117,7 @@ class SelectedTaskCellView : UIViewController {
         img.layer.shadowRadius = 5.0
         return img
     }()
-    
-    var categoryLabel : UILabel = {
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.layer.masksToBounds = true
-        lbl.font = UIFont(name: "Helvetica Neue", size: 25)
-        lbl.textColor = UIColor(r: 75, g: 80, b: 120)
-        lbl.adjustsFontSizeToFitWidth = true
-        lbl.minimumScaleFactor = 0.2
-        lbl.text = "Goal: "
-        lbl.numberOfLines = 2
-        return lbl
-    }()
+        
     
     var categoryView : UIView = {
         let view = UIView()
@@ -182,8 +223,13 @@ class SelectedTaskCellView : UIViewController {
         daysTaken = date?.toDate()?.days(from: Date())
         if daysTaken != nil {
             daysTaken = daysTaken! * -1
+            if daysTaken! == 1 {
+                daysPassedLabel.text = "\(daysTaken ?? 0) day"
+            } else {
+                daysPassedLabel.text = "\(daysTaken ?? 0) days"
+            }
         }
-        daysPassedLabel.text = "Days since creation: \(daysTaken ?? 0)"
+        
         
         
         if task_routine! {
@@ -202,8 +248,11 @@ class SelectedTaskCellView : UIViewController {
                 if goal.value(forKeyPath: "id") as? UUID == category {
                     goalImage.isHidden = false
                     goalIndex = i
-                    categoryLabel.text = "Goal: \(goals[i].value(forKeyPath: "name")!)"
-                    goalImage.image = UIImage(named: "tree_\(3)")
+                    goalName.text = (goals[i].value(forKeyPath: "name")!) as? String
+                    
+                    goalImage.image = UIImage(named: "tree_\(goals[i].value(forKeyPath: "level")!)")
+                    goalImageView.isHidden = false
+                    goalLevel.text = "Level: \(goals[i].value(forKeyPath: "level")!)"
                     UIView.animate(withDuration: 0.5) {
                         self.goalImage.alpha = 1.0
                     }
@@ -212,52 +261,61 @@ class SelectedTaskCellView : UIViewController {
                 i += 1
             }
         } else {
-            categoryLabel.text = "No connected Goal"
+            goalName.text = "No connected Goal"
         }
         
         print(name)
     }
     
+   
+    
     func setupViews() {
         self.view.addSubview(containerView)
         self.containerView.addSubview(titleView)
-        titleView.titleLabel.addSubview(completedIcon)
-        self.containerView.addSubview(daysPassedLabel)
-        self.containerView.addSubview(completedIcon)
-        self.containerView.addSubview(categoryLabel)
+        self.containerView.addSubview(spacerView)
+        spacerView.addSubview(completedIcon)
+        spacerView.addSubview(daysPassedLabel)
+        
+        
+        self.view.addSubview(goalName)
+        //self.view.addSubview(goalLevel)
+        self.view.addSubview(goalImageView)
         self.view.addSubview(goalImage)
         self.view.addSubview(deleteButton)
         self.view.addSubview(completeButton)
+        
+        //self.goalImageView.layer.cornerRadius = self.view.frame.height * 10
     }
     
     func setupConstraints() {
         let y = (navigationController?.navigationBar.frame.height ?? 60) + self.view.frame.height * 0.035
-        self.containerView.frame = CGRect(x: self.view.frame.width * 0.05, y: y, width: self.view.frame.width * 0.9, height: self.view.frame.height * 0.4)
+        self.containerView.frame = CGRect(x: self.view.frame.width * 0.05, y: y, width: self.view.frame.width * 0.9, height: self.view.frame.height * 0.2)
 
         
         heightAnchor_0 = titleView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/8.5)
         heightAnchor_0?.isActive = true
-        titleView.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor, constant: 0).isActive = true
-        titleView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
+        titleView.leftAnchor.constraint(equalTo: self.containerView.leftAnchor, constant: 0).isActive = true
+        titleView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.7).isActive = true
         titleView.topAnchor.constraint(equalTo: self.containerView.topAnchor, constant: 0).isActive = true
         
-        heightAnchor_1 = completedIcon.heightAnchor.constraint(equalTo: self.titleView.heightAnchor, multiplier: 2.5/5)
+        spacerView.topAnchor.constraint(equalTo: self.titleView.topAnchor, constant: 0).isActive = true
+        spacerView.bottomAnchor.constraint(equalTo: self.titleView.bottomAnchor, constant: 0).isActive = true
+        spacerView.leftAnchor.constraint(equalTo: self.titleView.rightAnchor, constant: 0).isActive = true
+        spacerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
+        
+        
+        completedIcon.topAnchor.constraint(equalTo: self.titleView.topAnchor, constant: 0).isActive = true
+        completedIcon.centerXAnchor.constraint(equalTo: self.spacerView.centerXAnchor, constant: 0).isActive = true
+        completedIcon.widthAnchor.constraint(equalTo: self.spacerView.widthAnchor, multiplier: 0.5).isActive = true
+        heightAnchor_1 = completedIcon.heightAnchor.constraint(equalTo: self.completedIcon.widthAnchor, multiplier: 1.0)
         heightAnchor_1?.isActive = true
-        completedIcon.topAnchor.constraint(equalTo: self.titleView.bottomAnchor, constant: 10).isActive = true
-        completedIcon.leftAnchor.constraint(equalTo: self.titleView.leftAnchor, constant: self.view.frame.width * 0.1).isActive = true
-        completedIcon.widthAnchor.constraint(equalTo: self.completedIcon.heightAnchor, multiplier: 1.0).isActive = true
+
         
-        heightAnchor_2 = daysPassedLabel.heightAnchor.constraint(equalTo: self.titleView.heightAnchor, multiplier: 4/5)
+        heightAnchor_2 = daysPassedLabel.heightAnchor.constraint(equalTo: self.titleView.heightAnchor, multiplier: 3/5)
         heightAnchor_2?.isActive = true
-        daysPassedLabel.topAnchor.constraint(equalTo: self.completedIcon.bottomAnchor, constant: 0).isActive = true
-        daysPassedLabel.leftAnchor.constraint(equalTo: self.titleView.leftAnchor, constant: self.view.frame.width * 0.1).isActive = true
-        daysPassedLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        
-        heightAnchor_3 = categoryLabel.heightAnchor.constraint(equalTo: self.titleView.heightAnchor, multiplier: 4/5)
-        heightAnchor_3?.isActive = true
-        categoryLabel.topAnchor.constraint(equalTo: self.daysPassedLabel.bottomAnchor, constant: 0).isActive = true
-        categoryLabel.leftAnchor.constraint(equalTo: self.titleView.leftAnchor, constant: self.view.frame.width * 0.1).isActive = true
-        categoryLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        daysPassedLabel.topAnchor.constraint(equalTo: self.completedIcon.bottomAnchor, constant: -8).isActive = true
+        daysPassedLabel.widthAnchor.constraint(equalTo: self.completedIcon.widthAnchor, multiplier: 1.5).isActive = true
+        daysPassedLabel.centerXAnchor.constraint(equalTo: self.completedIcon.centerXAnchor, constant: 0).isActive = true
         
         deleteButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40).isActive = true
         deleteButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.45).isActive = true
@@ -269,11 +327,29 @@ class SelectedTaskCellView : UIViewController {
         completeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
         completeButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.2).isActive = true
         
-        goalImage.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/4).isActive = true
-        goalImage.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
-        goalImage.bottomAnchor.constraint(equalTo: self.completeButton.topAnchor, constant: 0).isActive = true
+        goalImageView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/4).isActive = true
+        goalImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        goalImageView.bottomAnchor.constraint(equalTo: self.goalImage.bottomAnchor, constant: 0).isActive = true
+        goalImageView.widthAnchor.constraint(equalTo: self.goalImageView.heightAnchor, multiplier: 1).isActive = true
+        goalImageView.layer.cornerRadius = self.view.frame.height * 0.11
+        
+        
+        goalImage.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.5/4).isActive = true
+        goalImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        goalImage.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
         goalImage.widthAnchor.constraint(equalTo: self.goalImage.heightAnchor, multiplier: 1).isActive = true
-    }
+        
+        heightAnchor_3 = goalName.heightAnchor.constraint(equalTo: self.titleView.heightAnchor, multiplier: 3/5)
+        heightAnchor_3?.isActive = true
+        goalName.topAnchor.constraint(equalTo: self.goalImageView.bottomAnchor, constant: 10).isActive = true
+        goalName.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
+        goalName.centerXAnchor.constraint(equalTo: self.goalImage.centerXAnchor, constant: -5).isActive = true
+        
+       /* goalLevel.leftAnchor.constraint(equalTo: self.titleView.leftAnchor, constant: 0).isActive = true
+        goalLevel.bottomAnchor.constraint(equalTo: self.completeButton.topAnchor, constant: -5).isActive = true
+        goalLevel.heightAnchor.constraint(equalTo: self.goalImage.heightAnchor, multiplier: 1/5).isActive = true
+        goalLevel.rightAnchor.constraint(equalTo: self.goalImage.leftAnchor, constant: -5)
+    */}
     
     @objc func handleButtonPress(sender: UIButton) {
         var arg : String
@@ -291,19 +367,21 @@ class SelectedTaskCellView : UIViewController {
         var action = UIAlertAction()
         
         if complete_Delete == "Complete" {
+            self.completedIcon.image = UIImage(named: "checkmark")
             action = UIAlertAction(title: "Complete", style: UIAlertAction.Style.default) { (_) in
-                //self.promptComplete(indexPath: indexPath)
                 self.removeTask(arg: 0)
             }
         } else {
+            self.completedIcon.image = UIImage(named: "delete_Red")
             action = UIAlertAction(title: "Delete", style: .destructive) { (_) in
-                //self.promptDelete(indexPath: indexPath)
                 self.removeTask(arg: 1)
             }
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            //self.promptDelete(indexPath: indexPath)
+            self.completedIcon.image = UIImage(named: "pending")
+        }
         myAlert.addAction(action)
         myAlert.addAction(cancel)
         present(myAlert, animated: true, completion: nil)
@@ -311,12 +389,6 @@ class SelectedTaskCellView : UIViewController {
     
     
     func removeTask(arg: Int) {
-        
-        if arg == 0 {
-            completedIcon.image = UIImage(named: "checkmark")
-        } else {
-            completedIcon.image = UIImage(named: "delete_Red")
-        }
         
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -363,14 +435,16 @@ class SelectedTaskCellView : UIViewController {
             i += 1
         }
         
-        UIView.animate(withDuration: 0.5, delay: 0.15, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 2.5, delay: 0.15, options: .curveEaseIn, animations: {
             self.containerView.frame.size.height = 0
             self.containerView.alpha = 0
             self.containerView.frame.origin.y = 0
             self.deleteButton.frame.origin.y = self.view.frame.height + self.deleteButton.frame.height
             self.completeButton.frame.origin.y = self.view.frame.height + self.completeButton.frame.height
-            self.goalImage.frame.origin.y += self.goalImage.frame.size.height
+            self.goalImage.frame.origin.x += self.goalImage.frame.size.width + 50
             self.goalImage.alpha = 0
+            self.goalLevel.frame.origin.x -= self.view.frame.size.width / 2
+            self.goalName.frame.origin.x -= self.view.frame.size.width / 2
             self.view.layoutIfNeeded()
         }) { (true) in
             self.navigationController?.customPopToRoot()
