@@ -423,6 +423,8 @@ class SelectedTaskCellView : UIViewController {
             self.animateTask()
         }
         UserDefaults.standard.set(true, forKey: "taskCreated")
+        UserDefaults.standard.set(true, forKey: "taskDeleted")
+        ViewController().index = selectedTask!
     }
     
     func animateTask() {

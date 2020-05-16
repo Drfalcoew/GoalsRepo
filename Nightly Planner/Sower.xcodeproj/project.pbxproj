@@ -10,7 +10,6 @@
 		34013F6F21BA4AE700CB8DA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34013F6E21BA4AE700CB8DA2 /* AppDelegate.swift */; };
 		34013F7121BA4AE700CB8DA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34013F7021BA4AE700CB8DA2 /* ViewController.swift */; };
 		34013F7421BA4AE700CB8DA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34013F7221BA4AE700CB8DA2 /* Main.storyboard */; };
-		34013F7621BA4AF000CB8DA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34013F7521BA4AF000CB8DA2 /* Assets.xcassets */; };
 		34013F8421BA4AF000CB8DA2 /* Nightly_PlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34013F8321BA4AF000CB8DA2 /* Nightly_PlannerTests.swift */; };
 		34013F8F21BA4AF000CB8DA2 /* Nightly_PlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34013F8E21BA4AF000CB8DA2 /* Nightly_PlannerUITests.swift */; };
 		340499D8229796E200FECF86 /* InspirationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340499D7229796E200FECF86 /* InspirationCollectionViewCell.swift */; };
@@ -35,6 +34,7 @@
 		34FCB42521C9897D009366CD /* LongTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCB42421C9897D009366CD /* LongTermCell.swift */; };
 		4B5344B523FE04B8005A86CC /* ShowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5344B423FE04B8005A86CC /* ShowMenu.swift */; };
 		4B5344B723FE4BE9005A86CC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5344B623FE4BE9005A86CC /* MenuCell.swift */; };
+		4C0A0BD924708FD100565C85 /* MyScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A0BD824708FD100565C85 /* MyScene.sks */; };
 		4C1D256924065BB5007F4C9C /* WeeklyChartDateLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D256824065BB5007F4C9C /* WeeklyChartDateLabels.swift */; };
 		4C1D256B24065C22007F4C9C /* LearnMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D256A24065C22007F4C9C /* LearnMoreViewController.swift */; };
 		4C1D256D24065C3A007F4C9C /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D256C24065C3A007F4C9C /* FeedbackViewController.swift */; };
@@ -55,6 +55,7 @@
 		4C4BC1BC2407427F00025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1BB2407427F00025289 /* Info.plist */; };
 		4C4BC1BE2407428300025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1BD2407428300025289 /* Info.plist */; };
 		4C4BC1C424074A4A00025289 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BC1C324074A4A00025289 /* ProfileViewController.swift */; };
+		4CAE43DA2456D33800797A8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CAE43D92456D33800797A8E /* Assets.xcassets */; };
 		4CF0EB7A2416F5C200EF7445 /* LongTermCellSubclassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */; };
 		4CF0EB7C2418696E00EF7445 /* ShowSelectedGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */; };
 		4CF0EB7E2418777C00EF7445 /* CreateGoal_Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */; };
@@ -100,7 +101,6 @@
 		34013F6E21BA4AE700CB8DA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34013F7021BA4AE700CB8DA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		34013F7321BA4AE700CB8DA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		34013F7521BA4AF000CB8DA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34013F7F21BA4AF000CB8DA2 /* SowerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SowerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34013F8321BA4AF000CB8DA2 /* Nightly_PlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nightly_PlannerTests.swift; sourceTree = "<group>"; };
 		34013F8A21BA4AF000CB8DA2 /* SowerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SowerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +129,7 @@
 		34FCB42421C9897D009366CD /* LongTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTermCell.swift; sourceTree = "<group>"; };
 		4B5344B423FE04B8005A86CC /* ShowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMenu.swift; sourceTree = "<group>"; };
 		4B5344B623FE4BE9005A86CC /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		4C0A0BD824708FD100565C85 /* MyScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyScene.sks; sourceTree = "<group>"; };
 		4C1D256824065BB5007F4C9C /* WeeklyChartDateLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeeklyChartDateLabels.swift; path = "../../../../../Documents/GoalsRepo FEB25/Nightly Planner/Nightly Planner/Helpers/WeeklyChartDateLabels.swift"; sourceTree = "<group>"; };
 		4C1D256A24065C22007F4C9C /* LearnMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LearnMoreViewController.swift; path = "../../../../../Documents/GoalsRepo FEB25/Nightly Planner/Nightly Planner/Helpers/LearnMoreViewController.swift"; sourceTree = "<group>"; };
 		4C1D256C24065C3A007F4C9C /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedbackViewController.swift; path = "../../../../../Documents/GoalsRepo FEB25/Nightly Planner/Nightly Planner/Helpers/FeedbackViewController.swift"; sourceTree = "<group>"; };
@@ -150,6 +151,7 @@
 		4C4BC1BD2407428300025289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sower/Info.plist; sourceTree = SOURCE_ROOT; };
 		4C4BC1BF2407429000025289 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C4BC1C324074A4A00025289 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "../../../../../../Documents/GoalsRepo FEB25/Nightly Planner/Nightly Planner/Helpers/ProfileViewController.swift"; sourceTree = "<group>"; };
+		4CAE43D92456D33800797A8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sower/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTermCellSubclassView.swift; sourceTree = "<group>"; };
 		4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSelectedGoal.swift; sourceTree = "<group>"; };
 		4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoal_Name.swift; sourceTree = "<group>"; };
@@ -209,13 +211,13 @@
 		34013F6D21BA4AE700CB8DA2 /* Sower */ = {
 			isa = PBXGroup;
 			children = (
+				4CAE43D92456D33800797A8E /* Assets.xcassets */,
 				34FA7EA3223C6A8A0068F5DD /* Sounds */,
 				34CA031C22320320007A13F7 /* Sower.entitlements */,
 				34FCB42921CB767C009366CD /* Custom Cells */,
 				34FCB42621CB7634009366CD /* Storyboard */,
 				3450BCD621BF493800F58A08 /* Helpers */,
 				34013F9C21BA4CF600CB8DA2 /* ViewControllers */,
-				34013F7521BA4AF000CB8DA2 /* Assets.xcassets */,
 				4C4BC1BF2407429000025289 /* Info.plist */,
 			);
 			path = Sower;
@@ -268,7 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				34FCB42421C9897D009366CD /* LongTermCell.swift */,
-				4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */,
 			);
 			path = "LONG TERM";
 			sourceTree = "<group>";
@@ -336,6 +337,7 @@
 				34013F7021BA4AE700CB8DA2 /* ViewController.swift */,
 				349C8CD42253277200C6577D /* FocusViewController.swift */,
 				4C4BC1C324074A4A00025289 /* ProfileViewController.swift */,
+				4C0A0BD824708FD100565C85 /* MyScene.sks */,
 			);
 			path = MainTabControllers;
 			sourceTree = "<group>";
@@ -343,6 +345,7 @@
 		34FA7EA3223C6A8A0068F5DD /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -494,8 +497,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34013F7621BA4AF000CB8DA2 /* Assets.xcassets in Resources */,
 				4C1D258224067484007F4C9C /* LaunchScreen.storyboard in Resources */,
+				4CAE43DA2456D33800797A8E /* Assets.xcassets in Resources */,
+				4C0A0BD924708FD100565C85 /* MyScene.sks in Resources */,
 				34013F7421BA4AE700CB8DA2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

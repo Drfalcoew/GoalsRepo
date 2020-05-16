@@ -102,15 +102,59 @@ class LongTermCellSubclassView: UICollectionViewCell {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 35.0)
-        view.layer.shadowOpacity = 0.2
-        view.layer.shadowRadius = 5.0
+       
         view.layer.masksToBounds = false
+        view.layer.zPosition = 5
+        return view
+    }()
+    
+    let backgroundImg : UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "bg")
+        view.layer.masksToBounds = true
+        view.layer.isHidden = false
+        return view
+    }()
+    
+    let cloud_0 : UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "cloud_0")
+        view.layer.masksToBounds = true
+        view.layer.isHidden = false
+        return view
+    }()
+    
+    let cloud_1 : UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "cloud_1")
+        view.layer.masksToBounds = true
+        view.layer.isHidden = false
+        return view
+    }()
+    
+    let cloud_2 : UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "cloud_2")
+        view.layer.masksToBounds = true
+        view.layer.isHidden = false
+        return view
+    }()
+    
+    let cloud_3 : UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "cloud_3")
+        view.layer.masksToBounds = true
+        view.layer.isHidden = false
         return view
     }()
 
 
+    let viewBG : UIImageView = UIImageView()
     
     
     override init(frame: CGRect) {
@@ -118,6 +162,7 @@ class LongTermCellSubclassView: UICollectionViewCell {
         
         setupViews()
         setupConstraints()
+        animate()
     }
     
     required init?(coder: NSCoder) {
@@ -125,20 +170,32 @@ class LongTermCellSubclassView: UICollectionViewCell {
     }
     
     func setupViews(){
-        
-        //self.addSubview(deadline)
-        self.addSubview(goalIcon)
+        viewBG.image = UIImage(named: "background_2")
+        viewBG.frame = self.frame
+
+        self.addSubview(viewBG)
+        viewBG.addSubview(goalIcon)
+        viewBG.addSubview(cloud_0)
+        goalIcon.isHidden = false
+        viewBG.addSubview(backgroundImg)
     }
     
     
+    func animate() {
+        repeat { cloud_0.frame.origin.x -= 1
+        } while cloud_0.frame.origin.x > 0
+    }
     
-   
     
     func setupConstraints() {
-        goalIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: 40).isActive = true
-        goalIcon.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: self.frame.height * 0.10).isActive = true
+        cloud_0.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
+        cloud_0.heightAnchor.constraint(equalTo: self.cloud_0.widthAnchor, multiplier: 0.53).isActive = true
+        cloud_0.frame.origin.x = self.frame.width + 200
+        
+        goalIcon.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6 ,constant: 0).isActive = true
+        goalIcon.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
         goalIcon.widthAnchor.constraint(equalTo: self.goalIcon.heightAnchor, multiplier: 1.0).isActive = true
-        goalIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
+        goalIcon.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
         
         //self.backgroundColor = .lightGray
         //longTermLabel.backgroundColor = .darkGray
@@ -147,8 +204,12 @@ class LongTermCellSubclassView: UICollectionViewCell {
         deadline.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         deadline.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
 */
+        backgroundImg.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0).isActive = true
+        backgroundImg.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        backgroundImg.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        backgroundImg.heightAnchor.constraint(equalTo: self.backgroundImg.widthAnchor, multiplier: 0.9).isActive = true
+
+        cloud_0.bottomAnchor.constraint(equalTo: self.backgroundImg.centerYAnchor, constant: -20).isActive = true
     }
-    
-    
     
 }

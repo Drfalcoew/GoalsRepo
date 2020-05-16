@@ -16,7 +16,7 @@ class CreateGoal_Name: UIViewController {
     let greetingView : GreetingViewSubclass = {
         let view = GreetingViewSubclass()
         view.titleLabel.text = "Enter Goal Name"
-        view.subLabel_0.text = ""
+        view.subLabel_0.text = "Ask yourself - \"What do I want?\""
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.masksToBounds = true
         return view

@@ -272,11 +272,12 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     func setupConstraints() {
         
         var height = self.view.frame.height / 11 + (navigationController?.navigationBar.frame.height ?? 60)
-  
+        
+        
         
         collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
-        collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: (navigationController?.navigationBar.frame.height ?? 60) + self.view.frame.height * 0.035).isActive = true
+        collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: (navigationController?.navigationBar.frame.height ?? 60) + self.view.frame.height * 0.06).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
         
     }
@@ -317,7 +318,7 @@ class FocusViewController: UIViewController, UICollectionViewDelegate, UICollect
     func setupCollectionView() {
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (self.view.frame.width) * 1, height: ((self.view.frame.height * 0.70)))
+        layout.itemSize = CGSize(width: (self.view.frame.width) * 1, height: ((self.view.frame.height * 0.93)))
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
@@ -531,7 +532,7 @@ extension FocusViewController {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LongTermCellSubclassView
         //cell.backgroundColor = indexPath.row % 2 == 0 ? .red : .green
-        
+         
         //move all of this to another function \/
         let name = goal.value(forKeyPath: "name") as? String
         let dateCreated = goal.value(forKeyPath: "creation") as? Date
@@ -544,7 +545,7 @@ extension FocusViewController {
         let level = goal.value(forKey: "level") as! Int
         let id = goal.value(forKeyPath: "id") as! UUID
         
-        cell.goalIcon.image = UIImage(named: "tree_\(level)")
+        cell.goalIcon.image = UIImage(named: "tree_4")
         
         if let x = targetDate {
             cell.deadline.text = "\(x.days(from: Date())) days until deadline."

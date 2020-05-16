@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     var loaded : Bool? = false
     //var indexPathRow : Int!
     var y : Int?
+    var index : Int = Int()
     var collectionCellCount : Int?
     var addGoal : Bool = false
     var collectionView : UICollectionView!
@@ -138,10 +139,17 @@ class ViewController: UIViewController {
             SetupDatabase()
         }
         
+        
+        
         if let x = self.navigationController?.viewControllers.count {
             if x > 3 {
                 self.navigationController?.viewControllers.removeFirst(1)
             }
+        }
+        
+        if UserDefaults.standard.bool(forKey: "taskDeleted") == true {
+            organizeLocalTasks()
+            UserDefaults.standard.set(false, forKey: "taskDeleted")
         }
     }
     
@@ -167,9 +175,9 @@ class ViewController: UIViewController {
         SetupConstraints()
     }
     
-    func checkPremium() {
-        if self.premium != true {
-            
+    func organizeLocalTasks() {
+        if index >= 0 && index <= 4 {
+            localTasks.remove(at: index)
         }
     }
     
@@ -398,17 +406,6 @@ class ViewController: UIViewController {
                     //UIApplication.shared.cancelAllLocalNotifications()
                     UIApplication.shared.scheduledLocalNotifications = [notification]
             }
-        }
-    }
-    
-    func interstitialAd() {
-        var adCount = UserDefaults.standard.integer(forKey: "ad")
-        adCount = adCount + 1
-        UserDefaults.standard.set(adCount, forKey: "ad")
-        UserDefaults.standard.synchronize()
-        
-        if adCount % 10 == 0 { // every 5 page turns, open an ad
-            //showAd()
         }
     }
     
