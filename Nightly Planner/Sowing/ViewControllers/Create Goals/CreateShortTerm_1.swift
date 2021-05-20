@@ -17,9 +17,7 @@ class CreateShortTerm_1: UIViewController, UICollectionViewDataSource, UICollect
     
     var tasks : [NSManagedObject] = []
     var goals : [NSManagedObject] = []
-    
-    var types = GoalTypes()
-    
+        
     var selectedGoal : Goal?
     var goalType : Int = Int()
     var postDate : String = ""
@@ -124,13 +122,13 @@ class CreateShortTerm_1: UIViewController, UICollectionViewDataSource, UICollect
         
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return types.types.count
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! GoalTypeCell
         cell.alpha = 0
-        cell.backgroundColor = types.types[indexPath.row]
+        cell.backgroundColor = UIColor(r: 240, g: 240, b: 240)
         cell.goalCategoryIcon.image = UIImage(named: "goalType_\(indexPath.row)")
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {

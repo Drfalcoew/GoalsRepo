@@ -19,7 +19,7 @@ class SettingCells: UITableViewCell {
         label.font = UIFont(name: "Palatino", size: 18)
         label.layer.masksToBounds = true
         label.numberOfLines = 0
-        label.textColor = UIColor(r: 221, g: 221, b: 221)
+        label.textColor = UIColor(r: 120, g: 120, b: 120)
         label.textAlignment = .center
         //label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +52,7 @@ class SettingCells: UITableViewCell {
         self.contentView.addSubview(customImageView)
         
         
-        self.backgroundColor = UIColor(r: 40, g: 43, b: 53)
+        self.backgroundColor = UIColor.white
         self.selectionStyle = .none
     }
     

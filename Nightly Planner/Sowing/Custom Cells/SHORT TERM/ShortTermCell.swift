@@ -47,7 +47,7 @@ class ShortTermCell: UICollectionViewCell {
         lbl.numberOfLines = 2
         lbl.textAlignment = .center
         lbl.alpha = 0.6
-        lbl.textColor = UIColor(r: 75, g: 80, b: 120)
+        lbl.textColor = UIColor(r: 65, g: 70, b: 110)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.layer.masksToBounds = true
         return lbl

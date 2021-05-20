@@ -10,7 +10,7 @@ import UIKit
 
 class ShowMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
-    let titleText : [String] = ["Home", "Goals", "Profile", "Settings"]
+    let titleText : [String] = ["Home", "Vision", "Profile", "Settings"]
     let cellId = "cellId"
     let blackView = UIView()
     var viewController : UIViewController?

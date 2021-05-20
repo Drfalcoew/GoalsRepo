@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,20 +17,15 @@
 		340A7EE02278AF8B00B8DE51 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340A7EDF2278AF8A00B8DE51 /* InfoView.swift */; };
 		3450BCCE21BF107D00F58A08 /* GoalAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450BCCD21BF107D00F58A08 /* GoalAttributes.swift */; };
 		3450BCD821C04D2900F58A08 /* ShortTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3450BCD721C04D2900F58A08 /* ShortTermCell.swift */; };
-		345648B8231C957800BE11B5 /* LongTermStatsSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345648B7231C957800BE11B5 /* LongTermStatsSubclass.swift */; };
 		345648BA232063D600BE11B5 /* GreetingViewSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345648B9232063D600BE11B5 /* GreetingViewSubclass.swift */; };
 		346281A722E0E99B00464E29 /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346281A622E0E99B00464E29 /* PrivacyPolicy.swift */; };
 		3472EE5121D5368D00484BDD /* imageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472EE5021D5368D00484BDD /* imageCollectionViewCell.swift */; };
-		347CA96E22889929008CA50A /* FocusViewSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CA96D22889929008CA50A /* FocusViewSubclass.swift */; };
-		349779ED2327025300CA4490 /* ProfileWeeklyTrackerChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349779EC2327025300CA4490 /* ProfileWeeklyTrackerChart.swift */; };
+		349779ED2327025300CA4490 /* ProfileTrackerChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349779EC2327025300CA4490 /* ProfileTrackerChart.swift */; };
 		349C8CD52253277200C6577D /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349C8CD42253277200C6577D /* GoalViewController.swift */; };
 		34ABB819222FBABD001967B2 /* moreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ABB818222FBABD001967B2 /* moreInfoViewController.swift */; };
 		34BEBBFE225C874B00014BC9 /* imbedShortTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BEBBFD225C874B00014BC9 /* imbedShortTermCell.swift */; };
-		34C25AC321E3CDAE00A5BD67 /* LongTermGoalAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C25AC221E3CDAE00A5BD67 /* LongTermGoalAttributes.swift */; };
 		34C79CEF221B6E090052BA8C /* CompletionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C79CEE221B6E080052BA8C /* CompletionAnimation.swift */; };
 		34EABE5D21CE0A5500787C5D /* SettingCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EABE5C21CE0A5500787C5D /* SettingCells.swift */; };
-		34F16DF821DD358C00A7E4C9 /* LongTermCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F16DF721DD358C00A7E4C9 /* LongTermCV.swift */; };
-		34FCB42521C9897D009366CD /* LongTermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FCB42421C9897D009366CD /* LongTermCell.swift */; };
 		4B5344B523FE04B8005A86CC /* ShowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5344B423FE04B8005A86CC /* ShowMenu.swift */; };
 		4B5344B723FE4BE9005A86CC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5344B623FE4BE9005A86CC /* MenuCell.swift */; };
 		4C0A0BD924708FD100565C85 /* MyScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A0BD824708FD100565C85 /* MyScene.sks */; };
@@ -38,29 +33,30 @@
 		4C1D258224067484007F4C9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C1D258024067484007F4C9C /* LaunchScreen.storyboard */; };
 		4C22C62D240DC78E0015AB76 /* SelectedGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22C62C240DC78E0015AB76 /* SelectedGoalVC.swift */; };
 		4C22C630240DECA20015AB76 /* Sower.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C22C62E240DECA20015AB76 /* Sower.xcdatamodeld */; };
+		4C2CC73A2655E8E5003AA473 /* Vision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CC7392655E8E5003AA473 /* Vision.swift */; };
+		4C3AC63125EAE6A800A5FAA4 /* ProfileChartCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AC63025EAE6A800A5FAA4 /* ProfileChartCells.swift */; };
 		4C3E705B25E08E7D00CCF19B /* GoalCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E705A25E08E7D00CCF19B /* GoalCounter.swift */; };
 		4C4BC1BA2407427900025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1B92407427900025289 /* Info.plist */; };
 		4C4BC1BC2407427F00025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1BB2407427F00025289 /* Info.plist */; };
 		4C4BC1BE2407428300025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1BD2407428300025289 /* Info.plist */; };
-		4C55FC8825AA69D100CF1BA6 /* WeeklyChartDateLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FC8725AA69D100CF1BA6 /* WeeklyChartDateLabels.swift */; };
+		4C4E4FD426425A5C00744C0F /* GoodBadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E4FD326425A5C00744C0F /* GoodBadButton.swift */; };
 		4C55FC8D25AA69E600CF1BA6 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FC8C25AA69E600CF1BA6 /* FeedbackViewController.swift */; };
 		4C55FC9225AA69F400CF1BA6 /* LearnMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FC9125AA69F400CF1BA6 /* LearnMoreViewController.swift */; };
 		4C55FCB025AA6D5F00CF1BA6 /* CreateGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FCAF25AA6D5F00CF1BA6 /* CreateGoal.swift */; };
 		4C55FCB525AA6D7000CF1BA6 /* CreateShortTerm_0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FCB425AA6D7000CF1BA6 /* CreateShortTerm_0.swift */; };
 		4C55FCC425AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FCC325AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift */; };
-		4C7C8F0825B9532600D84FEB /* GoalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C8F0725B9532600D84FEB /* GoalTypes.swift */; };
+		4C8BC38E263CC19E00371501 /* Sprites.Atlas in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BC38D263CC19E00371501 /* Sprites.Atlas */; };
 		4C94C44525AA7C6A009ACB84 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94C44425AA7C6A009ACB84 /* ProfileViewController.swift */; };
 		4C94C46625AA7D84009ACB84 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94C46525AA7D84009ACB84 /* SettingsViewController.swift */; };
 		4C94C47125AA7E96009ACB84 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94C47025AA7E96009ACB84 /* LoginController.swift */; };
+		4C9A01E726413438000CEA5E /* CreateVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A01E626413438000CEA5E /* CreateVision.swift */; };
 		4CACF26325AA9935004A66AE /* CreateShortTerm_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CACF26225AA9935004A66AE /* CreateShortTerm_1.swift */; };
 		4CCECDD525E5C55600CE9F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCECDD425E5C55600CE9F21 /* Assets.xcassets */; };
 		4CECE13725E8504C00826111 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECE13625E8504C00826111 /* User+CoreDataClass.swift */; };
 		4CECE14225E8505600826111 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECE14125E8505600826111 /* Task+CoreDataClass.swift */; };
-		4CF0EB7A2416F5C200EF7445 /* LongTermCellSubclassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */; };
-		4CF0EB7C2418696E00EF7445 /* ShowSelectedGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */; };
 		4CF0EB7E2418777C00EF7445 /* CreateGoal_Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */; };
 		4CF0EB8024187A9100EF7445 /* CreateGoal_TargetDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7F24187A9100EF7445 /* CreateGoal_TargetDate.swift */; };
-		54D594D01DDAA5843D19D0D1 /* Pods_Sower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637826DC2C6BD61ECD63AD84 /* Pods_Sower.framework */; };
+		C951B746E6B88AD8570BBF1B /* Pods_Sowing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FC66C95652D78731B80580 /* Pods_Sowing.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +90,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		33FC66C95652D78731B80580 /* Pods_Sowing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sowing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34013F6B21BA4AE700CB8DA2 /* Sowing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sowing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34013F6E21BA4AE700CB8DA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34013F7021BA4AE700CB8DA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,22 +105,16 @@
 		34174E4D22B2D93000F98DEF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		3450BCCD21BF107D00F58A08 /* GoalAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAttributes.swift; sourceTree = "<group>"; };
 		3450BCD721C04D2900F58A08 /* ShortTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortTermCell.swift; sourceTree = "<group>"; };
-		345648B7231C957800BE11B5 /* LongTermStatsSubclass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTermStatsSubclass.swift; sourceTree = "<group>"; };
 		345648B9232063D600BE11B5 /* GreetingViewSubclass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingViewSubclass.swift; sourceTree = "<group>"; };
 		346281A622E0E99B00464E29 /* PrivacyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicy.swift; sourceTree = "<group>"; };
 		3472EE5021D5368D00484BDD /* imageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = imageCollectionViewCell.swift; path = ../imageCollectionViewCell.swift; sourceTree = "<group>"; };
-		347CA96D22889929008CA50A /* FocusViewSubclass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusViewSubclass.swift; sourceTree = "<group>"; };
-		349779EC2327025300CA4490 /* ProfileWeeklyTrackerChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWeeklyTrackerChart.swift; sourceTree = "<group>"; };
+		349779EC2327025300CA4490 /* ProfileTrackerChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTrackerChart.swift; sourceTree = "<group>"; };
 		349C8CD42253277200C6577D /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 		34ABB818222FBABD001967B2 /* moreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moreInfoViewController.swift; sourceTree = "<group>"; };
 		34BEBBFD225C874B00014BC9 /* imbedShortTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imbedShortTermCell.swift; sourceTree = "<group>"; };
-		34C25AC221E3CDAE00A5BD67 /* LongTermGoalAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTermGoalAttributes.swift; sourceTree = "<group>"; };
 		34C79CEE221B6E080052BA8C /* CompletionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionAnimation.swift; sourceTree = "<group>"; };
 		34CA031C22320320007A13F7 /* Sowing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sowing.entitlements; sourceTree = "<group>"; };
 		34EABE5C21CE0A5500787C5D /* SettingCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCells.swift; sourceTree = "<group>"; };
-		34F16DF721DD358C00A7E4C9 /* LongTermCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTermCV.swift; sourceTree = "<group>"; };
-		34FCB42421C9897D009366CD /* LongTermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTermCell.swift; sourceTree = "<group>"; };
-		3A98078D07DC9D00C5BF1E57 /* Pods-Sower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sower.release.xcconfig"; path = "Target Support Files/Pods-Sower/Pods-Sower.release.xcconfig"; sourceTree = "<group>"; };
 		4B5344B423FE04B8005A86CC /* ShowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMenu.swift; sourceTree = "<group>"; };
 		4B5344B623FE4BE9005A86CC /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		4C0A0BD824708FD100565C85 /* MyScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyScene.sks; sourceTree = "<group>"; };
@@ -131,31 +122,32 @@
 		4C1D258124067484007F4C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C22C62C240DC78E0015AB76 /* SelectedGoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGoalVC.swift; sourceTree = "<group>"; };
 		4C22C62F240DECA20015AB76 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		4C2CC7392655E8E5003AA473 /* Vision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vision.swift; sourceTree = "<group>"; };
+		4C3AC63025EAE6A800A5FAA4 /* ProfileChartCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChartCells.swift; sourceTree = "<group>"; };
 		4C3E705A25E08E7D00CCF19B /* GoalCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCounter.swift; sourceTree = "<group>"; };
 		4C4BC1B92407427900025289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sower/Info.plist; sourceTree = SOURCE_ROOT; };
 		4C4BC1BB2407427F00025289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sower/Info.plist; sourceTree = SOURCE_ROOT; };
 		4C4BC1BD2407428300025289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sower/Info.plist; sourceTree = SOURCE_ROOT; };
 		4C4BC1BF2407429000025289 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C55FC8725AA69D100CF1BA6 /* WeeklyChartDateLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChartDateLabels.swift; sourceTree = "<group>"; };
+		4C4E4FD326425A5C00744C0F /* GoodBadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodBadButton.swift; sourceTree = "<group>"; };
 		4C55FC8C25AA69E600CF1BA6 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		4C55FC9125AA69F400CF1BA6 /* LearnMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnMoreViewController.swift; sourceTree = "<group>"; };
 		4C55FCAF25AA6D5F00CF1BA6 /* CreateGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGoal.swift; sourceTree = "<group>"; };
 		4C55FCB425AA6D7000CF1BA6 /* CreateShortTerm_0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShortTerm_0.swift; sourceTree = "<group>"; };
 		4C55FCC325AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
-		4C7C8F0725B9532600D84FEB /* GoalTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTypes.swift; sourceTree = "<group>"; };
+		4C8BC38D263CC19E00371501 /* Sprites.Atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.Atlas; sourceTree = "<group>"; };
 		4C94C44425AA7C6A009ACB84 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "../../../../../../../Documents/GoalsRepo FEB25/Nightly Planner/Nightly Planner/Helpers/ProfileViewController.swift"; sourceTree = "<group>"; };
 		4C94C46525AA7D84009ACB84 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4C94C47025AA7E96009ACB84 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		4C9A01E626413438000CEA5E /* CreateVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVision.swift; sourceTree = "<group>"; };
 		4CACF26225AA9935004A66AE /* CreateShortTerm_1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShortTerm_1.swift; sourceTree = "<group>"; };
 		4CCECDD425E5C55600CE9F21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CECE13625E8504C00826111 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4CECE14125E8505600826111 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTermCellSubclassView.swift; sourceTree = "<group>"; };
-		4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSelectedGoal.swift; sourceTree = "<group>"; };
 		4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoal_Name.swift; sourceTree = "<group>"; };
 		4CF0EB7F24187A9100EF7445 /* CreateGoal_TargetDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoal_TargetDate.swift; sourceTree = "<group>"; };
-		5C262F2460B7D5F7140BEE1F /* Pods-Sower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sower.debug.xcconfig"; path = "Target Support Files/Pods-Sower/Pods-Sower.debug.xcconfig"; sourceTree = "<group>"; };
-		637826DC2C6BD61ECD63AD84 /* Pods_Sower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A231383C886CB3423BAC9EB8 /* Pods-Sowing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sowing.debug.xcconfig"; path = "Target Support Files/Pods-Sowing/Pods-Sowing.debug.xcconfig"; sourceTree = "<group>"; };
+		FE8C8CC90C256EEB5F07D6ED /* Pods-Sowing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sowing.release.xcconfig"; path = "Target Support Files/Pods-Sowing/Pods-Sowing.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54D594D01DDAA5843D19D0D1 /* Pods_Sower.framework in Frameworks */,
+				C951B746E6B88AD8570BBF1B /* Pods_Sowing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +202,7 @@
 		34013F6D21BA4AE700CB8DA2 /* Sowing */ = {
 			isa = PBXGroup;
 			children = (
+				4C8BC38D263CC19E00371501 /* Sprites.Atlas */,
 				4CCECDD425E5C55600CE9F21 /* Assets.xcassets */,
 				34FA7EA3223C6A8A0068F5DD /* Sounds */,
 				34CA031C22320320007A13F7 /* Sowing.entitlements */,
@@ -251,6 +244,7 @@
 				4C94C47025AA7E96009ACB84 /* LoginController.swift */,
 				34ABB818222FBABD001967B2 /* moreInfoViewController.swift */,
 				4C22C62C240DC78E0015AB76 /* SelectedGoalVC.swift */,
+				4C9A01E626413438000CEA5E /* CreateVision.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -263,15 +257,6 @@
 				34BEBBFD225C874B00014BC9 /* imbedShortTermCell.swift */,
 			);
 			path = "SHORT TERM";
-			sourceTree = "<group>";
-		};
-		3405624922111ECC00C02F54 /* LONG TERM */ = {
-			isa = PBXGroup;
-			children = (
-				34FCB42421C9897D009366CD /* LongTermCell.swift */,
-				4CF0EB792416F5C200EF7445 /* LongTermCellSubclassView.swift */,
-			);
-			path = "LONG TERM";
 			sourceTree = "<group>";
 		};
 		34174E4C22B2D93000F98DEF /* NotificationServiceExt */ = {
@@ -299,25 +284,20 @@
 			isa = PBXGroup;
 			children = (
 				4CF8E668242FF9250083D96F /* Core Data */,
-				4C55FC8725AA69D100CF1BA6 /* WeeklyChartDateLabels.swift */,
 				34C79CEE221B6E080052BA8C /* CompletionAnimation.swift */,
 				3450BCCD21BF107D00F58A08 /* GoalAttributes.swift */,
-				34C25AC221E3CDAE00A5BD67 /* LongTermGoalAttributes.swift */,
 				4C55FC8C25AA69E600CF1BA6 /* FeedbackViewController.swift */,
 				34013F6E21BA4AE700CB8DA2 /* AppDelegate.swift */,
 				3406C8EA21C241C900EB23D8 /* User.swift */,
-				34F16DF721DD358C00A7E4C9 /* LongTermCV.swift */,
 				4C55FC9125AA69F400CF1BA6 /* LearnMoreViewController.swift */,
 				340A7EDF2278AF8A00B8DE51 /* InfoView.swift */,
-				347CA96D22889929008CA50A /* FocusViewSubclass.swift */,
 				346281A622E0E99B00464E29 /* PrivacyPolicy.swift */,
-				345648B7231C957800BE11B5 /* LongTermStatsSubclass.swift */,
 				345648B9232063D600BE11B5 /* GreetingViewSubclass.swift */,
-				349779EC2327025300CA4490 /* ProfileWeeklyTrackerChart.swift */,
+				349779EC2327025300CA4490 /* ProfileTrackerChart.swift */,
 				4B5344B423FE04B8005A86CC /* ShowMenu.swift */,
-				4CF0EB7B2418696E00EF7445 /* ShowSelectedGoal.swift */,
-				4C7C8F0725B9532600D84FEB /* GoalTypes.swift */,
 				4C3E705A25E08E7D00CCF19B /* GoalCounter.swift */,
+				4C4E4FD326425A5C00744C0F /* GoodBadButton.swift */,
+				4C2CC7392655E8E5003AA473 /* Vision.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -350,11 +330,11 @@
 		34FCB42921CB767C009366CD /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
-				3405624922111ECC00C02F54 /* LONG TERM */,
 				3405624822111EC000C02F54 /* SHORT TERM */,
 				34EABE5C21CE0A5500787C5D /* SettingCells.swift */,
 				340499D7229796E200FECF86 /* GoalTypeCell.swift */,
 				4B5344B623FE4BE9005A86CC /* MenuCell.swift */,
+				4C3AC63025EAE6A800A5FAA4 /* ProfileChartCells.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -382,8 +362,8 @@
 		629BE887EDD47E4C74D6D953 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5C262F2460B7D5F7140BEE1F /* Pods-Sower.debug.xcconfig */,
-				3A98078D07DC9D00C5BF1E57 /* Pods-Sower.release.xcconfig */,
+				A231383C886CB3423BAC9EB8 /* Pods-Sowing.debug.xcconfig */,
+				FE8C8CC90C256EEB5F07D6ED /* Pods-Sowing.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -391,7 +371,7 @@
 		F904513ED181A436A2FAA968 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				637826DC2C6BD61ECD63AD84 /* Pods_Sower.framework */,
+				33FC66C95652D78731B80580 /* Pods_Sowing.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -408,8 +388,6 @@
 				34013F6821BA4AE700CB8DA2 /* Frameworks */,
 				34013F6921BA4AE700CB8DA2 /* Resources */,
 				34174E5622B2D93000F98DEF /* Embed App Extensions */,
-				AF7009E9DA34C4FBE7F174A7 /* [CP] Embed Pods Frameworks */,
-				3ADA4FBABB5B606A05F51919 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -515,6 +493,7 @@
 				4C1D258224067484007F4C9C /* LaunchScreen.storyboard in Resources */,
 				4C0A0BD924708FD100565C85 /* MyScene.sks in Resources */,
 				4CCECDD525E5C55600CE9F21 /* Assets.xcassets in Resources */,
+				4C8BC38E263CC19E00371501 /* Sprites.Atlas in Resources */,
 				34013F7421BA4AE700CB8DA2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,23 +518,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3ADA4FBABB5B606A05F51919 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sower/Pods-Sower-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sower/Pods-Sower-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sower/Pods-Sower-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5903B04966F8609D486E41F8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -571,28 +533,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Sower-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Sowing-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AF7009E9DA34C4FBE7F174A7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sower/Pods-Sower-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sower/Pods-Sower-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sower/Pods-Sower-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -603,33 +548,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C55FCB025AA6D5F00CF1BA6 /* CreateGoal.swift in Sources */,
+				4C4E4FD426425A5C00744C0F /* GoodBadButton.swift in Sources */,
 				34BEBBFE225C874B00014BC9 /* imbedShortTermCell.swift in Sources */,
+				4C3AC63125EAE6A800A5FAA4 /* ProfileChartCells.swift in Sources */,
 				349C8CD52253277200C6577D /* GoalViewController.swift in Sources */,
-				349779ED2327025300CA4490 /* ProfileWeeklyTrackerChart.swift in Sources */,
+				349779ED2327025300CA4490 /* ProfileTrackerChart.swift in Sources */,
 				4C0A0BDC247092EB00565C85 /* MyScene.swift in Sources */,
 				3472EE5121D5368D00484BDD /* imageCollectionViewCell.swift in Sources */,
 				4C3E705B25E08E7D00CCF19B /* GoalCounter.swift in Sources */,
 				4C55FCC425AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift in Sources */,
-				34FCB42521C9897D009366CD /* LongTermCell.swift in Sources */,
-				34F16DF821DD358C00A7E4C9 /* LongTermCV.swift in Sources */,
 				3450BCCE21BF107D00F58A08 /* GoalAttributes.swift in Sources */,
-				4C7C8F0825B9532600D84FEB /* GoalTypes.swift in Sources */,
 				4CECE13725E8504C00826111 /* User+CoreDataClass.swift in Sources */,
-				34C25AC321E3CDAE00A5BD67 /* LongTermGoalAttributes.swift in Sources */,
-				345648B8231C957800BE11B5 /* LongTermStatsSubclass.swift in Sources */,
 				4C22C630240DECA20015AB76 /* Sower.xcdatamodeld in Sources */,
-				347CA96E22889929008CA50A /* FocusViewSubclass.swift in Sources */,
 				4CF0EB8024187A9100EF7445 /* CreateGoal_TargetDate.swift in Sources */,
 				4CACF26325AA9935004A66AE /* CreateShortTerm_1.swift in Sources */,
-				4C55FC8825AA69D100CF1BA6 /* WeeklyChartDateLabels.swift in Sources */,
 				4C94C44525AA7C6A009ACB84 /* ProfileViewController.swift in Sources */,
 				4B5344B523FE04B8005A86CC /* ShowMenu.swift in Sources */,
 				34ABB819222FBABD001967B2 /* moreInfoViewController.swift in Sources */,
 				4C94C47125AA7E96009ACB84 /* LoginController.swift in Sources */,
 				4C94C46625AA7D84009ACB84 /* SettingsViewController.swift in Sources */,
+				4C9A01E726413438000CEA5E /* CreateVision.swift in Sources */,
 				34013F7121BA4AE700CB8DA2 /* ViewController.swift in Sources */,
 				34EABE5D21CE0A5500787C5D /* SettingCells.swift in Sources */,
 				34013F6F21BA4AE700CB8DA2 /* AppDelegate.swift in Sources */,
+				4C2CC73A2655E8E5003AA473 /* Vision.swift in Sources */,
 				4C55FC8D25AA69E600CF1BA6 /* FeedbackViewController.swift in Sources */,
 				4C55FC9225AA69F400CF1BA6 /* LearnMoreViewController.swift in Sources */,
 				4CECE14225E8505600826111 /* Task+CoreDataClass.swift in Sources */,
@@ -639,11 +581,9 @@
 				4B5344B723FE4BE9005A86CC /* MenuCell.swift in Sources */,
 				346281A722E0E99B00464E29 /* PrivacyPolicy.swift in Sources */,
 				4C55FCB525AA6D7000CF1BA6 /* CreateShortTerm_0.swift in Sources */,
-				4CF0EB7A2416F5C200EF7445 /* LongTermCellSubclassView.swift in Sources */,
 				34C79CEF221B6E090052BA8C /* CompletionAnimation.swift in Sources */,
 				340499D8229796E200FECF86 /* GoalTypeCell.swift in Sources */,
 				340A7EE02278AF8B00B8DE51 /* InfoView.swift in Sources */,
-				4CF0EB7C2418696E00EF7445 /* ShowSelectedGoal.swift in Sources */,
 				3406C8EB21C241C900EB23D8 /* User.swift in Sources */,
 				4C22C62D240DC78E0015AB76 /* SelectedGoalVC.swift in Sources */,
 			);
@@ -818,7 +758,7 @@
 		};
 		34013F9421BA4AF000CB8DA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C262F2460B7D5F7140BEE1F /* Pods-Sower.debug.xcconfig */;
+			baseConfigurationReference = A231383C886CB3423BAC9EB8 /* Pods-Sowing.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_ENTITLEMENTS = Sowing/Sowing.entitlements;
@@ -841,7 +781,7 @@
 		};
 		34013F9521BA4AF000CB8DA2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A98078D07DC9D00C5BF1E57 /* Pods-Sower.release.xcconfig */;
+			baseConfigurationReference = FE8C8CC90C256EEB5F07D6ED /* Pods-Sowing.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_ENTITLEMENTS = Sowing/Sowing.entitlements;

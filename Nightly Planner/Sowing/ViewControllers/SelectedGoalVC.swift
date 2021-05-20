@@ -19,6 +19,7 @@ class SelectedGoalVC : UIViewController {
     var task_routine : Bool?
     var name : String = ""
     
+    var consistency : Int?
     var date: String?
     var completed: Bool?
     var daysTaken: Int?
@@ -216,7 +217,6 @@ class SelectedGoalVC : UIViewController {
 
         titleView.titleLabel.text = name
         
-        
 
         if task_routine! {
             goalTypeLabel.text = "Routine task"
@@ -228,7 +228,7 @@ class SelectedGoalVC : UIViewController {
                 completeButton.backgroundColor = UIColor(r: 200, g: 200, b: 200)
             }
             
-            daysPassedLabel.text = "Days consistent:"
+            daysPassedLabel.text = "Days consistent: \(consistency ?? 0)"
 
         } else {
             goalTypeLabel.text = "One-time task"
@@ -324,12 +324,12 @@ class SelectedGoalVC : UIViewController {
             arg = "Delete"
         } else {
             arg = "Complete"
+            if active == false { // goal has already been completed
+                alert(title: "Alert", message: "This goal has already been completed today.")
+                return
+            }
         }
-        if active == false {
-            alert(title: "Alert", message: "This goal has been completed already today.")
-        } else {
-            selectGoalAlert(indexPath: selectedTask!, complete_Delete: arg)
-        }
+        selectGoalAlert(indexPath: selectedTask!, complete_Delete: arg)
     }
     
     func alert(title: String, message: String) {
@@ -397,7 +397,6 @@ class SelectedGoalVC : UIViewController {
         if (arg == 0) {
             setTotalCompleted()
         }
-       
         
         do {
             let results = try managedContext.fetch(fetchRequest)
@@ -408,6 +407,7 @@ class SelectedGoalVC : UIViewController {
                     // temp disabling active routine; completing routine
                     results[selectedTask!].setValue(false, forKey: "active")
                     results[selectedTask!].setValue(Date(), forKey: "completedDate")
+                    results[selectedTask!].setValue(consistency ?? 0 + 1, forKey: "days")
                 } else {
                     // deleting goal from Core Data ...
                     managedContext.delete(results[selectedTask!])
@@ -422,9 +422,7 @@ class SelectedGoalVC : UIViewController {
             // ... fetch failed, report error
             print("Failed fetch request")
         }
-        
-        
-        UserDefaults.standard.set(true, forKey: "taskCreated")
+                
         UserDefaults.standard.set(true, forKey: "taskDeleted")
         ViewController().index = selectedTask!
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

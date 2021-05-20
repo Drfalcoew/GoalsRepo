@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     var tasks : [NSManagedObject] = [NSManagedObject]()
     var user : [NSManagedObject?] = [NSManagedObject]() // might not need this, switching to UserDefaults
     var localTasks = [GoalAttributes]()
-    var localGoals = [LongTermGoalAttributes?]()
     var viewXAnchor : NSLayoutConstraint?
     var longTermCount : Int?
     var goalCategories = [Any]()
@@ -27,7 +26,6 @@ class ViewController: UIViewController {
     var longTermOne = "longTerm_One"
     var x : CGFloat?
     var sort : Int?
-    var loaded : Bool? = false
     var checkTasks : Bool = false
     //var indexPathRow : Int!
     var y : Int?
@@ -108,8 +106,8 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
-        self.checkGoalCreation()
         self.counterView.animatePulsatingLayer()
+        Assets().preloadAssets()
         self.counterView.basicAnimation(goals: UserDefaults.standard.integer(forKey: "completedGoals"), total: UserDefaults.standard.integer(forKey: "totalGoals"))
     }
     
@@ -128,10 +126,6 @@ class ViewController: UIViewController {
         
         } else {
             badgeIcon.isHidden = false
-        }
-        
-        if loaded != true {
-            SetupDatabase()
         }
                         
         if let x = self.navigationController?.viewControllers.count {
@@ -152,7 +146,6 @@ class ViewController: UIViewController {
         
         self.title = "Goals"
         
-        self.tap = UITapGestureRecognizer(target: self, action: #selector(self.selectRoutineGoal))
         self.view.tag = 0
         
         UserDefaults.standard.set(nil, forKey: "iconInt")
@@ -164,7 +157,7 @@ class ViewController: UIViewController {
         setupViews()
         setupCollectionView()
         setupNavigation()
-        //SetupDatabase()
+        SetupDatabase()
         setupConstraints()
         
     }
@@ -183,7 +176,6 @@ class ViewController: UIViewController {
     
     func organizeLocalTasks() {
         if index >= 0 && index < 4 && localTasks.count > 0 {
-            print(index)
             localTasks.remove(at: index)
         }
         updateCompletedTasks()
@@ -305,11 +297,7 @@ class ViewController: UIViewController {
             greetingView.titleLabel.text = "Good Night!"
         }
     }
-    
-    override func viewDidLayoutSubviews() {
 
-    }
-    
     
     @objc func updateNotifications() {
         y = UserDefaults.standard.integer(forKey: "Notifications")
@@ -424,12 +412,6 @@ class ViewController: UIViewController {
         }
     }
     
-    func checkGoalCreation() {
-        if UserDefaults.standard.bool(forKey: "taskCreated") == true {
-            UserDefaults.standard.set(false, forKey: "taskCreated")
-            self.SetupDatabase()
-        }
-    }
     
     func setupNotificationsAlert() {
         let myAlert = UIAlertController(title: "Your first goal was created!", message: "Now turn on notifications to stay focused!", preferredStyle: UIAlertController.Style.alert)
@@ -445,13 +427,7 @@ class ViewController: UIViewController {
     func setupViews() {
         
         self.view.addSubview(greetingView)
-        
         self.view.addSubview(counterView)
-        
-       /*self.view.addSubview(achievementView)
-        self.achievementView.addSubview(achievementViewSeparator)
-        self.achievementView.addSubview(dailyGoalCount)
-        self.achievementView.addSubview(dailyLogin) */
         
     }
     
@@ -502,10 +478,6 @@ class ViewController: UIViewController {
             self.collectionView.reloadData()
             UIView.animate(withDuration: 1.00, delay: 0.0, options: .curveEaseOut, animations: {
                 self.collectionView.alpha = 1
-                if self.loaded != true {
-                   // self.spacerView.center.x -= self.view.frame.width
-                    self.loaded = true
-                }
             }, completion: nil)
             
         }
@@ -519,7 +491,7 @@ class ViewController: UIViewController {
         present(myAlert, animated: true, completion: nil)
     }
     
-    func subscribeAlert() {
+    /*func subscribeAlert() {
         let myAlert = UIAlertController(title: "Thanks for Registering!", message: "Opt-in to our newsletter for even more great stuff!", preferredStyle: UIAlertController.Style.alert)
         let optIn = UIAlertAction(title: "Opt-in", style: UIAlertAction.Style.default, handler: self.subscribeUser)
         let skip = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (UIAlertAction) in
@@ -528,7 +500,7 @@ class ViewController: UIViewController {
         myAlert.addAction(optIn)
         myAlert.addAction(skip)
         present(myAlert, animated: true, completion: nil)
-    }
+    }*/
     
     func welcomeAlert() {
         let myAlert = UIAlertController(title: "Welcome to QuestLine!", message: "Start by creating a daily goal. You're only allowed 4 max for focus reasons, so only add the most important.", preferredStyle: UIAlertController.Style.alert)
@@ -540,40 +512,8 @@ class ViewController: UIViewController {
         present(myAlert, animated: true, completion: nil)
     }
     
-    @objc func selectRoutineGoal() {
-        let myAlert = UIAlertController(title: "Daily Routine", message: nil, preferredStyle: UIAlertController.Style.alert)
-        
-        if routineComplete != true {
-            let complete = UIAlertAction(title: "Complete Task", style: UIAlertAction.Style.default) { (_) in
-                self.routineComplete = true
-                
-                UserDefaults.standard.set(true, forKey: "routineComplete")
-                UserDefaults.standard.synchronize()
-            }
-            myAlert.addAction(complete)
-        } else {
-            myAlert.message = "Routine is complete for today. Great job!"
-        }
-        
-        let delete = UIAlertAction(title: "Delete Routine", style: .destructive) { (_) in
-            self.promptDelete(indexPath: nil)
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        myAlert.addAction(delete)
-        myAlert.addAction(cancel)
-        present(myAlert, animated: true, completion: nil)
-    }
-    
-    
-    
     func handleMoreInfo(alert: UIAlertAction) {
         navigationController?.customPush(viewController: moreInfoViewController())
-    }
-    
-    func subscribeUser(alert: UIAlertAction) {
-
     }
     
     func setupNavigation() {
@@ -736,30 +676,6 @@ class ViewController: UIViewController {
     }
     
     
-    func completeFunc(indexPath: IndexPath) {
-        
-        let cell = self.collectionView.cellForItem(at: indexPath) as? ShortTermCell
-
-        var goalName : String
-        var ref : String
-        
-       /*
-        if let x = tasks[indexPath.row] {
-            goalName = x.name!
-            ref = x.ref!
-            
-            self.shortTermGoals[indexPath.row]?.completed = true
-            cell?.daysTaken.text = "Complete!"
-            cell?.daysTaken.textColor = UIColor(r: 40, g: 43, b: 53)
-            cell?.daysTaken.isHidden = false
-            goalsCompleted = UserDefaults.standard.integer(forKey: "goalsCompleted") ?? 0
-            goalsCompleted = goalsCompleted + 1
-            UserDefaults.standard.set(goalsCompleted, forKey: "goalsCompleted")
-            print(goalsCompleted)
-            //delete goal and move to profile
-        } */
-    }
-    
     func setupNewWeeklyDay() {
         //reset 0
     }
@@ -771,94 +687,6 @@ class ViewController: UIViewController {
         var weeklyDayCase : String = "day_\(weeklyDay!)"
         // weeklyDay
     }
-    
-    
-    func completedAnimation(indexPath: IndexPath) {
-        
-        self.completeFunc(indexPath: indexPath)
-        
-        
-        if let window = UIApplication.shared.keyWindow {
-            
-            completedView.alpha = 0.0
-            blackView.alpha = 0
-            
-            window.addSubview(blackView)
-            window.addSubview(completedView)
-            
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.completedView.alpha = 1
-                self.blackView.alpha = 0.5
-            }) { (nil) in
-                UIView.animate(withDuration: 0.5, delay: 1.0, options: .curveEaseIn, animations: {
-                    self.completedView.alpha = 0
-                    self.blackView.alpha = 0
-                }, completion: { (nil) in
-                    window.willRemoveSubview(self.completedView)
-                    window.willRemoveSubview(self.blackView)
-                    self.completedView.removeFromSuperview()
-                    self.blackView.removeFromSuperview()
-                })
-            }
-            
-            self.saveCompletedGoal(indexPath: indexPath)
-            self.deleteFunc(indexPath: indexPath)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.firstGoalOfDay = false
-                UserDefaults.standard.set(false, forKey: "firstGoalOfDay")
-            }
-
-        }
-    }
-    
-    
-    func promptDelete(indexPath: IndexPath?) {
-        let myAlert = UIAlertController(title: "Delete Goal?", message: "Are you sure you want to delete this goal?", preferredStyle: UIAlertController.Style.alert)
-        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.default) { (UIAlertAction) in
-            if let indexPath = indexPath {
-                self.deleteFunc(indexPath: indexPath)
-            } else {
-                self.routineComplete = false
-                UserDefaults.standard.set(false, forKey: "routineComplete")
-                UserDefaults.standard.synchronize()
-            }
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
-        
-        myAlert.addAction(deleteAction)
-        myAlert.addAction(cancelAction)
-        present(myAlert, animated: true, completion: nil)
-    }
-    
-    func promptComplete(indexPath: IndexPath) {
-        let myAlert = UIAlertController(title: "Complete Goal?", message: "This goal will be moved to the completed tab in your profile.", preferredStyle: UIAlertController.Style.alert)
-        let completeAction = UIAlertAction(title: "Complete", style: UIAlertAction.Style.default) { (UIAlertAction) in
-            self.completedAnimation(indexPath: indexPath)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
-        
-        myAlert.addAction(completeAction)
-        myAlert.addAction(cancelAction)
-        present(myAlert, animated: true, completion: nil)
-    }
-    
-    func deleteFunc(indexPath: IndexPath) {
-        /*
-        if let x = tasks[indexPath.row] {
-            self.tasks.remove(at: indexPath.row)
-            if self.tasks.count + 1 != 4 {
-                self.collectionView.deleteItems(at: [indexPath])
-            }
-            self.collectionView.reloadData()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.updateNotifications()
-            }
-        }*/
-    }
-    
-    //                                      COLLECTION VIEW SETUP
     
     @objc @available(iOS 10.0, *)
     func listNotification(_ sender: Any) {
@@ -902,6 +730,7 @@ class ViewController: UIViewController {
 
         let vc = SelectedGoalVC()
         
+        vc.consistency = self.localTasks[Index].consistency
         vc.selectedTask = Index
         vc.active = self.localTasks[Index].active
         vc.date = self.localTasks[Index].date
@@ -962,12 +791,11 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         UIApplication.shared.applicationIconBadgeNumber = tasks.count
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "custom", for: indexPath) as! ShortTermCell
         cell.contentView.alpha = 0
         
         if self.tasks.isEmpty == false { // safeGuard, because it returns nil when cells are reloaded
-        
+            
             let task = tasks[indexPath.row]
             
             cell.moreInfo.tag = indexPath.row
@@ -975,53 +803,55 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             
             let name = task.value(forKeyPath: "name") as? String
             let date = task.value(forKeyPath: "date") as? Date
-            let dateCompleted = task.value(forKeyPath: "date") as? Date
-            let daysTaken = task.value(forKeyPath: "days")
+            let dateCompleted = task.value(forKeyPath: "completedDate") as? Date
+            let consistency = task.value(forKeyPath: "days") as? Int
             let category = task.value(forKeyPath: "category") as? Int
             let routine = task.value(forKeyPath: "routine") as? Bool
             let active = task.value(forKeyPath: "active") as? Bool
             
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                self.localTasks.append(GoalAttributes(name: name!, date: date!.formatted, completedDate: dateCompleted?.formatted ?? "nil", completed: false, daysTaken: 0, category: category, routine: routine ?? false, active: active!))
-            }
+            
+            self.localTasks.append(GoalAttributes(name: name!, date: date!.formatted, completedDate: dateCompleted?.formatted ?? "nil", completed: false, consistency: consistency ?? 0, category: category, routine: routine ?? false, active: active!))
+            
             
             cell.titleLabel.text = name
             if name?.count ?? 15 < 10 {
                     cell.titleLabel.numberOfLines = 1
             }
+            print("INDEX PATH: \(indexPath.row): ROUTINE = \(routine)")
             
             if routine == true {
                 cell.routineImage.isHidden = false
                 let daysFromCompletion = dateCompleted?.days(from: Date())
-                print("DaysFROMCOMPLETION: \(daysFromCompletion)")
+                
+                
                 if active == false {
+                    // resetting task, greater than 1 day since completion.
                     if (daysFromCompletion ?? 0 < 0) {
                         // reset to active goal
                         alert(title: "Alert", message: "Resetting routine task on row \(indexPath.row)")
                         resetRoutine(item: indexPath.row)
-                    } else {
+                        if (daysFromCompletion ?? 0 < 1) {
+                            resetConsistency(item: indexPath.row)
+                        }
+                    } else { // less than 1 day.
                         // still inactive
-                        cell.titleView.backgroundColor = UIColor(r: 200, g: 200, b: 200) // Change this color from gray
+                        cell.titleView.backgroundColor = UIColor(r: 200, g: 200, b: 200)
                         cell.titleLabel.textColor = .white
                         cell.routineImage.tintImageColor(color: .white)
 //                        cell.dateLabel.textColor = .darkGray
 //                        cell.dateLabelView.backgroundColor = lightGray
                     }
+                    
+                    
                 } else {
+                    cell.titleLabel.textColor = UIColor(r: 75, g: 80, b: 120)
+                    cell.routineImage.tintImageColor(color: UIColor(r: 75, g: 80, b: 120))
                     cell.titleView.backgroundColor = lightGray
                 }
             } else {
+                cell.titleLabel.textColor = UIColor(r: 75, g: 80, b: 120)
+                cell.titleView.backgroundColor = UIColor(r: 240, g: 240, b: 240)
                 cell.routineImage.isHidden = true
-            }
- 
-            if category != nil {
-                print(category)
-                cell.linkedGoal = true
-                //cell.routineImage.isHidden = false
-            } else {
-                print(category)
-                //cell.routineImage.isHidden = true
-                cell.linkedGoal = false
             }
             
             
@@ -1029,7 +859,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             if let date = date {
                 var x = date.toStringAbbreviated()
                 x.removeLast(6)
-                print(x)
                 cell.dateLabel.text = "\(x)"
             }
             
@@ -1051,6 +880,32 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
     
     }
     
+    private func resetConsistency(item: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Goal")
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest)
+            if results.count > 0 {
+                results[item].setValue(0, forKey: "days")
+                localTasks[item].consistency = 0
+            }
+            do {
+                try managedContext.save()
+            } catch {
+                print("Failed save request")
+                alert(title: "Error", message: "Failed to save request")
+            }
+        } catch {
+            print("Failed fetch request")
+            alert(title: "Error", message: "Failed to fetch request")
+        }
+    }
+    
     private func resetRoutine(item: Int) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -1063,7 +918,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         do {
             let results = try managedContext.fetch(fetchRequest)
             // Or delete first object:
-            print(results)
             if results.count > 0 {
                 results[item].setValue(true, forKey: "active")
                 localTasks[item].active = true

@@ -17,7 +17,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     let notification = NotificationCenter.default
 
     
-    
     var tableView : UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +62,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = date.text
-        self.view.backgroundColor = UIColor(r: 40, g: 43, b: 53)
+        self.view.backgroundColor = UIColor.white
         
         y = UserDefaults.standard.integer(forKey: "Notifications")
         
@@ -88,9 +87,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 
     
     func setupViews() {
-        navigationController?.navigationBar.tintColor = UIColor(r: 221, g: 221, b: 221)
+        navigationController?.navigationBar.tintColor = UIColor(r: 75, g: 80, b: 120)
         
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor(r: 221, g: 221, b: 221)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor(r: 75, g: 80, b: 120)]
     }
     
     func setupConstraints() {
@@ -127,12 +126,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: cellId) as! SettingCells
         if indexPath.row == 0 {
-            cell.nameLabel.textColor = UIColor(r: 125, g: 200, b: 180)
+            cell.nameLabel.textColor = UIColor(r: 75, g: 80, b: 120)
             cell.nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
         }
         switch indexPath.row {
         case 0:
-            cell.nameLabel.text = "HEROISM"
+            cell.nameLabel.text = "Sowing"
             break
         case 1:
             cell.nameLabel.text = "Learn More"

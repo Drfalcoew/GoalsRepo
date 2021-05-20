@@ -13,12 +13,11 @@ import MessageUI
 
 class FeedbackViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
-    
     var topViewHeightAnchor: NSLayoutConstraint?
     
     let inputsContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(r: 75, g: 80, b: 120)
+        view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
 
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.masksToBounds = true
@@ -46,7 +45,6 @@ class FeedbackViewController: UIViewController, MFMailComposeViewControllerDeleg
         return view
     }()
     
-    
     let feedbackField: UITextField = {
         let txt = UITextField()
         //txt.backgroundColor = UIColor.white
@@ -64,8 +62,8 @@ class FeedbackViewController: UIViewController, MFMailComposeViewControllerDeleg
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("Submit", for: .normal)
-        btn.backgroundColor = UIColor(red: 125/255, green: 200/255, blue: 180/255, alpha: 1.0)
-        btn.setTitleColor(UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1), for: UIControl.State())
+        btn.backgroundColor = UIColor(r: 75, g: 80, b: 120)
+        btn.setTitleColor(UIColor.white, for: UIControl.State())
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         btn.layer.cornerRadius = 2
         btn.addTarget(self, action: #selector(submitButtonPressed), for: .touchUpInside)

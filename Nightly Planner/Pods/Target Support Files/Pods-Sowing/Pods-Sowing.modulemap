@@ -1,0 +1,6 @@
+framework module Pods_Sowing {
+  umbrella header "Pods-Sowing-umbrella.h"
+
+  export *
+  module * { export * }
+}

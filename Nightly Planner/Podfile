@@ -1,16 +1,16 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'Sower' do
+target 'Sowing' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for MarketTemplate
-	pod 'GoogleSignIn'
-	pod 'Firebase/Firestore'
-	pod 'Firebase/Functions'
-	pod 'FirebaseAuth'
-	pod 'Firebase/Database'
-	pod 'Firebase/Analytics'
+  # Pods for Sowing
+	#pod 'GoogleSignIn'
+	#pod 'Firebase/Firestore'
+	#pod 'Firebase/Functions'
+	#pod 'FirebaseAuth'
+	#pod 'Firebase/Database'
+	#pod 'Firebase/Analytics'
 
 end

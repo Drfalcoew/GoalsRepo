@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/drewfoster/Library/Projects/iosApps/GoalsRepoFEB25/Nightly Planner/Sowing.xcodeproj">
+      location = "group:Sower.xcworkspace">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
