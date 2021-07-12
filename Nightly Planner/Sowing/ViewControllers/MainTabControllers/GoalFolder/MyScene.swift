@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class MyScene: SKScene, UIGestureRecognizerDelegate {
+class MyScene: SKScene {
     
     var cloud_Node : SKSpriteNode?
     
@@ -29,12 +29,12 @@ class MyScene: SKScene, UIGestureRecognizerDelegate {
     
     
     
+    deinit{print("GameScene deinited")}
     
     
     override func didMove(to view: SKView) {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(createVision), name: NSNotification.Name(rawValue: "CreateVision"), object: nil)
-        Vision().tap?.delegate = self
+
         
         setupSprites()
         animateNodes()
@@ -219,7 +219,7 @@ class MyScene: SKScene, UIGestureRecognizerDelegate {
             let min = range.lowerBound
             let max = range.upperBound
             return Int(arc4random_uniform(UInt32(1 + max - min))) + min
-        }
+    }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered

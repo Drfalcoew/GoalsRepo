@@ -13,6 +13,7 @@ import CoreData
 class SelectedGoalVC : UIViewController {
 
     var selectedTask : Int?
+    var totalDaysTaken : Int? = UserDefaults.standard.integer(forKey: "totalDaysTaken")
     var tasks : [NSManagedObject] = [NSManagedObject]()
     var goals : [NSManagedObject] = [NSManagedObject]()
     var user : [NSManagedObject?] = [NSManagedObject]() // switching to UserDefaults.std
@@ -229,14 +230,17 @@ class SelectedGoalVC : UIViewController {
             }
             
             daysPassedLabel.text = "Days consistent: \(consistency ?? 0)"
-
+            
         } else {
             goalTypeLabel.text = "One-time task"
             subLabelImage.image = UIImage(named: "task")
             subLabelImage.tintImageColor(color: UIColor(r: 75, g: 80, b: 120))
+            let totalOneTimeGoals = UserDefaults.standard.integer(forKey: "totalOneTimeGoals")
+            UserDefaults.standard.setValue(totalOneTimeGoals + 1, forKey: "totalOneTimeGoals")
             
             daysTaken = date?.toDate()?.days(from: Date())
             if daysTaken != nil {
+                UserDefaults.standard.setValue((totalDaysTaken ?? 0) + daysTaken!, forKey: "totalDaysTaken")
                 daysTaken = daysTaken! * -1
                 if daysTaken! == 1 {
                     daysPassedLabel.text = "Days taken: \(daysTaken ?? 1) day"

@@ -95,7 +95,7 @@ class CreateGoal: UIViewController {
     
     let routineLbl : UILabel = {
         let lbl = UILabel()
-        lbl.text = "routine"
+        lbl.text = "Routine"
         lbl.textColor = UIColor(r: 75, g: 80, b: 120)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.layer.masksToBounds = true
@@ -109,7 +109,7 @@ class CreateGoal: UIViewController {
     
     let taskLbl : UILabel = {
         let lbl = UILabel()
-        lbl.text = "one-time"
+        lbl.text = "One-time"
         lbl.textColor = UIColor(r: 75, g: 80, b: 120)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.layer.masksToBounds = true

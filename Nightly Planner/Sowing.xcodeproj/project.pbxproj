@@ -28,30 +28,35 @@
 		34EABE5D21CE0A5500787C5D /* SettingCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EABE5C21CE0A5500787C5D /* SettingCells.swift */; };
 		4B5344B523FE04B8005A86CC /* ShowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5344B423FE04B8005A86CC /* ShowMenu.swift */; };
 		4B5344B723FE4BE9005A86CC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5344B623FE4BE9005A86CC /* MenuCell.swift */; };
+		4C05C8AD268D1B1E009FFF4F /* ReflectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05C8AC268D1B1E009FFF4F /* ReflectionButton.swift */; };
+		4C05C8B5268D208B009FFF4F /* ProfileDetailsSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05C8B4268D208B009FFF4F /* ProfileDetailsSubclass.swift */; };
 		4C0A0BD924708FD100565C85 /* MyScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C0A0BD824708FD100565C85 /* MyScene.sks */; };
 		4C0A0BDC247092EB00565C85 /* MyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A0BDB247092EB00565C85 /* MyScene.swift */; };
 		4C1D258224067484007F4C9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C1D258024067484007F4C9C /* LaunchScreen.storyboard */; };
 		4C22C62D240DC78E0015AB76 /* SelectedGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22C62C240DC78E0015AB76 /* SelectedGoalVC.swift */; };
 		4C22C630240DECA20015AB76 /* Sower.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C22C62E240DECA20015AB76 /* Sower.xcdatamodeld */; };
-		4C2CC73A2655E8E5003AA473 /* Vision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CC7392655E8E5003AA473 /* Vision.swift */; };
 		4C3AC63125EAE6A800A5FAA4 /* ProfileChartCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AC63025EAE6A800A5FAA4 /* ProfileChartCells.swift */; };
 		4C3E705B25E08E7D00CCF19B /* GoalCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E705A25E08E7D00CCF19B /* GoalCounter.swift */; };
 		4C4BC1BA2407427900025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1B92407427900025289 /* Info.plist */; };
 		4C4BC1BC2407427F00025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1BB2407427F00025289 /* Info.plist */; };
 		4C4BC1BE2407428300025289 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4BC1BD2407428300025289 /* Info.plist */; };
-		4C4E4FD426425A5C00744C0F /* GoodBadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E4FD326425A5C00744C0F /* GoodBadButton.swift */; };
 		4C55FC8D25AA69E600CF1BA6 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FC8C25AA69E600CF1BA6 /* FeedbackViewController.swift */; };
 		4C55FC9225AA69F400CF1BA6 /* LearnMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FC9125AA69F400CF1BA6 /* LearnMoreViewController.swift */; };
 		4C55FCB025AA6D5F00CF1BA6 /* CreateGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FCAF25AA6D5F00CF1BA6 /* CreateGoal.swift */; };
 		4C55FCB525AA6D7000CF1BA6 /* CreateShortTerm_0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FCB425AA6D7000CF1BA6 /* CreateShortTerm_0.swift */; };
 		4C55FCC425AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C55FCC325AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift */; };
+		4C6F2C8B26747BFF000C1EA3 /* EditProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F2C8A26747BFF000C1EA3 /* EditProfileImageView.swift */; };
+		4C7DA81526940022003A941A /* ChartViewSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7DA81426940022003A941A /* ChartViewSubclass.swift */; };
+		4C7DA81A26940D63003A941A /* LifeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7DA81926940D63003A941A /* LifeView.swift */; };
 		4C8BC38E263CC19E00371501 /* Sprites.Atlas in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BC38D263CC19E00371501 /* Sprites.Atlas */; };
+		4C9015CC265EC72700EE4FDD /* ReflectionSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9015CB265EC72700EE4FDD /* ReflectionSubclass.swift */; };
 		4C94C44525AA7C6A009ACB84 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94C44425AA7C6A009ACB84 /* ProfileViewController.swift */; };
 		4C94C46625AA7D84009ACB84 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94C46525AA7D84009ACB84 /* SettingsViewController.swift */; };
 		4C94C47125AA7E96009ACB84 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94C47025AA7E96009ACB84 /* LoginController.swift */; };
 		4C9A01E726413438000CEA5E /* CreateVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A01E626413438000CEA5E /* CreateVision.swift */; };
 		4CACF26325AA9935004A66AE /* CreateShortTerm_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CACF26225AA9935004A66AE /* CreateShortTerm_1.swift */; };
 		4CCECDD525E5C55600CE9F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCECDD425E5C55600CE9F21 /* Assets.xcassets */; };
+		4CD18FF12697C5950060F73F /* CollaborationsSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD18FF02697C5950060F73F /* CollaborationsSubclass.swift */; };
 		4CECE13725E8504C00826111 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECE13625E8504C00826111 /* User+CoreDataClass.swift */; };
 		4CECE14225E8505600826111 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECE14125E8505600826111 /* Task+CoreDataClass.swift */; };
 		4CF0EB7E2418777C00EF7445 /* CreateGoal_Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */; };
@@ -117,31 +122,36 @@
 		34EABE5C21CE0A5500787C5D /* SettingCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCells.swift; sourceTree = "<group>"; };
 		4B5344B423FE04B8005A86CC /* ShowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMenu.swift; sourceTree = "<group>"; };
 		4B5344B623FE4BE9005A86CC /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		4C05C8AC268D1B1E009FFF4F /* ReflectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectionButton.swift; sourceTree = "<group>"; };
+		4C05C8B4268D208B009FFF4F /* ProfileDetailsSubclass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsSubclass.swift; sourceTree = "<group>"; };
 		4C0A0BD824708FD100565C85 /* MyScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyScene.sks; sourceTree = "<group>"; };
 		4C0A0BDB247092EB00565C85 /* MyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScene.swift; sourceTree = "<group>"; };
 		4C1D258124067484007F4C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C22C62C240DC78E0015AB76 /* SelectedGoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGoalVC.swift; sourceTree = "<group>"; };
 		4C22C62F240DECA20015AB76 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		4C2CC7392655E8E5003AA473 /* Vision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vision.swift; sourceTree = "<group>"; };
 		4C3AC63025EAE6A800A5FAA4 /* ProfileChartCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChartCells.swift; sourceTree = "<group>"; };
 		4C3E705A25E08E7D00CCF19B /* GoalCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCounter.swift; sourceTree = "<group>"; };
 		4C4BC1B92407427900025289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sower/Info.plist; sourceTree = SOURCE_ROOT; };
 		4C4BC1BB2407427F00025289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sower/Info.plist; sourceTree = SOURCE_ROOT; };
 		4C4BC1BD2407428300025289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sower/Info.plist; sourceTree = SOURCE_ROOT; };
 		4C4BC1BF2407429000025289 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C4E4FD326425A5C00744C0F /* GoodBadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodBadButton.swift; sourceTree = "<group>"; };
 		4C55FC8C25AA69E600CF1BA6 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		4C55FC9125AA69F400CF1BA6 /* LearnMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnMoreViewController.swift; sourceTree = "<group>"; };
 		4C55FCAF25AA6D5F00CF1BA6 /* CreateGoal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGoal.swift; sourceTree = "<group>"; };
 		4C55FCB425AA6D7000CF1BA6 /* CreateShortTerm_0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShortTerm_0.swift; sourceTree = "<group>"; };
 		4C55FCC325AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		4C6F2C8A26747BFF000C1EA3 /* EditProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileImageView.swift; sourceTree = "<group>"; };
+		4C7DA81426940022003A941A /* ChartViewSubclass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewSubclass.swift; sourceTree = "<group>"; };
+		4C7DA81926940D63003A941A /* LifeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeView.swift; sourceTree = "<group>"; };
 		4C8BC38D263CC19E00371501 /* Sprites.Atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.Atlas; sourceTree = "<group>"; };
+		4C9015CB265EC72700EE4FDD /* ReflectionSubclass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionSubclass.swift; sourceTree = "<group>"; };
 		4C94C44425AA7C6A009ACB84 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "../../../../../../../Documents/GoalsRepo FEB25/Nightly Planner/Nightly Planner/Helpers/ProfileViewController.swift"; sourceTree = "<group>"; };
 		4C94C46525AA7D84009ACB84 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4C94C47025AA7E96009ACB84 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4C9A01E626413438000CEA5E /* CreateVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVision.swift; sourceTree = "<group>"; };
 		4CACF26225AA9935004A66AE /* CreateShortTerm_1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShortTerm_1.swift; sourceTree = "<group>"; };
 		4CCECDD425E5C55600CE9F21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4CD18FF02697C5950060F73F /* CollaborationsSubclass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationsSubclass.swift; sourceTree = "<group>"; };
 		4CECE13625E8504C00826111 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4CECE14125E8505600826111 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4CF0EB7D2418777C00EF7445 /* CreateGoal_Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoal_Name.swift; sourceTree = "<group>"; };
@@ -245,6 +255,8 @@
 				34ABB818222FBABD001967B2 /* moreInfoViewController.swift */,
 				4C22C62C240DC78E0015AB76 /* SelectedGoalVC.swift */,
 				4C9A01E626413438000CEA5E /* CreateVision.swift */,
+				4C6F2C8A26747BFF000C1EA3 /* EditProfileImageView.swift */,
+				4C7DA81926940D63003A941A /* LifeView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -296,8 +308,11 @@
 				349779EC2327025300CA4490 /* ProfileTrackerChart.swift */,
 				4B5344B423FE04B8005A86CC /* ShowMenu.swift */,
 				4C3E705A25E08E7D00CCF19B /* GoalCounter.swift */,
-				4C4E4FD326425A5C00744C0F /* GoodBadButton.swift */,
-				4C2CC7392655E8E5003AA473 /* Vision.swift */,
+				4C9015CB265EC72700EE4FDD /* ReflectionSubclass.swift */,
+				4C05C8AC268D1B1E009FFF4F /* ReflectionButton.swift */,
+				4C05C8B4268D208B009FFF4F /* ProfileDetailsSubclass.swift */,
+				4C7DA81426940022003A941A /* ChartViewSubclass.swift */,
+				4CD18FF02697C5950060F73F /* CollaborationsSubclass.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -548,9 +563,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C55FCB025AA6D5F00CF1BA6 /* CreateGoal.swift in Sources */,
-				4C4E4FD426425A5C00744C0F /* GoodBadButton.swift in Sources */,
 				34BEBBFE225C874B00014BC9 /* imbedShortTermCell.swift in Sources */,
 				4C3AC63125EAE6A800A5FAA4 /* ProfileChartCells.swift in Sources */,
+				4CD18FF12697C5950060F73F /* CollaborationsSubclass.swift in Sources */,
 				349C8CD52253277200C6577D /* GoalViewController.swift in Sources */,
 				349779ED2327025300CA4490 /* ProfileTrackerChart.swift in Sources */,
 				4C0A0BDC247092EB00565C85 /* MyScene.swift in Sources */,
@@ -559,19 +574,22 @@
 				4C55FCC425AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift in Sources */,
 				3450BCCE21BF107D00F58A08 /* GoalAttributes.swift in Sources */,
 				4CECE13725E8504C00826111 /* User+CoreDataClass.swift in Sources */,
+				4C7DA81526940022003A941A /* ChartViewSubclass.swift in Sources */,
 				4C22C630240DECA20015AB76 /* Sower.xcdatamodeld in Sources */,
 				4CF0EB8024187A9100EF7445 /* CreateGoal_TargetDate.swift in Sources */,
 				4CACF26325AA9935004A66AE /* CreateShortTerm_1.swift in Sources */,
 				4C94C44525AA7C6A009ACB84 /* ProfileViewController.swift in Sources */,
+				4C05C8B5268D208B009FFF4F /* ProfileDetailsSubclass.swift in Sources */,
 				4B5344B523FE04B8005A86CC /* ShowMenu.swift in Sources */,
 				34ABB819222FBABD001967B2 /* moreInfoViewController.swift in Sources */,
 				4C94C47125AA7E96009ACB84 /* LoginController.swift in Sources */,
 				4C94C46625AA7D84009ACB84 /* SettingsViewController.swift in Sources */,
+				4C9015CC265EC72700EE4FDD /* ReflectionSubclass.swift in Sources */,
 				4C9A01E726413438000CEA5E /* CreateVision.swift in Sources */,
 				34013F7121BA4AE700CB8DA2 /* ViewController.swift in Sources */,
 				34EABE5D21CE0A5500787C5D /* SettingCells.swift in Sources */,
 				34013F6F21BA4AE700CB8DA2 /* AppDelegate.swift in Sources */,
-				4C2CC73A2655E8E5003AA473 /* Vision.swift in Sources */,
+				4C05C8AD268D1B1E009FFF4F /* ReflectionButton.swift in Sources */,
 				4C55FC8D25AA69E600CF1BA6 /* FeedbackViewController.swift in Sources */,
 				4C55FC9225AA69F400CF1BA6 /* LearnMoreViewController.swift in Sources */,
 				4CECE14225E8505600826111 /* Task+CoreDataClass.swift in Sources */,
@@ -581,7 +599,9 @@
 				4B5344B723FE4BE9005A86CC /* MenuCell.swift in Sources */,
 				346281A722E0E99B00464E29 /* PrivacyPolicy.swift in Sources */,
 				4C55FCB525AA6D7000CF1BA6 /* CreateShortTerm_0.swift in Sources */,
+				4C6F2C8B26747BFF000C1EA3 /* EditProfileImageView.swift in Sources */,
 				34C79CEF221B6E090052BA8C /* CompletionAnimation.swift in Sources */,
+				4C7DA81A26940D63003A941A /* LifeView.swift in Sources */,
 				340499D8229796E200FECF86 /* GoalTypeCell.swift in Sources */,
 				340A7EE02278AF8B00B8DE51 /* InfoView.swift in Sources */,
 				3406C8EB21C241C900EB23D8 /* User.swift in Sources */,

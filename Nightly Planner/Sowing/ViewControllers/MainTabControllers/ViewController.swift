@@ -56,6 +56,7 @@ class ViewController: UIViewController {
     
     var window: UIWindow?
     let cellId = "cellId"
+    let dateJoined = UserDefaults.standard.string(forKey: "dateJoined")
 
     let greetingView : GreetingViewSubclass = {
         let view = GreetingViewSubclass()
@@ -121,6 +122,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         y = UserDefaults.standard.integer(forKey: "Notifications")
+        
         if y == 1 {
             badgeIcon.isHidden = true
         
@@ -129,7 +131,8 @@ class ViewController: UIViewController {
         }
                         
         if let x = self.navigationController?.viewControllers.count {
-            if x > 4 {
+            print("X = ", x)
+            if x > 2 {
                 self.navigationController?.viewControllers.removeFirst(1)
             }
         }
@@ -148,6 +151,10 @@ class ViewController: UIViewController {
         
         self.view.tag = 0
         
+        if dateJoined == nil {
+            UserDefaults.standard.setValue(Date().toString(), forKey: "dateJoined")
+        }
+        
         UserDefaults.standard.set(nil, forKey: "iconInt")
         y = UserDefaults.standard.integer(forKey: "Notifications")
         
@@ -159,7 +166,6 @@ class ViewController: UIViewController {
         setupNavigation()
         SetupDatabase()
         setupConstraints()
-        
     }
     
     private func setupNotificationObservers() {

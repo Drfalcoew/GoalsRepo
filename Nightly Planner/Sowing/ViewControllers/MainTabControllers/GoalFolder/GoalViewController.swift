@@ -11,11 +11,13 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GoalViewController: UIViewController {
+class GoalViewController: UIViewController, UITextViewDelegate {
     
     let vision = UserDefaults.standard.string(forKey: "vision")
-    let visionActive = UserDefaults.standard.bool(forKey: "visionActive")
-    
+    var toolBar : UIToolbar?
+    var originalY : CGFloat?
+    var textCountOrder : [Int] = [] // can we do 2 indices?
+
     let visionButton : UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "visionIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -26,55 +28,27 @@ class GoalViewController: UIViewController {
         btn.layer.borderWidth = 0.25
         btn.tag = 0
         btn.layer.borderColor = UIColor.white.cgColor
-        btn.addTarget(self, action: #selector(handleAddVision), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(handleVision(sender:)), for: .touchUpInside)
+        btn.imageView?.tintImageColor(color: UIColor(r: 221, g: 221, b: 221))
+        return btn
+    }()
+
+    let editButton : UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Edit", for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.layer.masksToBounds = true
+        btn.layer.zPosition = 5
+        btn.backgroundColor = UIColor(r: 75, g: 80, b: 120)
+        btn.layer.borderWidth = 0.25
+        btn.tag = 0
+        btn.alpha = 0
+        btn.layer.borderColor = UIColor.white.cgColor
+        btn.addTarget(self, action: #selector(editVision(sender:)), for: .touchUpInside)
         btn.imageView?.tintImageColor(color: UIColor(r: 221, g: 221, b: 221))
         return btn
     }()
     
-    let goodBadButton : GoodBadButton = {
-        let btn = GoodBadButton()
-        btn.setImage(UIImage(named: ""), for: .normal)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.layer.masksToBounds = true
-        btn.layer.zPosition = 0
-        btn.backgroundColor = UIColor(r: 221, g: 221, b: 221)
-        btn.layer.borderWidth = 0.25
-        btn.tag = 2
-        btn.layer.borderColor = UIColor.white.cgColor
-        btn.addTarget(self, action: #selector(handleGoodBad), for: .touchUpInside)
-        return btn
-    }()
-
-    
-    let badButton : GoodBadButton = {
-        let btn = GoodBadButton()
-        btn.setImage(UIImage(named: "sadIcon"), for: .normal)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.layer.masksToBounds = true
-        btn.layer.zPosition = 0
-        btn.backgroundColor = UIColor(r: 221, g: 221, b: 221)
-        btn.layer.borderWidth = 0.25
-        btn.tag = 0
-        btn.alpha = 0
-        btn.layer.borderColor = UIColor.white.cgColor
-        btn.addTarget(self, action: #selector(handleGoodBad), for: .touchUpInside)
-        return btn
-    }()
-    
-    let goodButton : GoodBadButton = {
-        let btn = GoodBadButton()
-        btn.setImage(UIImage(named: "happyIcon"), for: .normal)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.layer.masksToBounds = true
-        btn.layer.zPosition = 0
-        btn.backgroundColor = UIColor(r: 221, g: 221, b: 221)
-        btn.layer.borderWidth = 0.25
-        btn.tag = 0
-        btn.alpha = 0
-        btn.layer.borderColor = UIColor.white.cgColor
-        btn.addTarget(self, action: #selector(handleGoodBad), for: .touchUpInside)
-        return btn
-    }()
     
     let visionLabel : UITextView = {
         let lbl = UITextView()
@@ -87,9 +61,10 @@ class GoalViewController: UIViewController {
         lbl.isScrollEnabled = true
         lbl.layer.cornerRadius = 5
         lbl.alpha = 0
+        lbl.isEditable = false
         lbl.layer.zPosition = 1
         lbl.backgroundColor = .clear
-        lbl.text = "The paragraph you distill should be enjoyable for you to read aloud. It should inspire you and bring a smile to your face to think about this being your new reality. Most especially it should feel like you, like it came from inside you, and names an even more you version of yourself that you intend to become. The vision statement is an opportunity to become even more our authentic selves, by helping us focus on our joy, values, and ability to be of service."
+        lbl.text = " "
         return lbl
     }()
     
@@ -115,13 +90,14 @@ class GoalViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.isTranslucent = false
+        
     }
 
     override func viewDidLayoutSubviews() {
         self.visionButton.layer.cornerRadius = self.view.frame.width * 0.075
-        self.goodBadButton.layer.cornerRadius = self.view.frame.width * 0.075
-        self.goodButton.layer.cornerRadius = self.view.frame.width * 0.075
-        self.badButton.layer.cornerRadius = self.view.frame.width * 0.075
+        self.editButton.layer.cornerRadius = self.view.frame.width * 0.075        
+        self.originalY = visionLabel.center.y
+
     }
 
     override func viewDidLoad() {
@@ -144,25 +120,62 @@ class GoalViewController: UIViewController {
         }
         
         self.view.addSubview(backView)
-        self.view.addSubview(goodButton)
-        self.view.addSubview(badButton)
-        self.view.addSubview(goodBadButton)
+        self.view.addSubview(editButton)
         self.view.addSubview(visionLabel)
         self.view.addSubview(visionButton)
         
+        setupKeyboardToolbar()
         setupLabel()
         setupNavigation()
         setupConstraints()
         setupLblAnimation()
     }
     
+    func setupKeyboardToolbar() {
+        toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
+        toolBar!.barStyle = UIBarStyle.default
+        toolBar!.items = [
+            UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissKeyboard)) ]
+        
+        toolBar!.sizeToFit()
+    
+        visionLabel.inputAccessoryView = toolBar
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func setupLabel() {
-        if visionActive {
+        
+        visionLabel.delegate = self
+        
+        if vision?.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
             visionLabel.text = vision
-            visionButton.setImage(UIImage(named: "visionIcon"), for: .normal)
+            editButton.tag = 0
         } else {
-            visionButton.setImage(UIImage(named: "Add"), for: .normal)
-            visionLabel.text = "Add your vision statement"
+            editButton.setTitle("Save", for: .normal)
+            visionLabel.isEditable = true
+            UserDefaults.standard.setValue(visionLabel.text, forKey: "vision")
+            editButton.tag = 1
+            visionLabel.text = "Type your one year vision here"
+        }
+    }
+    
+    @objc func editVision(sender: UIButton) {
+        print(sender.tag)
+        if sender.tag == 0 { // editing
+            sender.setTitle("Save", for: .normal)
+            visionLabel.isEditable = true
+            visionLabel.isUserInteractionEnabled = true
+            sender.tag = 1
+        } else {
+            // saving
+            sender.setTitle("Edit", for: .normal)
+            visionLabel.isEditable = false
+            visionLabel.isUserInteractionEnabled = false
+            UserDefaults.standard.setValue(visionLabel.text, forKey: "vision")
+            sender.tag = 0
         }
     }
     
@@ -170,12 +183,14 @@ class GoalViewController: UIViewController {
         UIView.animate(withDuration: 1.5, delay: 1.5, options: .curveEaseIn) {
             self.visionLabel.alpha = 1.0
             self.backView.alpha = 1.0
+            self.editButton.alpha = 1.0
         } completion: { (nil) in }
 
     }
     
     func setupConstraints() {
         
+
         
         NSLayoutConstraint.activate([
             
@@ -189,40 +204,40 @@ class GoalViewController: UIViewController {
             visionButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
             visionButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -15),
 
-            goodBadButton.topAnchor.constraint(equalTo: self.visionButton.bottomAnchor, constant: 10),
-            goodBadButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
-            goodBadButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
-            goodBadButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -15),
+            editButton.topAnchor.constraint(equalTo: self.visionButton.topAnchor, constant: 0),
+            editButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
+            editButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
+            editButton.rightAnchor.constraint(equalTo: self.visionButton.leftAnchor, constant: -10),
+
+            
 
             
             visionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
-            visionLabel.topAnchor.constraint(equalTo: self.goodButton.bottomAnchor, constant: 10),
+            visionLabel.topAnchor.constraint(equalTo: self.visionButton.bottomAnchor, constant: 10),
             visionLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.95),
             visionLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -10),
-                                    
-            badButton.topAnchor.constraint(equalTo: self.visionButton.bottomAnchor, constant: 10),
-            badButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
-            badButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
-            badButton.rightAnchor.constraint(equalTo: self.goodBadButton.leftAnchor, constant: -10),
-
-            goodButton.topAnchor.constraint(equalTo: self.visionButton.bottomAnchor, constant: 10),
-            goodButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
-            goodButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
-            goodButton.rightAnchor.constraint(equalTo: self.badButton.leftAnchor, constant: -10),
+            
             
         ])
+        
+
     }
     
     func setupNavigation() {
-        
+        UINavigationController().navigationBar.backItem?.backBarButtonItem?.action = #selector(test)
+    }
+    
+    @objc func test() {
+        print("Hello, testing")
     }
     
     @objc func handleVision(sender: UIButton) {
-        print("Test")
+        print("VISION_BTN TAG : \(sender.tag)")
+                
         if sender.tag == 0 {
-            print("SENDER TAG 0")
-            UIView.animate(withDuration: 0.75, delay: 0, options: .curveEaseIn) {
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
                 self.visionLabel.alpha = 0
+                self.editButton.alpha = 0
                 self.backView.alpha = 0
             } completion: { (true) in
                 self.visionLabel.isHidden = true
@@ -231,44 +246,57 @@ class GoalViewController: UIViewController {
             }
             return
         }
-        print("SENDER TAG 1")
         self.visionLabel.isHidden = false
         self.backView.isHidden = false
-        UIView.animate(withDuration: 0.75, delay: 0, options: .curveEaseIn) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
             self.visionLabel.alpha = 1.0
+            self.editButton.alpha = 1.0
             self.backView.alpha = 1.0
         } completion: { (true) in
             sender.tag = 0
         }
     }
     
-    @objc func handleGoodBad(sender: UIButton) {
-        if sender.tag == 0 {
-            // good
-            
-        } else if sender.tag == 1 {
-            // bad
-            
-        } else if sender.tag == 2 {  // goodBad, inactive
-            UIView.animate(withDuration: 0.5) {
-                self.badButton.alpha = 1
-                self.goodButton.alpha = 1
-            } completion: { (true) in
-                sender.tag = 3
-            }
-        } else if sender.tag == 3 { // goodBad, active
-            UIView.animate(withDuration: 0.5) {
-                self.badButton.alpha = 0
-                self.goodButton.alpha = 0
-            } completion: { (true) in
-                sender.tag = 2
-            }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text.count > 90 {
+            self.originalY = textView.center.y
+            textView.tag = 10
+            textView.center.y -= (CGFloat(textView.text.count / 20) * 1.5)
         }
     }
     
-    @objc func handleAddVision() {
-        print("Testing vision button!")
-        Vision().Settings()
+    func textViewDidChange(_ textView: UITextView) {
+        
+        
+        print(textCountOrder)
+
+        textCountOrder.append(textView.text.count)
+        if textCountOrder.count > 2 {
+            textCountOrder.remove(at: 0)
+        }
+        
+        if textView.text.count >= 100 {
+            print(textCountOrder)
+            textView.tag = 10
+            if textView.text.count % 20 == 0 {
+                if textCountOrder[0] > textCountOrder[1] {
+                    textView.center.y += 30
+                } else {
+                    textView.center.y -= 30
+                }
+                
+                
+                
+            }
+        } // do text.count / 20 = center.y
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.tag == 10 {
+            print(self.originalY)
+            textView.center.y = originalY!
+            textView.tag = 0
+        }
     }
     
     override var shouldAutorotate: Bool {

@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     let cellId = "cellId"
     var y : Int?
     let notification = NotificationCenter.default
-
+    var time = 1.5
     
     var tableView : UITableView = {
         let view = UITableView()
@@ -69,6 +69,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         setupTableView()
         setupViews()
         setupConstraints()
+        animate()
     }
     
     func interstitialAd() {
@@ -107,7 +108,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.register(SettingCells.self, forCellReuseIdentifier: cellId)
         tableView.backgroundColor = UIColor.clear
         tableView.layer.zPosition = 1
-        
+        tableView.isScrollEnabled = false
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.layoutMargins = UIEdgeInsets.init(top: 12, left: 12, bottom: 12, right: 10)
         tableView.separatorColor = .black
@@ -116,7 +117,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 5
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -125,6 +126,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: cellId) as! SettingCells
+        
+        UIView.animateKeyframes(withDuration: 0.8, delay: TimeInterval(time), options: .calculationModeDiscrete) {
+            cell.alpha = 1
+        } completion: { (nil) in }
+
+        
         if indexPath.row == 0 {
             cell.nameLabel.textColor = UIColor(r: 75, g: 80, b: 120)
             cell.nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
@@ -156,6 +163,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         default: break
         }
         
+        time -= 0.3
         return cell
     }
     
@@ -181,6 +189,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             functionUnavailable()
             break
         }
+    }
+    
+    func animate() {
+        
     }
     
     
