@@ -11,6 +11,12 @@ import UIKit
 
 class ProfileDetaisSubclass: UIView {
     
+    let titles : [String] = ["", "Apprentice", "Gardener", "Sharecropper", "Farmer", "Greenthumb", "Master Sower", "Grand Master Sower"]
+    let levels : [Int] = [0, 3, 5, 10, 20, 39, 74, 141]
+
+    var goals : Int = UserDefaults.standard.integer(forKey: "completedGoals")
+    var totalGoals : Int? = UserDefaults.standard.integer(forKey: "totalGoals")
+    
     let profileImage : UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "tree_3")
@@ -54,7 +60,7 @@ class ProfileDetaisSubclass: UIView {
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.layer.masksToBounds = true
         lbl.font = UIFont(name: "Helvetica Neue", size: 20)
-        lbl.text = "Master"
+        lbl.text = "Title"
         lbl.numberOfLines = 1
         lbl.adjustsFontSizeToFitWidth = true
         lbl.minimumScaleFactor = 0.2
@@ -62,6 +68,7 @@ class ProfileDetaisSubclass: UIView {
         lbl.textColor = .gray
         return lbl
     }()
+
     
     override func layoutSubviews() {
         profileImage.layer.cornerRadius = self.frame.width / 3 * 0.5
@@ -81,8 +88,18 @@ class ProfileDetaisSubclass: UIView {
     @objc func setupVariables() {
         
         nameLabel.text = UserDefaults.standard.string(forKey: "Username") ?? "Username"
+        if nameLabel.text == nil {
+            nameLabel.text = "Username"
+        }
         
-
+        var _index : Int = 0
+        if let _temp = levels.firstIndex(where: { $0 == totalGoals }) {
+            if _temp > 0 {
+                _index = _temp - 1
+            } else { _index = _temp }
+        }
+        
+        titleLabel.text = titles[_index]
         
         UIView.animate(withDuration: 0.5, animations: {
             self.nameLabel.alpha = 1

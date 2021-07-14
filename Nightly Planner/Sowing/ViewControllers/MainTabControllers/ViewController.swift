@@ -97,6 +97,22 @@ class ViewController: UIViewController {
         return img
     }()
     
+    let addGoalButton : UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.layer.masksToBounds = true
+        btn.backgroundColor = UIColor(r: 75, g: 80, b: 120)
+        btn.layer.cornerRadius = 5
+        btn.setTitle("Add Goal", for: .normal)
+        btn.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 20)
+        btn.titleLabel?.minimumScaleFactor = 0.2
+        btn.titleLabel?.adjustsFontSizeToFitWidth = true
+        btn.titleLabel?.numberOfLines = 1
+        btn.layer.zPosition = 5
+        btn.addTarget(self, action: #selector(handleAddGoal), for: .touchUpInside)
+        return btn
+    }()
+    
     let counterView : GoalCounter = {
         let view = GoalCounter()
         return view
@@ -163,6 +179,7 @@ class ViewController: UIViewController {
         checkLoginDates()
         setupViews()
         setupCollectionView()
+        self.view.addSubview(addGoalButton)
         setupNavigation()
         SetupDatabase()
         setupConstraints()
@@ -680,8 +697,7 @@ class ViewController: UIViewController {
         dateFormatter.timeStyle = .none
         return dateFormatter.date(from: date) // replace Date String
     }
-    
-    
+        
     func setupNewWeeklyDay() {
         //reset 0
     }
@@ -722,6 +738,11 @@ class ViewController: UIViewController {
         collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
         collectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         collectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.56, constant: 0).isActive = true
+        
+        addGoalButton.topAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+        addGoalButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        addGoalButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        addGoalButton.heightAnchor.constraint(equalTo: self.addGoalButton.widthAnchor, multiplier: 1/4).isActive = true
     
     }
     
@@ -788,6 +809,16 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         if checkTasks {
             if tasks.count <= 0 {
                 alert(title: "Add a Goal!", message: "\"By failing to prepare, you are preparing to fail\" - Benjamin Franklin")
+                UIView.animate(withDuration: 0.6, delay: 0.8, options: .curveEaseIn) {
+                    self.addGoalButton.center.y = self.view.frame.height - self.addGoalButton.frame.height / 2 - 10
+                } completion: { (nil) in }
+
+            } else {
+                if self.addGoalButton.center.y < self.view.frame.height {
+                    UIView.animate(withDuration: 0.6, delay: 0.8, options: .curveEaseIn) {
+                        self.addGoalButton.center.y = self.view.frame.height + self.addGoalButton.frame.height / 2 + 10
+                    } completion: { (nil) in }
+                }
             }
         } else { checkTasks = true }
         

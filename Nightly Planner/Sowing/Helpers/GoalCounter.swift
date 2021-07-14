@@ -82,9 +82,10 @@ class GoalCounter: UIView {
         }
         
         if _total <= _goals {
-            let temp = Double(_goals) / 2
-            _total = _total * 2 + Int(temp)
+            let temp = Double(_goals) / 2 // 3, 7, 17, 42, 105, 262, 656
+            _total = Int(Double(_total) * 1.3) + Int(temp)
         }
+  
         completionLabel.text = "\(_goals)/\(_total)"
         UserDefaults.standard.setValue(_total, forKey: "totalGoals")
         
