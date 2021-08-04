@@ -11,8 +11,8 @@ import UIKit
 
 class ProfileDetaisSubclass: UIView {
     
-    let titles : [String] = ["", "Apprentice", "Gardener", "Sharecropper", "Farmer", "Greenthumb", "Master Sower", "Grand Master Sower"]
-    let levels : [Int] = [0, 3, 5, 10, 20, 39, 74, 141]
+    let titles : [String] = ["", "Apprentice", "Gardener", "Sharecropper", "Farmer", "Greenthumb", "Agronomist", "Master Sower", "Grand Master Sower"]
+    let levels : [Int] = [0, 3, 5, 8, 14, 25, 45, 82, 151]
 
     var goals : Int = UserDefaults.standard.integer(forKey: "completedGoals")
     var totalGoals : Int? = UserDefaults.standard.integer(forKey: "totalGoals")
@@ -141,7 +141,7 @@ class ProfileDetaisSubclass: UIView {
     }
     
     @objc func handleEditProfileImg() {
-        print("Testing")
+
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "EditProfileImageView"), object: nil)
     }
     
@@ -221,7 +221,7 @@ class ProfileStatsSubclass : UIView {
     }
     
     func setupVariables() {
-        //timeValue =
+
         //goalValue =
     }
     

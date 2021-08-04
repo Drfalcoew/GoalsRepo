@@ -11,6 +11,12 @@ import UIKit
 
 class ChartViewSubclass: UIView {
     
+    let happyCount : Int? = UserDefaults.standard.integer(forKey: "happyCount")
+    let sadCount : Int? = UserDefaults.standard.integer(forKey: "sadCount")
+    var happyPercentage : Double?
+    var sadPercentage : Double?
+
+        
     let chartView_0 : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +42,6 @@ class ChartViewSubclass: UIView {
         return view
     }()
     
-    
     let chartView_3 : UIView = { // this color moves from bottom to top.
         let view = UIView()
         view.layer.masksToBounds = true
@@ -50,8 +55,18 @@ class ChartViewSubclass: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupChart()
         setupViews()
         setupConstraints()
+    }
+    
+    func setupChart() {
+        if let x = happyCount, let y = sadCount {
+            
+            let total : Double = Double(x) + Double(y)
+            if total == 0 { return }
+            self.sadPercentage = Double(y) / total
+        }
     }
     
     func setupViews() {
@@ -71,12 +86,12 @@ class ChartViewSubclass: UIView {
             chartView_2.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             chartView_2.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             chartView_2.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
-            chartView_2.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.9),
+            chartView_2.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 6.6/8),
             
             chartView_3.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            chartView_3.topAnchor.constraint(equalTo: self.chartView_1.bottomAnchor),
+            chartView_3.topAnchor.constraint(equalTo: self.chartView_2.bottomAnchor),
             chartView_3.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
-            chartView_3.heightAnchor.constraint(equalTo: self.chartView_1.heightAnchor, multiplier: 0.9)
+            chartView_3.heightAnchor.constraint(equalTo: self.chartView_2.heightAnchor, multiplier: 1)
             
         ])
         
@@ -84,10 +99,9 @@ class ChartViewSubclass: UIView {
     }
     
     func animateChart() {
-        print("Animating!!: \(self.frame.height)")
         
         UIView.animate(withDuration: 1.0, delay: 0.5, options: .curveEaseIn) {
-            self.chartView_3.center.y -= self.frame.height / 2
+            self.chartView_3.center.y -= CGFloat(self.sadPercentage ?? 0) * self.chartView_2.frame.height
         } completion: { (nil) in }
 
     }

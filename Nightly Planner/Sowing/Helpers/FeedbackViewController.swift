@@ -178,6 +178,7 @@ class FeedbackViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     func sendEmail(){
+                
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self

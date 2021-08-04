@@ -15,7 +15,6 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("In VIEW DID LOAD")
         
         
         runAnimation()
@@ -23,7 +22,6 @@
 
     
     func runAnimation() {
-        print("IN RUN ANIMATION")
         if running != true {
             
             running = true
@@ -37,14 +35,12 @@
             swordView.frame = CGRect(x: 0 - self.view.frame.width * 1/3, y: self.view.frame.minY + self.view.frame.height / 10 * 3.25, width: self.view.frame.width * 2/3, height: swordView.frame.width / 3)
             
             
-            print("INSIDE ANIMATION CLOSURE")
             self.view.addSubview(blackView)
             self.view.addSubview(swordView)
             self.view.addSubview(completedView)
             
             
             UIView.animate(withDuration: 0.35, delay: 0.5, options: UIView.AnimationOptions.curveLinear, animations: {
-                print("1")
                 self.blackView.alpha = 0.8
                 self.swordView.alpha = 1
                 self.completedView.alpha = 1
@@ -54,14 +50,12 @@
                 
             }) { (true) in
                 UIView.animate(withDuration: 1.35, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                    print("2")
                     
                     self.swordView.center.x = self.swordView.center.x + self.view.frame.width * 1/3
                     self.completedView.center.x = self.completedView.center.x - self.view.frame.width * 1/3
 
                 }, completion: { (true) in
                     UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                        print("3")
                         
                         self.swordView.center.x = self.view.frame.width + self.swordView.frame.width / 2 + 10
                         self.completedView.center.x = 0 - self.completedView.frame.width / 2 - 10

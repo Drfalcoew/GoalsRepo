@@ -56,6 +56,8 @@
 		4C94C47125AA7E96009ACB84 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C94C47025AA7E96009ACB84 /* LoginController.swift */; };
 		4C9A01E726413438000CEA5E /* CreateVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A01E626413438000CEA5E /* CreateVision.swift */; };
 		4CACF26325AA9935004A66AE /* CreateShortTerm_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CACF26225AA9935004A66AE /* CreateShortTerm_1.swift */; };
+		4CBFD96326A2370E00169647 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBFD96226A2370E00169647 /* ProfileViewController.swift */; };
+		4CC4CE7E26BB292F001C7C95 /* RequestNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC4CE7D26BB292F001C7C95 /* RequestNotifications.swift */; };
 		4CCECDD525E5C55600CE9F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCECDD425E5C55600CE9F21 /* Assets.xcassets */; };
 		4CD18FF12697C5950060F73F /* CollaborationsSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD18FF02697C5950060F73F /* CollaborationsSubclass.swift */; };
 		4CECE13725E8504C00826111 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CECE13625E8504C00826111 /* User+CoreDataClass.swift */; };
@@ -152,6 +154,8 @@
 		4C94C47025AA7E96009ACB84 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4C9A01E626413438000CEA5E /* CreateVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVision.swift; sourceTree = "<group>"; };
 		4CACF26225AA9935004A66AE /* CreateShortTerm_1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShortTerm_1.swift; sourceTree = "<group>"; };
+		4CBFD96226A2370E00169647 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "../../../../../../../../Documents/GoalsRepo FEB25/Nightly Planner/Nightly Planner/Helpers/ProfileViewController.swift"; sourceTree = "<group>"; };
+		4CC4CE7D26BB292F001C7C95 /* RequestNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotifications.swift; sourceTree = "<group>"; };
 		4CCECDD425E5C55600CE9F21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CD18FF02697C5950060F73F /* CollaborationsSubclass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationsSubclass.swift; sourceTree = "<group>"; };
 		4CECE13625E8504C00826111 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				349C8CD6225327C700C6577D /* MainTabControllers */,
+				4C0A0BDA247092C700565C85 /* GoalFolder */,
 				3450BCD321BF36BA00F58A08 /* Create Goals */,
 				4C94C44425AA7C6A009ACB84 /* ProfileViewController.swift */,
 				4C55FCC325AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift */,
@@ -259,6 +264,7 @@
 				4C9A01E626413438000CEA5E /* CreateVision.swift */,
 				4C6F2C8A26747BFF000C1EA3 /* EditProfileImageView.swift */,
 				4C7DA81926940D63003A941A /* LifeView.swift */,
+				4CC4CE7D26BB292F001C7C95 /* RequestNotifications.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -323,7 +329,7 @@
 		349C8CD6225327C700C6577D /* MainTabControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4C0A0BDA247092C700565C85 /* GoalFolder */,
+				4CBFD96226A2370E00169647 /* ProfileViewController.swift */,
 				34013F7021BA4AE700CB8DA2 /* ViewController.swift */,
 			);
 			path = MainTabControllers;
@@ -573,6 +579,7 @@
 				349779ED2327025300CA4490 /* ProfileTrackerChart.swift in Sources */,
 				4C0A0BDC247092EB00565C85 /* MyScene.swift in Sources */,
 				3472EE5121D5368D00484BDD /* imageCollectionViewCell.swift in Sources */,
+				4CBFD96326A2370E00169647 /* ProfileViewController.swift in Sources */,
 				4C3E705B25E08E7D00CCF19B /* GoalCounter.swift in Sources */,
 				4C55FCC425AA6DAC00CF1BA6 /* ForgotPasswordViewController.swift in Sources */,
 				3450BCCE21BF107D00F58A08 /* GoalAttributes.swift in Sources */,
@@ -586,6 +593,7 @@
 				4B5344B523FE04B8005A86CC /* ShowMenu.swift in Sources */,
 				34ABB819222FBABD001967B2 /* moreInfoViewController.swift in Sources */,
 				4C94C47125AA7E96009ACB84 /* LoginController.swift in Sources */,
+				4CC4CE7E26BB292F001C7C95 /* RequestNotifications.swift in Sources */,
 				4C94C46625AA7D84009ACB84 /* SettingsViewController.swift in Sources */,
 				4C9015CC265EC72700EE4FDD /* ReflectionSubclass.swift in Sources */,
 				4C9A01E726413438000CEA5E /* CreateVision.swift in Sources */,
@@ -785,9 +793,10 @@
 			baseConfigurationReference = A231383C886CB3423BAC9EB8 /* Pods-Sowing.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sowing/Sowing.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = E7D45YF275;
 				INFOPLIST_FILE = "$(SRCROOT)/Sowing/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -808,9 +817,10 @@
 			baseConfigurationReference = FE8C8CC90C256EEB5F07D6ED /* Pods-Sowing.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sowing/Sowing.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = E7D45YF275;
 				INFOPLIST_FILE = "$(SRCROOT)/Sowing/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

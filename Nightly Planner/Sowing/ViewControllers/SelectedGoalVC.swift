@@ -37,7 +37,7 @@ class SelectedGoalVC : UIViewController {
     
     var categoryImg : UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "routine")
+        img.image = UIImage(named: "")
         img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.masksToBounds = true
         img.layer.borderWidth = CGFloat(2)
@@ -250,8 +250,12 @@ class SelectedGoalVC : UIViewController {
             }
         }
         
-        if category != nil && category != 4 {
+        if category != nil && category != 6 {
             categoryImg.image = UIImage(named: "goalType_\(category!)")
+            print(category)
+            if category == 5 {
+                categoryImg.backgroundColor = UIColor(r: 221, g: 221, b: 221)
+            }
         }
         
         print(name)

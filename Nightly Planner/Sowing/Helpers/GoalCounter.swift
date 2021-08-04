@@ -82,8 +82,18 @@ class GoalCounter: UIView {
         }
         
         if _total <= _goals {
-            let temp = Double(_goals) / 2 // 3, 7, 17, 42, 105, 262, 656
-            _total = Int(Double(_total) * 1.3) + Int(temp)
+            let temp = Double(_goals) / 2
+            _total = Int(Double(_total) * 1.35) + Int(temp)
+        }
+        
+        var a = 3
+        var t : Double
+        
+        for _ in 0 ... 6 {
+            t = Double(a) / 2
+
+            a = Int(Double(a) * 1.35 + Double(Int(t)))
+            print(a)
         }
   
         completionLabel.text = "\(_goals)/\(_total)"
@@ -102,7 +112,6 @@ class GoalCounter: UIView {
 
     
     func setupViews() {
-        print("Inside Goal Counter Class")
         
         self.addSubview(backView)
         backView.addSubview(frameView)
@@ -114,7 +123,6 @@ class GoalCounter: UIView {
     func createCircle() {
         let trackLayer = CAShapeLayer()
         let cent = CGPoint(x: frameView.bounds.midX, y: frameView.bounds.midY)
-        print(cent)
         circularPath = UIBezierPath(arcCenter: cent, radius: backView.frame.height - 35, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         
         pulsatingLayer.fillColor = UIColor(r: 105, g: 120, b: 180).cgColor

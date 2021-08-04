@@ -49,6 +49,22 @@ class GoalViewController: UIViewController, UITextViewDelegate {
         return btn
     }()
     
+    let tipsButton : UIButton = {
+        let btn = UIButton()
+        btn.setTitle("LoA", for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.layer.masksToBounds = true
+        btn.layer.zPosition = 5
+        btn.backgroundColor = UIColor(r: 75, g: 80, b: 120)
+        btn.layer.borderWidth = 0.25
+        btn.tag = 0
+        btn.alpha = 0
+        btn.layer.borderColor = UIColor.white.cgColor
+        btn.addTarget(self, action: #selector(handleTips), for: .touchUpInside)
+        btn.imageView?.tintImageColor(color: UIColor(r: 221, g: 221, b: 221))
+        return btn
+    }()
+    
     
     let visionLabel : UITextView = {
         let lbl = UITextView()
@@ -95,9 +111,9 @@ class GoalViewController: UIViewController, UITextViewDelegate {
 
     override func viewDidLayoutSubviews() {
         self.visionButton.layer.cornerRadius = self.view.frame.width * 0.075
-        self.editButton.layer.cornerRadius = self.view.frame.width * 0.075        
+        self.editButton.layer.cornerRadius = self.view.frame.width * 0.075
+        self.tipsButton.layer.cornerRadius = self.view.frame.width * 0.075
         self.originalY = visionLabel.center.y
-
     }
 
     override func viewDidLoad() {
@@ -115,14 +131,15 @@ class GoalViewController: UIViewController, UITextViewDelegate {
             
             view.ignoresSiblingOrder = true
             
-            view.showsFPS = true
-            view.showsNodeCount = true
+//            view.showsFPS = true
+//            view.showsNodeCount = true
         }
         
         self.view.addSubview(backView)
         self.view.addSubview(editButton)
         self.view.addSubview(visionLabel)
         self.view.addSubview(visionButton)
+        self.view.addSubview(tipsButton)
         
         setupKeyboardToolbar()
         setupLabel()
@@ -149,8 +166,7 @@ class GoalViewController: UIViewController, UITextViewDelegate {
     func setupLabel() {
         
         visionLabel.delegate = self
-        
-        if vision?.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
+        if vision?.trimmingCharacters(in: .whitespacesAndNewlines) != "" && vision != nil && vision != ""  {
             visionLabel.text = vision
             editButton.tag = 0
         } else {
@@ -163,7 +179,6 @@ class GoalViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func editVision(sender: UIButton) {
-        print(sender.tag)
         if sender.tag == 0 { // editing
             sender.setTitle("Save", for: .normal)
             visionLabel.isEditable = true
@@ -184,13 +199,11 @@ class GoalViewController: UIViewController, UITextViewDelegate {
             self.visionLabel.alpha = 1.0
             self.backView.alpha = 1.0
             self.editButton.alpha = 1.0
+            self.tipsButton.alpha = 1.0
         } completion: { (nil) in }
-
     }
     
     func setupConstraints() {
-        
-
         
         NSLayoutConstraint.activate([
             
@@ -208,6 +221,11 @@ class GoalViewController: UIViewController, UITextViewDelegate {
             editButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
             editButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
             editButton.rightAnchor.constraint(equalTo: self.visionButton.leftAnchor, constant: -10),
+            
+            tipsButton.topAnchor.constraint(equalTo: self.visionButton.topAnchor, constant: 0),
+            tipsButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
+            tipsButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15),
+            tipsButton.rightAnchor.constraint(equalTo: self.editButton.leftAnchor, constant: -10),
 
             
 
@@ -219,8 +237,16 @@ class GoalViewController: UIViewController, UITextViewDelegate {
             
             
         ])
+    }
+    
+    @objc func handleTips() {
+        let myAlert = UIAlertController(title: "Creation", message: "Write your vision in the present tense, as if it is current in your life today, and read and feel the emotions of it being real every days. Trust your imaginatory faculty. This methodology is taught by Bob Proctor, Neville Goddard, Napoleon Hill, and a few more.", preferredStyle: UIAlertController.Style.alert)
         
-
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil)
+        
+        myAlert.addAction(okAction)
+        
+        UIApplication.shared.keyWindow?.rootViewController?.present(myAlert, animated: true, completion: nil)
     }
     
     func setupNavigation() {
@@ -228,30 +254,33 @@ class GoalViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func test() {
-        print("Hello, testing")
+
     }
     
     @objc func handleVision(sender: UIButton) {
-        print("VISION_BTN TAG : \(sender.tag)")
                 
         if sender.tag == 0 {
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
                 self.visionLabel.alpha = 0
                 self.editButton.alpha = 0
+                self.tipsButton.alpha = 0
                 self.backView.alpha = 0
             } completion: { (true) in
                 self.visionLabel.isHidden = true
                 self.backView.isHidden = true
+                self.tipsButton.isHidden = true
                 sender.tag = 1
             }
             return
         }
         self.visionLabel.isHidden = false
         self.backView.isHidden = false
+        self.tipsButton.isHidden = false
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
             self.visionLabel.alpha = 1.0
             self.editButton.alpha = 1.0
             self.backView.alpha = 1.0
+            self.tipsButton.alpha = 1.0
         } completion: { (true) in
             sender.tag = 0
         }
@@ -267,16 +296,13 @@ class GoalViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         
-        
-        print(textCountOrder)
-
         textCountOrder.append(textView.text.count)
+        
         if textCountOrder.count > 2 {
             textCountOrder.remove(at: 0)
         }
         
         if textView.text.count >= 100 {
-            print(textCountOrder)
             textView.tag = 10
             if textView.text.count % 20 == 0 {
                 if textCountOrder[0] > textCountOrder[1] {
@@ -293,7 +319,6 @@ class GoalViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.tag == 10 {
-            print(self.originalY)
             textView.center.y = originalY!
             textView.tag = 0
         }

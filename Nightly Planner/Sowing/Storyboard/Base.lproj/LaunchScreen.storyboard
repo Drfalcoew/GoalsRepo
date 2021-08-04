@@ -16,38 +16,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="version 3.0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TY0-H9-jWF">
-                                <rect key="frame" x="143" y="645" width="88" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version 3.0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TY0-H9-jWF">
+                                <rect key="frame" x="143" y="645" width="89" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="lDt-4D-R6n"/>
+                                    <constraint firstAttribute="height" constant="22" id="CO0-6L-uai"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bw_tree" translatesAutoresizingMaskIntoConstraints="NO" id="YIt-Km-YgU">
-                                <rect key="frame" x="24" y="127" width="327" height="412"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Drfalcoew" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paq-T8-b8I">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drfalcoew" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paq-T8-b8I">
                                 <rect key="frame" x="148.5" y="615" width="78" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="MIW-p5-3mw"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bw_tree" translatesAutoresizingMaskIntoConstraints="NO" id="H1a-LI-llO">
+                                <rect key="frame" x="44" y="194" width="286" height="278"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="TY0-H9-jWF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="143" id="5yL-cv-qpZ"/>
-                            <constraint firstItem="YIt-Km-YgU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="127" id="ER5-2t-Sda"/>
-                            <constraint firstItem="YIt-Km-YgU" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="O68-Gl-fb2"/>
-                            <constraint firstItem="TY0-H9-jWF" firstAttribute="top" secondItem="paq-T8-b8I" secondAttribute="bottom" constant="3" id="X1z-LT-iFu"/>
-                            <constraint firstItem="paq-T8-b8I" firstAttribute="top" secondItem="YIt-Km-YgU" secondAttribute="bottom" constant="76" id="cKb-l9-Lwx"/>
-                            <constraint firstItem="YIt-Km-YgU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="kmT-dm-1sd"/>
-                            <constraint firstItem="TY0-H9-jWF" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="leD-7J-ynn"/>
-                            <constraint firstItem="TY0-H9-jWF" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ps1-Kx-mf0"/>
-                            <constraint firstItem="YIt-Km-YgU" firstAttribute="centerX" secondItem="paq-T8-b8I" secondAttribute="centerX" id="tA4-eO-CVZ"/>
-                            <constraint firstItem="paq-T8-b8I" firstAttribute="centerX" secondItem="TY0-H9-jWF" secondAttribute="centerX" id="w8A-k6-KIN"/>
+                            <constraint firstItem="H1a-LI-llO" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="8c3-UP-RYD"/>
+                            <constraint firstItem="TY0-H9-jWF" firstAttribute="top" secondItem="paq-T8-b8I" secondAttribute="bottom" constant="3" id="A4A-C8-2Tm"/>
+                            <constraint firstItem="H1a-LI-llO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="194" id="H2S-V8-Tnt"/>
+                            <constraint firstItem="paq-T8-b8I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="148.5" id="NUA-kV-AUs"/>
+                            <constraint firstItem="H1a-LI-llO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RbB-nm-hVm"/>
+                            <constraint firstItem="H1a-LI-llO" firstAttribute="centerX" secondItem="paq-T8-b8I" secondAttribute="centerX" id="SxH-wx-wgo"/>
+                            <constraint firstItem="H1a-LI-llO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="44" id="Uve-b0-18k"/>
+                            <constraint firstItem="TY0-H9-jWF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="143" id="ZYb-KO-RXt"/>
+                            <constraint firstItem="TY0-H9-jWF" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="fSZ-1V-SAN"/>
+                            <constraint firstItem="paq-T8-b8I" firstAttribute="centerX" secondItem="TY0-H9-jWF" secondAttribute="centerX" id="kNb-ib-mHt"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -57,6 +60,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bw_tree" width="288" height="288"/>
+        <image name="bw_tree" width="512" height="512"/>
     </resources>
 </document>

@@ -145,18 +145,25 @@ class ViewController: UIViewController {
         } else {
             badgeIcon.isHidden = false
         }
-                        
+                    
+        
         if let x = self.navigationController?.viewControllers.count {
-            print("X = ", x)
+
             if x > 2 {
                 self.navigationController?.viewControllers.removeFirst(1)
             }
         }
         
-        if UserDefaults.standard.bool(forKey: "taskDeleted") == true {
+        if UserDefaults.standard.bool(forKey: "taskDeleted") == true { //deleted goal
             organizeLocalTasks()
             UserDefaults.standard.set(false, forKey: "taskDeleted")
         }
+        
+        if UserDefaults.standard.bool(forKey: "firstTaskCreated") == true { //created goal
+            setupNotificationsAlert()
+            UserDefaults.standard.set(false, forKey: "firstTaskCreated")
+        }
+
         
     }
     
@@ -207,7 +214,6 @@ class ViewController: UIViewController {
     func updateCompletedTasks() {
         
         let total : Int? = UserDefaults.standard.integer(forKey: "completedGoals")
-        
         
         counterView.goals = total ?? 0
         counterView.setupGoals()
@@ -325,8 +331,7 @@ class ViewController: UIViewController {
     @objc func updateNotifications() {
         y = UserDefaults.standard.integer(forKey: "Notifications")
         if y == 1 {
-            
-            
+                        
                 if #available(iOS 10.0, *) {
                     let content = UNMutableNotificationContent()
                     
@@ -437,11 +442,12 @@ class ViewController: UIViewController {
     
     
     func setupNotificationsAlert() {
-        let myAlert = UIAlertController(title: "Your first goal was created!", message: "Now turn on notifications to stay focused!", preferredStyle: UIAlertController.Style.alert)
-        let optIn = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) { (UIAlertAction) in
-            //self.navigationController?.customPush(viewController: RequestNotifications())
+        let myAlert = UIAlertController(title: "Your first goal was created!", message: "Now enable notifications to stay focused!", preferredStyle: UIAlertController.Style.alert)
+        let optIn = UIAlertAction(title: "Enable", style: UIAlertAction.Style.default) { (UIAlertAction) in
+            UserDefaults.standard.setValue(1, forKey: "Notifications")
+            self.updateNotifications()
         }
-        let skip = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let skip = UIAlertAction(title: "No", style: .cancel, handler: nil)
         myAlert.addAction(optIn)
         myAlert.addAction(skip)
         present(myAlert, animated: true, completion: nil)
@@ -526,7 +532,7 @@ class ViewController: UIViewController {
     }*/
     
     func welcomeAlert() {
-        let myAlert = UIAlertController(title: "Welcome to QuestLine!", message: "Start by creating a daily goal. You're only allowed 4 max for focus reasons, so only add the most important.", preferredStyle: UIAlertController.Style.alert)
+        let myAlert = UIAlertController(title: "Welcome to Sower!", message: "Start by creating a daily goal. You can create a maximum of 4 goals at a time to focus more intently, so only add the most important.", preferredStyle: UIAlertController.Style.alert)
         let optIn = UIAlertAction(title: "More info", style: UIAlertAction.Style.default, handler: self.handleMoreInfo)
         let ok = UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil)
         

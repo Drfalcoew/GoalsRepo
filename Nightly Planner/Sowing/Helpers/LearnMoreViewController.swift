@@ -25,7 +25,7 @@ class LearnMoreViewController: UIViewController {
     
     let header1 : UILabel = {
         let view = UILabel()
-        view.text = "Welcome to Questline!"
+        view.text = "Welcome to Sower!"
         view.textColor = UIColor(r: 75, g: 80, b: 120)
         
         view.adjustsFontSizeToFitWidth = true
@@ -41,7 +41,7 @@ class LearnMoreViewController: UIViewController {
     
     let body1 : UITextView = {
         let view = UITextView()
-        view.text = "Thank you for downloading! We focus on improving the lives of our users by optimizing their productivity by organizing goals to allow users to complete their goals more simply and clearly, while fighting laziness and procrastination. The app has two types of goals: routine (daily reoccuring tasks), and single time tasks."
+        view.text = "Thank you for downloading! We focus on improving the lives of our users by optimizing their productivity by organizing their goals to allow users to complete them more simply and clearly while fighting laziness and procrastination, because ultimately procrastination leads to regret. The app has two types of goals: routine (daily reoccuring tasks), and one time tasks. To keep yourself on track, carefully craft a detailed vision, and write it down in the vision tab of the app."
         view.font = UIFont(name: "Helvetica Neue", size: 24)
         view.isUserInteractionEnabled = false
         view.backgroundColor = .clear
@@ -55,7 +55,7 @@ class LearnMoreViewController: UIViewController {
     
     let header6 : UILabel = {
         let view = UILabel()
-        view.text = "Version 2.0"
+        view.text = "Version 3.0"
         view.textColor = UIColor(r: 75, g: 80, b: 120)
         
         view.adjustsFontSizeToFitWidth = true

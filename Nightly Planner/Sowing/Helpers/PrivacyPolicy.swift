@@ -34,7 +34,6 @@ class PrivacyPolicy: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("In VIEW DID LOAD")
         
         self.view.addSubview(body1)
         self.title = "Privacy Policy"

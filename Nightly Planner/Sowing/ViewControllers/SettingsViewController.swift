@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     let cellId = "cellId"
     var y : Int?
     let notification = NotificationCenter.default
-    var time = 1.5
+    var time = 1.25
     
     var tableView : UITableView = {
         let view = UITableView()
@@ -52,6 +52,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
@@ -117,7 +118,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -127,7 +128,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: cellId) as! SettingCells
         
-        UIView.animateKeyframes(withDuration: 0.8, delay: TimeInterval(time), options: .calculationModeDiscrete) {
+        UIView.animateKeyframes(withDuration: 0.55, delay: TimeInterval(time), options: .calculationModeDiscrete) {
             cell.alpha = 1
         } completion: { (nil) in }
 
@@ -138,7 +139,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         switch indexPath.row {
         case 0:
-            cell.nameLabel.text = "Sowing"
+            cell.nameLabel.text = "Sower"
             break
         case 1:
             cell.nameLabel.text = "Learn More"
@@ -177,13 +178,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             navigationController?.customPush(viewController: LearnMoreViewController())
             break
         case 2:
-            //navigationController?.customPush(viewController: RequestNotifications())
+            navigationController?.customPush(viewController: RequestNotifications())
             break
         case 3:
             navigationController?.customPush(viewController: FeedbackViewController())
         case 4:
-            notification.post(name: Notification.Name("StopMusic"), object: nil)
-            //navigationController?.customPush(viewController: LoginController())
+            //notification.post(name: Notification.Name("StopMusic"), object: nil)
+            //navigationController?.customPush(viewController: LoginController())
             break
         default:
             functionUnavailable()

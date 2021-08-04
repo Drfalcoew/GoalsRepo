@@ -31,6 +31,15 @@ class EditProfileImageView : UIViewController {
         return view
     }()*/
     
+    let backgroundView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
+        view.backgroundColor = UIColor(r: 240, g: 240, b: 240)
+        view.layer.cornerRadius = 5
+        return view
+    }()
+    
     var label : UILabel = {
         let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +59,7 @@ class EditProfileImageView : UIViewController {
         view.textAlignment = .center
         view.layer.masksToBounds = true
         view.clearsOnInsertion = true
-        view.textColor = UIColor(r: 150, g: 150, b: 150)
+        view.textColor = UIColor(r: 120, g: 120, b: 120)
         view.borderStyle = .bezel
         view.isUserInteractionEnabled = true
         view.allowsEditingTextAttributes = true
@@ -75,7 +84,7 @@ class EditProfileImageView : UIViewController {
         lbl.layer.masksToBounds = true
         lbl.adjustsFontSizeToFitWidth = true
         lbl.minimumScaleFactor = 0.2
-        lbl.textColor = UIColor(r: 150, g: 150, b: 150)
+        lbl.textColor = UIColor(r: 120, g: 120, b: 120)
         lbl.textAlignment = .center
         lbl.font = UIFont(name: "Helvetica Neue", size: 18)
         return lbl
@@ -119,6 +128,9 @@ class EditProfileImageView : UIViewController {
     
     func setupAttributes() {
         textBox.text = UserDefaults.standard.string(forKey: "Username") ?? "Username"
+        if textBox.text == nil || textBox.text == "" || textBox.text == " " {
+            textBox.text = "Username"
+        }
         dateValue.text = UserDefaults.standard.string(forKey: "dateJoined")
     }
     
@@ -151,7 +163,12 @@ class EditProfileImageView : UIViewController {
 //            tableView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: 0),
 //            tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8),
             
-            label.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10),
+            backgroundView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            backgroundView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10),
+            backgroundView.heightAnchor.constraint(equalToConstant: 155),
+            backgroundView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
+            
+            label.topAnchor.constraint(equalTo: self.backgroundView.topAnchor, constant: 10),
             label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.view.frame.width * 0.1),
             label.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.4),
             label.heightAnchor.constraint(equalToConstant: 60),
@@ -240,11 +257,14 @@ class EditProfileImageView : UIViewController {
     
     func setupViews() {
         self.view.backgroundColor = .white
+        
+        self.view.addSubview(backgroundView)
+        self.backgroundView.addSubview(label)
+        self.backgroundView.addSubview(textBox)
+        self.backgroundView.addSubview(nameLabel_2)
+        self.backgroundView.addSubview(dateValue)
+        
         self.view.addSubview(titleLabel)
-        self.view.addSubview(label)
-        self.view.addSubview(textBox)
-        self.view.addSubview(nameLabel_2)
-        self.view.addSubview(dateValue)
         self.view.addSubview(chartView)
         self.view.addSubview(descriptionLbl)
     }

@@ -35,7 +35,6 @@ class ProfileTrackerChart: UIView, UICollectionViewDelegate, UICollectionViewDat
     
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        print(self.frame)
         layout.itemSize = CGSize(width: (self.frame.width / 4), height: (self.frame.height))
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0

@@ -14,6 +14,9 @@ class ReflectionSubclass : UIView {
     var tap : UITapGestureRecognizer?
     let happyCount : Int? = UserDefaults.standard.integer(forKey: "happyCount")
     let sadCount : Int? = UserDefaults.standard.integer(forKey: "sadCount")
+    let reset = UserDefaults.standard.string(forKey: "reflectionDate")
+    
+    var chartView_LeftAnchor : NSLayoutConstraint?
     
     let outerView : UIView = {
         let view = UIView()
@@ -78,19 +81,19 @@ class ReflectionSubclass : UIView {
     }()
         
     override func layoutSubviews() {
-        
-
         self.goodButton.layer.cornerRadius = self.frame.width * 0.08
         self.badButton.layer.cornerRadius = self.frame.width * 0.08
-    }
+        
+        }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         tap = UITapGestureRecognizer(target: self, action: #selector(handleChartTap))
         
-        updatePercentage()
         setupViews()
         setupConstraints()
+        updatePercentage()
+
     }
     
     func setupViews() {
@@ -126,14 +129,40 @@ class ReflectionSubclass : UIView {
             goodButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
             goodButton.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
             
-            chartView.leftAnchor.constraint(equalTo: self.rightAnchor),
             chartView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
-            chartView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
+            chartView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1),
             chartView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
         ])
+        
+        chartView_LeftAnchor = chartView.leftAnchor.constraint(equalTo: self.rightAnchor)
+
+        chartView_LeftAnchor?.isActive = true
+        
+        
+
     }
     
     func updatePercentage() {
+        
+        if reset == Date().toString() {
+            chartView.setupChart()
+            outerView.isHidden = true
+            
+            chartView_LeftAnchor?.isActive = false
+            chartView_LeftAnchor = chartView.leftAnchor.constraint(equalTo: self.leftAnchor)
+            chartView_LeftAnchor?.isActive = true
+
+            self.chartView.animateChart()
+            
+        } else {
+            
+            chartView_LeftAnchor?.isActive = false
+            chartView_LeftAnchor = chartView.leftAnchor.constraint(equalTo: self.rightAnchor)
+            chartView_LeftAnchor?.isActive = true
+
+        }
+
+        
         if let x = happyCount, let y = sadCount {
             let total = x + y
             if total == 0 { return }
@@ -143,15 +172,26 @@ class ReflectionSubclass : UIView {
     }
     
     @objc func handleGoodBad(sender: UIButton) {
-        print("GOODBAD_BTN TAG : \(sender.tag)")
+        
+        UserDefaults.standard.setValue(Date().toString(), forKey: "reflectionDate")
 
         if sender.tag == 0 {
+            let happyCount : Int = UserDefaults.standard.integer(forKey: "happyCount")
+            UserDefaults.standard.setValue(happyCount + 1, forKey: "happyCount")
+            UserDefaults.standard.synchronize()
+
             // good
             
         } else if sender.tag == 1 {
+            let sadCount : Int = UserDefaults.standard.integer(forKey: "sadCount")
+            UserDefaults.standard.setValue(sadCount + 1, forKey: "sadCount")
+            UserDefaults.standard.synchronize()
+
             // bad
             
         }
+        
+        chartView.setupChart()
         
         UIView.animate(withDuration: 0.6, delay: 0.3, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseIn) {
             self.outerView.center.x += self.outerView.frame.width + 5

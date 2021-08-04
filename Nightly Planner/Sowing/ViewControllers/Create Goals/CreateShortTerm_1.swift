@@ -122,7 +122,7 @@ class CreateShortTerm_1: UIViewController, UICollectionViewDataSource, UICollect
         
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -189,8 +189,9 @@ class CreateShortTerm_1: UIViewController, UICollectionViewDataSource, UICollect
         handleDismissGoal()
         let vc = ViewController()
         self.navigationController?.customPush(viewController: vc)
-        
-        UserDefaults.standard.set(true, forKey: "taskCreated")
+        if UserDefaults.standard.string(forKey: "firstTaskCreated") == nil {
+            UserDefaults.standard.set(true, forKey: "firstTaskCreated")
+        }
     }
     
     func handleDismissGoal() {
