@@ -25,7 +25,7 @@ class LearnMoreViewController: UIViewController {
     
     let header1 : UILabel = {
         let view = UILabel()
-        view.text = "Welcome to Sower!"
+        view.text = "Welcome to Sowing!"
         view.textColor = UIColor(r: 75, g: 80, b: 120)
         
         view.adjustsFontSizeToFitWidth = true

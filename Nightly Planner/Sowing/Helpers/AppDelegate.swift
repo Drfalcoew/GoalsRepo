@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: mainController)
         navigationController.navigationBar.tintColor = UIColor(r: 40, g: 43, b: 53)
         navigationController.navigationBar.isTranslucent = false
-        mainController.title = "Sower"
+        mainController.title = "Sowing"
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         //backgroundImage.frame = window?.frame ?? UIScreen.main.bounds

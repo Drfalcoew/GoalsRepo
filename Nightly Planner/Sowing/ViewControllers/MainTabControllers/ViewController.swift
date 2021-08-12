@@ -532,7 +532,7 @@ class ViewController: UIViewController {
     }*/
     
     func welcomeAlert() {
-        let myAlert = UIAlertController(title: "Welcome to Sower!", message: "Start by creating a daily goal. You can create a maximum of 4 goals at a time to focus more intently, so only add the most important.", preferredStyle: UIAlertController.Style.alert)
+        let myAlert = UIAlertController(title: "Welcome to Sowing!", message: "Start by creating a daily goal. You can create a maximum of 4 goals at a time to focus more intently, so only add the most important.", preferredStyle: UIAlertController.Style.alert)
         let optIn = UIAlertAction(title: "More info", style: UIAlertAction.Style.default, handler: self.handleMoreInfo)
         let ok = UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil)
         
