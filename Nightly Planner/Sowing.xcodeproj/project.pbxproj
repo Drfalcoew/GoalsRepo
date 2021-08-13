@@ -796,7 +796,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sowing/Sowing.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = E7D45YF275;
 				INFOPLIST_FILE = "$(SRCROOT)/Sowing/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -804,7 +804,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.01;
 				PRODUCT_BUNDLE_IDENTIFIER = com.drfalcoew.nightlyPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -820,7 +820,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sowing/Sowing.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = E7D45YF275;
 				INFOPLIST_FILE = "$(SRCROOT)/Sowing/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -828,7 +828,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.01;
 				PRODUCT_BUNDLE_IDENTIFIER = com.drfalcoew.nightlyPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

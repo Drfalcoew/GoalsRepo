@@ -189,6 +189,7 @@ class CreateShortTerm_1: UIViewController, UICollectionViewDataSource, UICollect
         handleDismissGoal()
         let vc = ViewController()
         self.navigationController?.customPush(viewController: vc)
+        UserDefaults.standard.setValue(true, forKey: "taskCreated")
         if UserDefaults.standard.string(forKey: "firstTaskCreated") == nil {
             UserDefaults.standard.set(true, forKey: "firstTaskCreated")
         }

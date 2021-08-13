@@ -156,7 +156,12 @@ class ViewController: UIViewController {
         
         if UserDefaults.standard.bool(forKey: "taskDeleted") == true { //deleted goal
             organizeLocalTasks()
+            self.updateNotifications()
             UserDefaults.standard.set(false, forKey: "taskDeleted")
+        }
+        if UserDefaults.standard.bool(forKey: "taskCreated") == true {
+            self.updateNotifications()
+            UserDefaults.standard.setValue(false, forKey: "taskCreated")
         }
         
         if UserDefaults.standard.bool(forKey: "firstTaskCreated") == true { //created goal
@@ -164,7 +169,6 @@ class ViewController: UIViewController {
             UserDefaults.standard.set(false, forKey: "firstTaskCreated")
         }
 
-        
     }
     
     override func viewDidLoad() {
